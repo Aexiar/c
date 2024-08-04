@@ -26,14 +26,42 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: 'C 语言高级',
       collapsed: true,
       items: [
-
+        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
+        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
+        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
+        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
+        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: '项目构建工具',
+      collapsed: true,
+      items: [
+        {
+          text: 'meson', collapsed: true, items: [
+            { text: 'Gradle 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
+          ]
+        },
+        {
+          text: 'cmake', collapsed: true, items: [
+            { text: 'Gradle 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
+          ]
+        },
+        {
+          text: 'conan ', link: '/notes/03_build/01_${commonDirectoryName}/'
+        },
+        {
+          text: 'Gradle', collapsed: true, items: [
+            { text: 'Gradle 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
+          ]
+        },
       ]
     },
     {
       text: 'Linux',
       collapsed: true,
       items: [
-        { text: 'Linux 初识和安装', link: `/notes/03_linux/01_${commonDirectoryName}/` },
+        { text: 'Linux 初识和安装', link: `/notes/04_linux/01_${commonDirectoryName}/` },
       ]
     },
     {
