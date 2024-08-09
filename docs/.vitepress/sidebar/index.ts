@@ -6,6 +6,7 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: 'C 语言基础',
       collapsed: true,
       items: [
+        { text: '编程基础', link: `/notes/01_c-basic/00_${commonDirectoryName}/` },
         { text: 'C 语言入门', link: `/notes/01_c-basic/01_${commonDirectoryName}/` },
         { text: '变量和进制', link: `/notes/01_c-basic/02_${commonDirectoryName}/` },
         { text: '数据类型和运算符', link: `/notes/01_c-basic/03_${commonDirectoryName}/` },
