@@ -1509,9 +1509,9 @@ extern int printf (const char *__restrict __format, ...);
 > * ① C 语言的系统库中的函数都是外部函数，以便让所有的人可以调用它。
 > * ② 如果在自定义函数的时候，省略了 extern 关键字，默认就是表示外部函数。
 
-### 2.6.1 内部函数（静态函数）
+### 2.6.2 内部函数（静态函数）
 
-* 如果在一个 `.c` 的源文件中定义的函数只能被本文件中的函数调用，而不能被同一个源程序的其它文件中的函数调用，这种函数就称为内部函数。此外，内部函数需要使用 static 关键字修饰。
+* 如果在一个 `.c` 的源文件中定义的函数只能被本文件中的函数调用，而不能被同一个源程序的其它文件中的函数调用，这种函数就称为内部函数。此外，内部函数需要使用 `static` 关键字修饰。
 * 语法：
 
 ```c
@@ -1520,17 +1520,139 @@ static 返回值类型 函数名(形参列表) {
 }
 ```
 
+* 项目结构：
 
+```txt
+├─📁 include/---- # 头文件目录
+│ └─📄 add.h
+├─📁 module/----- # 函数实现目录
+│ └─📄 add.c
+└─📄 main.c------ # 主函数
+```
 
-* 示例：
+* 对于 `include/add.h` 文件，其内容如下：
 
+```c
+#ifndef ADD_H
+#define ADD_H
 
+int add(int a, int b);
 
-### 2.6.2 外部函数
+#endif /* ADD_H */
+```
 
+* 对于 `module/add.c` 文件，其内容如下：
 
+```c {3}
+#include "../include/add.h"
 
+static int add(int a, int b) { 
+    return a + b; 
+}
+```
 
+* 对于 `main.c` 文件，其内容如下：
+
+```c
+#include "./include/add.h"
+#include <stdio.h>
+
+int main() {
+
+  int a = 10;
+  int b = 20;
+
+  int sum = add(a, b);
+
+  printf("Sum = %d\n", sum);
+
+  return 0;
+}
+```
+
+* 使用 gcc 命令进行编译：
+
+```shell
+gcc main.c module/add.c -o main.exe
+```
+
+![](./assets/5.gif)
+
+### 2.6.3 外部函数
+
+* 外部函数在整个源程序中都有效，只需要在定义函数的时候，加上 extern 关键字即可。
+
+* 语法：
+
+```c
+extern 返回值类型 函数名(形参列表) {
+    ...
+}
+```
+
+> [!NOTE]
+>
+> * ① 如果省略 `extern` 关键字，默认表示的就是外部函数。
+> * ② 在 `MSYS2` 中，倾向于省略 `extern` 关键字，如：`int printf (const char *__restrict __format, ...)` 。
+> * ③ 在 `GCC` 中，倾向于加上 `extern` 关键字，如：`extern int printf (const char *__restrict __format, ...)`。
+
+* 项目结构：
+
+```txt
+├─📁 include/---- # 头文件目录
+│ └─📄 add.h
+├─📁 module/----- # 函数实现目录
+│ └─📄 add.c
+└─📄 main.c------ # 主函数
+```
+
+* 对于 `include/add.h` 文件，其内容如下：
+
+```c
+#ifndef ADD_H
+#define ADD_H
+
+int add(int a, int b);
+
+#endif /* ADD_H */
+```
+
+* 对于 `module/add.c` 文件，其内容如下：
+
+```c {3}
+#include "../include/add.h"
+
+int add(int a, int b) { 
+    return a + b; 
+}
+```
+
+* 对于 `main.c` 文件，其内容如下：
+
+```c
+#include "./include/add.h"
+#include <stdio.h>
+
+int main() {
+
+  int a = 10;
+  int b = 20;
+
+  int sum = add(a, b);
+
+  printf("Sum = %d\n", sum);
+
+  return 0;
+}
+```
+
+* 使用 gcc 命令进行编译：
+
+```shell
+gcc main.c module/add.c -o main.exe
+```
+
+![](./assets/6.gif)
 
 
 
