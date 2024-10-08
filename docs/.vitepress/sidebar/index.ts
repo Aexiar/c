@@ -1,0 +1,168 @@
+import { DefaultTheme } from 'vitepress'
+import { commonDirectoryName } from '../utils/constant'
+export const sidebar: DefaultTheme.Sidebar = {
+  '/notes/': [
+    {
+      text: 'C 语言基础',
+      collapsed: true,
+      items: [
+        { text: '编程基础', link: `/notes/01_c-basic/00_${commonDirectoryName}/` },
+        { text: 'C 语言入门', link: `/notes/01_c-basic/01_${commonDirectoryName}/` },
+        { text: '变量和进制', link: `/notes/01_c-basic/02_${commonDirectoryName}/` },
+        { text: '数据类型和运算符', link: `/notes/01_c-basic/03_${commonDirectoryName}/` },
+        { text: '大话小数', link: `/notes/01_c-basic/04_${commonDirectoryName}/` },
+        { text: '流程控制', link: `/notes/01_c-basic/05_${commonDirectoryName}/` },
+        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/06_${commonDirectoryName}/` },
+        { text: '数组', link: `/notes/01_c-basic/07_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: 'C 语言进阶',
+      collapsed: true,
+      items: [
+        { text: '指针一', link: `/notes/02_c-leap/01_${commonDirectoryName}/` },
+        { text: '指针二', link: `/notes/02_c-leap/02_${commonDirectoryName}/` },
+        { text: '指针三', link: `/notes/02_c-leap/03_${commonDirectoryName}/` },
+        { text: '函数一', link: `/notes/02_c-leap/04_${commonDirectoryName}/` },
+        { text: '函数二', link: `/notes/02_c-leap/05_${commonDirectoryName}/` },
+        { text: '预处理器', link: `/notes/02_c-leap/06_${commonDirectoryName}/` },
+        { text: '自定义数据类型', link: `/notes/02_c-leap/07_${commonDirectoryName}/` },
+        { text: '常见的库函数', link: `/notes/02_c-leap/08_${commonDirectoryName}/` },
+        { text: '内存管理', link: `/notes/02_c-leap/09_${commonDirectoryName}/` },
+        { text: '文件操作', link: `/notes/02_c-leap/10_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: 'C 语言高级',
+      collapsed: true,
+      items: [
+        { text: '变量和内存分布', link: `/notes/03_senior/01_${commonDirectoryName}/` },
+        { text: '指针强化', link: `/notes/03_senior/02_${commonDirectoryName}/` },
+        { text: '结构体和文件的高级用法', link: `/notes/03_senior/03_${commonDirectoryName}/` },
+        { text: '链表和回调函数', link: `/notes/03_senior/04_${commonDirectoryName}/` },
+        { text: '编译过程和面向接口', link: `/notes/03_senior/05_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: '数据结构和算法',
+      collapsed: true,
+      items: [
+        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
+        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
+        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
+        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
+        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: 'Socket网络通信',
+      collapsed: true,
+      items: [
+        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
+        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
+        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
+        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
+        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: '多线程编程（基于 Linux）',
+      collapsed: true,
+      items: [
+        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
+        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
+        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
+        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
+        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: '静态链接库和动态链接库',
+      collapsed: true,
+      items: [
+        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
+        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
+        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
+        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
+        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: '项目构建工具',
+      collapsed: true,
+      items: [
+        {
+          text: 'meson', collapsed: true, items: [
+            { text: 'meson 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
+          ]
+        },
+        {
+          text: 'Cmake', collapsed: true, items: [
+            { text: 'Cmake 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
+          ]
+        },
+        {
+          text: 'Conan', link: '/notes/03_build/01_${commonDirectoryName}/'
+        },
+        {
+          text: 'Gradle', collapsed: true, items: [
+            { text: 'Gradle 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
+          ]
+        },
+      ]
+    },
+    {
+      text: 'Linux',
+      collapsed: true,
+      items: [
+        { text: 'Linux 初识和安装', link: `/notes/04_linux/01_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: 'C++ 基础',
+      collapsed: true,
+      items: [
+        { text: 'C++ 入门', link: `/notes/05_cpp/01_${commonDirectoryName}/` },
+        { text: '变量、数据类型、运算符', link: `/notes/05_cpp/02_${commonDirectoryName}/` },
+        { text: '流程控制', link: `/notes/05_cpp/03_${commonDirectoryName}/` },
+        { text: '数组', link: `/notes/05_cpp/04_${commonDirectoryName}/` },
+        { text: '指针', link: `/notes/05_cpp/05_${commonDirectoryName}/` },
+        { text: '函数', link: `/notes/05_cpp/06_${commonDirectoryName}/` },
+        { text: '自定义数据类型', link: `/notes/05_cpp/07_${commonDirectoryName}/` },
+        { text: '类和对象', link: `/notes/05_cpp/08_${commonDirectoryName}/` },
+        { text: 'C++ 引用', link: `/notes/05_cpp/09_${commonDirectoryName}/` },
+        { text: '继承和派生', link: `/notes/05_cpp/10_${commonDirectoryName}/` },
+        { text: 'C++ 多态和虚函数', link: `/notes/05_cpp/11_${commonDirectoryName}/` },
+        { text: '运算符重载', link: `/notes/05_cpp/12_${commonDirectoryName}/` },
+        { text: '模板', link: `/notes/05_cpp/13_${commonDirectoryName}/` },
+        { text: 'C++ 异常', link: `/notes/05_cpp/14_${commonDirectoryName}/` },
+        { text: '面向对象进阶', link: `/notes/05_cpp/15_${commonDirectoryName}/` },
+        { text: '文件操作和 IO 流', link: `/notes/05_cpp/16_${commonDirectoryName}/` },
+        { text: 'STL（标准模板库）', link: `/notes/05_cpp/17_${commonDirectoryName}/` },
+      ]
+    },
+    {
+      text: 'C++ 高级',
+      collapsed: true,
+      items: [
+
+      ]
+    },
+    {
+      text: 'QT 桌面开发',
+      collapsed: true,
+      items: [
+
+      ]
+    },
+    {
+      text: 'Linux 高并发服务器开发',
+      collapsed: true,
+      items: [
+
+      ]
+    }
+  ],
+}
+
+export default sidebar
