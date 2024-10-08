@@ -1657,3 +1657,78 @@ gcc main.c module/add.c -o main.exe
 
 
 # 第三章：再谈变量（⭐）
+
+## 3.1 按照声明位置不同分类
+
+### 3.1.1 概述
+
+* 按照声明位置不同，可以将变量分为`局部变量`和`全局变量`。
+
+### 3.1.2 局部变量（Local Variable）
+
+* 函数内定义的变量、标识符常量、数组等具有局部作用域，只有在该函数内部才能被访问，通常称它们为局部变量、局部常量、局部数组等。
+
+> [!NOTE]
+>
+> * ① 局部变量只能在定义它的函数中使用。
+> * ② 函数的形参也是局部变量。
+> * ③ 如果局部作用域中定义了与全局作用域中同名的标识符，优先使用本作用域中定义的数据。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 求和
+ * @param a 局部变量
+ */
+void add(int a) {
+    // 局部变量
+    int b = 20;
+    // 局部常量
+    const double PI = 3.14;
+    // 局部数组
+    int nums[] = {10, 20, 30};
+
+    printf("add = %.2f \n", (a + b + nums[0]) * PI);
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 调用函数 add
+    add(100); // add = 408.20
+
+    // add 函数外部使用局部变量
+    // printf("%d \n", a);  // 报错 'a' undeclared
+    // printf("%d \n", b);  //报错 'b' undeclared
+    // printf("%f \n", PI);  // 报错 'PI' undeclared
+    // printf("%d \n", nums[0]);  // 报错 'nums' undeclared
+
+    return 0;
+}
+```
+
+### 3.1.3 全局变量（Global Variable）
+
+
+
+## 3.2 按照存储方式不同分类
+
+
+
+
+
+
+
+## 3.3 其它变量修饰符（了解）
+
+
+
+
+
