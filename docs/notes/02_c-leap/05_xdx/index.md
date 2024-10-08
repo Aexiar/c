@@ -1119,15 +1119,147 @@ int main() {
 
 ## 2.2 可变参数（了解）
 
+* 有的时候，函数参数的数量是不确定的，就可以使用 C 语言提供的`可变参数函数`，即：在声明可变参数函数的时候，使用省略号 `...` 来表示可变数量的参数。
+* 语法：
+
+```c
+返回值类型 函数名(int count,...)
+```
+
+> [!CAUTION]
+>
+> * ① 可变参数 `...` 要放在参数列表的结尾，否则将会报错！！！
+> * ② 我们经常使用的 `printf` 函数就是一个可变参数函数，即：`extern int printf (const char *__restrict __format, ...);`
+> * ③ 可变参数函数，在编写各种工具函数和格式化输出函数时非常有用。但要小心确保传递的参数数量和类型与函数的预期相匹配，以避免运行时错误。
 
 
 
+* 示例：
+
+```c
+#include <stdarg.h>
+#include <stdio.h>
+/**
+ * 获取平均值
+ * @param count
+ * @param ...
+ * @return
+ */
+double avg(int count, ...) {
+    // ① 声明一个 va_list 变量，该变量将保存遍历可变参数列表所需的信息。
+    va_list args;
+    // ② 初始化 va_list 变量，使其指向可变参数列表的第一个参数。
+    va_start(args, count);
+    // ③ 访问可变参数
+    double sum = 0;
+    for (int i = 0; i < count; i++) {
+        /**
+         * 1. 获取可变参数的类型和值
+         * va_arg(args, int)：返回 args 中的下一个参数，该参数的类型为 int，
+         * 并将 args 的位置指向参数列表中的下一个参数。
+         * 2. 将获取到的参数值赋给 sum
+         */
+        sum += va_arg(args, int);
+    }
+    // ④ 清理 va_list 变量
+    va_end(args);
+    // 返回平均值
+    return sum / count;
+}
+
+int main() {
+
+    double avgValue = avg(5, 1, 2, 3, 4, 5);
+
+    printf("avgValue = %.2f\n", avgValue);
+
+    return 0;
+}
+```
 
 ## 2.3 指针函数（返回值是指针）
 
+### 2.3.1 概述
+
+* C 语言允许函数的返回值是一个指针（地址），这样的函数称为指针函数。
+* 语法：
+
+```c
+返回值类型 * 函数名(形参列表){
+    ... // 函数体
+}
+```
+
+> [!CAUTION]
+>
+> 指针函数中的函数体 return  必须返回一个指针（地址）。
+
+### 2.3.2 应用示例
+
+* 需求：获取两个字符串中较长的字符串。
 
 
 
+* 示例：
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * 获取两个字符串中较长者
+ * @param str1
+ * @param str2
+ * @return
+ */
+char *maxLengthStr(char *str1, char *str2) {
+    if (strlen(str1) >= strlen(str2)) {
+        return str1;
+    } else {
+        return str2;
+    }
+}
+
+int main() {
+
+    char *str1 = "hello123";
+    char *str2 = "world";
+
+    // hello123 和 world 中较长的是：hello123
+    printf("%s 和 %s 中较长的是：%s\n", str1, str2, maxLengthStr(str1, str2));
+
+    return 0;
+}
+```
+
+### 2.3.3 指针函数的注意事项
+
+* 使用指针作为函数返回值的时候，需要注意的是：函数运行结束后会销毁在它内部定义的所有局部数据，包括：局部变量、局部数组和形式参数。
+
+> [!CAUTION]
+>
+> * ① 函数返回的指针请尽量不要指向这些数据，C 语言没有任何机制来保证这些数据会一直有效，它们在后续使用过程中可能会引发运行时错误。
+> * ② 函数运行结束后会销毁所有的局部数据，这个观点并没错，大部分 C 语言教材也都强调了这一点。但是，这里所谓的销毁并不是将局部数据所占用的内存全部抹掉，而是程序放弃对它的使用权限，弃之不理，后面的代码可以随意使用这块内存。
+
+
+
+* 示例：错误演示
+
+```c
+#include <stdio.h>
+
+int *func(){
+    int n = 100;
+    return &n;
+}
+
+int main(){
+    int *p = func(), n;
+    n = *p;
+    printf("value = %d\n", n);
+    return 0;
+}
+```
 
 ## 2.4 函数指针（指向函数的指针）
 
