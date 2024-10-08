@@ -1580,7 +1580,7 @@ gcc main.c module/add.c -o main.exe
 
 ### 2.6.3 外部函数
 
-* 外部函数在整个源程序中都有效，只需要在定义函数的时候，加上 extern 关键字即可。
+* 外部函数在整个源程序中都有效，只需要在定义函数的时候，加上 `extern` 关键字即可。
 
 * 语法：
 
@@ -1653,8 +1653,6 @@ gcc main.c module/add.c -o main.exe
 ```
 
 ![](./assets/6.gif)
-
-
 
 
 
