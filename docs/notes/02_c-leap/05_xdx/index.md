@@ -1372,20 +1372,24 @@ int main() {
 
 > [!NOTE]
 >
-> JavaScript 中的函数广泛应用于异步编程（如：处理用户事件、网络请求等），是因为 JavaScript 是单线程的，异步操作不会阻塞主线程运行，而是通过回调函数在异步任务完成后执行。
+> * ① 由于JavaScript 是单线程的，回调函数主要用于处理异步操作。
+> * ② JavaScript中有大量的异步操作，如：事件处理、网络请求等，回调函数可以延迟执行，等操作完成后再回调。
+> * ③ JavaScript 有自动垃圾回收机制，开发者不需要手动管理内存。
 
 
 
 * 示例：
 
-```c {20}
+```js {20}
 /**
 * @param name
 * @param callback 接受一个回调函数作为参数
 */
-function greet(name, callback) {
-  console.log('Hello, ' + name);
-  callback();
+function asyncFunction(name, callback) {
+  setTimeout(function() {
+    console.log("执行异步操作");
+    callback(); // 通过 callback 去执行 callbackFunction 函数的过程，就是函数的回调
+  }, 1000);
 }
 
 /**
@@ -1398,22 +1402,127 @@ function done() {
 /**
 * done 是一个回调函数
 */
-greet('John', done);
+asyncFunction('John', done);
 ```
 
 ### 2.5.3 C 语言中的回调函数
 
-* C 语言本身没有异步编程的直接支持，回调函数一般用于同步操作中，回调函数往往是立即调用的。异步操作通常通过多线程或事件驱动编程模型实现，回调函数可以通过这种方式延迟执行，如：在操作系统中，回调函数用于处理硬件中断、信号等。
+* C 语言本身没有异步编程的直接支持，回调函数一般用于同步操作中，回调函数往往是立即调用的。
+
+> [!NOTE]
+>
+> * ① C 语言中的异步操作通常通过`多线程`或`事件驱动编程模型`实现，回调函数可以通过这种方式延迟执行，如：在操作系统中，回调函数用于处理硬件中断、信号等。
+> * ② C 语言不提供自动垃圾回收，回调函数如果涉及动态分配内存，开发者需要手动管理内存，防止内存泄漏。
+
+* 其原理是：有一个函数 fun，它有两个形参 x1 和 x2，并且 x1 和 x2 是指针函数的指针变量，即：函数指针。在调用函数 fun 的时候，实参为两个函数名 f1 和 f2 ，给形参传递的时函数 f1 和 f2 的入口地址，这样就可以在函数 fun 中调用 f1 函数和 f2 函数。
+
+```c
+/**
+ * 定义 fun 函数，形参是指针函数的指针变量
+ * @param x1 函数指针
+ * @param x2 函数指针
+ */
+void fun(int (*x1)(int), int (*x2)(int, int)) {
+    int a, b;
+    a = x1(10);
+    b = x2(10, 20);
+    printf("a = %d, b = %d\n", a, b);
+}
+```
 
 
 
+* 示例：使用回调函数的方式，给数组中元素赋值，要求赋的值是随机值
 
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
+
+/**
+ * 初始化随机数生成器的函数
+ */
+void initializeRandomSeed() {
+    srand((unsigned int)time(nullptr) + getpid());
+}
+
+/**
+ * 生成指定范围的随机数的函数
+ * @param min 最小值
+ * @param max 最大值
+ * @return
+ */
+int randomInRange(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
+/**
+ * // 初始化数组元素
+ * @param arr 数组
+ * @param len 数组元素的个数
+ * @param random 回调函数
+ */
+void initArr(int arr[], int len, int (*random)(int, int)) {
+    for (int i = 0; i < len; ++i) {
+        arr[i] = (*random)(1, 100);
+    }
+}
+
+#define LEN 10
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 初始化随机数生成器种子
+    initializeRandomSeed();
+
+    int arr[LEN] = {0};
+
+    initArr(arr, LEN, randomInRange);
+
+    // 遍历数组
+    for (int i = 0; i < LEN; ++i) {
+        printf("arr[%d] = %d \n", i, arr[i]);
+    }
+
+    return 0;
+}
+```
 
 ## 2.6 函数说明符
 
+### 2.6.1 概述
+
+* 在 C 语言中，函数一旦被定义，就可以被其它的函数调用，其实是因为它默认的修饰符是 `extern` ，如下所示：
+
+```c
+extern int printf (const char *__restrict __format, ...);
+```
+
+* 但是，对于一个 C 程序而言，可能由很多 `.c` 源文件组成，我们并不一定想让某个源文件中定义的函数被其它源文件中的函数调用。所以，C 语言将函数分为两类：`内部函数（静态函数）`和`外部函数`。
+
+> [!CAUTION]
+>
+> * ① C 语言的系统库中的函数都是外部函数，以便让所有的人可以调用它。
+> * ② 如果在自定义函数的时候，省略了 extern 关键字，默认就是表示外部函数。
+
 ### 2.6.1 内部函数（静态函数）
 
+* 如果在一个 `.c` 的源文件中定义的函数只能被本文件中的函数调用，而不能被同一个源程序的其它文件中的函数调用，这种函数就称为内部函数。此外，内部函数需要使用 static 关键字修饰。
+* 语法：
 
+```c
+static 返回值类型 函数名(形参列表) {
+    ...
+}
+```
+
+
+
+* 示例：
 
 
 
