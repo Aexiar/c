@@ -1666,7 +1666,7 @@ gcc main.c module/add.c -o main.exe
 
 ### 3.1.2 局部变量（Local Variable）
 
-* 函数内定义的变量、标识符常量、数组等具有局部作用域，只有在该函数内部才能被访问，通常称它们为局部变量、局部常量、局部数组等。
+* 函数内定义的变量、标识符常量、数组等具有局部作用域，只有在该函数内部才能被访问，通常称它们为`局部变量`、局部常量、局部数组等。
 
 > [!NOTE]
 >
@@ -1715,6 +1715,56 @@ int main() {
 ```
 
 ### 3.1.3 全局变量（Global Variable）
+
+* 在函数和代码块（分支语句、循环语句等）以外定义的变量、标识符常量、数组等具有全局作用域，在程序的任何地方都可以被访问，通常称它们为`全局变量`、全局常量、全局数组等。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+// 全局变量
+double money = 1.1;
+
+// 全局常量
+const double PI = 3.14;
+
+// 全局数组
+char msg[] = "Hello World";
+
+// 全局函数
+void func() {
+    printf("func 函数中使用全局数据：\n");
+    printf("money=%.2f \n", money);
+    printf("PI=%.2f \n", PI);
+    printf("msg=%s \n", msg);
+    printf("\n");
+    money += 100;
+}
+
+// 主函数
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 调用 func()
+    func();
+
+    printf("主函数中使用全局数据：\n");
+    printf("money=%.2f \n", money);
+    printf("PI=%.2f \n", PI);
+    printf("msg=%s \n", msg);
+    printf("\n");
+
+    // 调用 func()
+    func();
+
+    return 0;
+}
+```
 
 
 
