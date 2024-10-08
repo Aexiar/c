@@ -2069,3 +2069,72 @@ int main() {
 
 ```
 
+#### 3.2.2.4 常量参数
+
+* 在C语言中，单独定义 const 变量没有明显的优势，完全可以使用`#define`命令代替。
+
+> [!NOTE]
+>
+> const 通常用在函数形参中，如果形参是一个指针，为了防止在函数内部修改指针指向的数据，就可以用 const 来限制。
+
+* 在 C 语言标准库中，有很多函数的形参都被 const 限制了，下面是部分函数的原型：
+
+```c
+size_t strlen ( const char * str );
+```
+
+```c
+int strcmp ( const char * str1, const char * str2 );
+```
+
+```c
+char * strcat ( char * destination, const char * source );
+```
+
+```c
+char * strcpy ( char * destination, const char * source );
+```
+
+```c
+int system (const char* command);
+```
+
+```c
+int puts ( const char * str );
+```
+
+```c
+int printf ( const char * format, ... );
+```
+
+
+
+* 示例：
+
+```c {6}
+#include <stdio.h>
+
+/**
+* 查找字符串中某个字符出现的次数
+*/
+size_t strnchr(const char *str, char ch){
+    int i, n = 0, len = strlen(str);
+
+    for(i=0; i<len; i++){
+        if(str[i] == ch){
+            n++;
+        }
+    }
+   
+    return n;
+}
+
+int main(){
+    char *str = "abcabcabcabcdfafere";
+    char ch = 'a';
+    int n = strnchr(str, ch);
+    printf("%d\n", n);
+    return 0;
+}
+```
+
