@@ -684,5 +684,128 @@ int main() {
 ## 6.1 概述
 
 * 现在需要开发一个 C 语言程序，要求在 Windows 上的控制台的颜色是红色，而在 Linux 上的控制台的颜色是默认颜色，怎么办？
-* Windows 上的宏是 `_WIN32`，而 Linux 上预定义宏是 __linux__
+* Windows 上的预定义宏是 `_WIN32`，而 Linux 上预定义宏是 `__linux__`，我们很容易的想到使用 `if...else` 来实现，代码如下：
 
+```c
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    if (_WIN32) {
+        printf("\033[1;31m这是红色的文本\n");
+    } else if (__linux__) {
+        printf("\033[0m这是默认颜色的文本\n");
+    }
+    return 0;
+}
+```
+
+* 但是，编译器会直接报错，如下所示：
+
+![](./assets/5.png)
+
+> [!CAUTION]
+>
+> * ① 此时我的环境是 Linux，而在 Linux 环境下编译器是不认识 `_Win32` 的，会提示未定义的标识符。
+> * ② 同理，如果我的环境是 Windows，而在 Windows 环境下编译器是不认识 `__linux__` 的，会提示未定义的标识符。
+
+* 此时，我们可以使用 `#if ...#endif` 来对上述的程序进行改进，如下所示：
+
+```c
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if _WIN32
+    printf("\033[1;31m这是红色的文本\n");
+#elif __linux__
+    printf("\033[0m这是默认颜色的文本\n");
+#endif
+
+    return 0;
+}
+```
+
+* 我们可以看到，此时的编译器是不会报错的，如下所示：
+
+![](./assets/6.png)
+
+> [!NOTE]
+>
+> * ① `#if`、`#elif`、`#endif` 等都是预处理命令，其含义是：如果宏 `_WIN32` 为真，就保留第 9 行代码，而删除第 11 行代码；如果宏 `__linux__`为真，就保留第 11 行代码，而删除第 9 行代码。
+> * ② 这些操作都是在预处理阶段完成的，多余的代码以及所有的宏都不会参与编译，不仅保证了代码的正确性，还减小了编译后文件的体积。
+> * ③ `这种能够根据不同情况编译不同代码、产生不同目标文件的机制，称为条件编译`。
+> * ④ 条件编译是预处理程序的功能，不是编译器的功能。
+
+## 6.2 #if
+
+### 6.2.1 #if ... #endif
+
+* 语法：
+
+```c
+#if 条件表达式
+	...
+#endif
+```
+
+> [!NOTE]
+>
+> * ① `#if...#endif` 指令用于预处理器的条件判断，满足条件时，内部的行会被编译，否则就被编译器忽略。
+> * ② `#if...#endif` 指令相当于分支结构中的 `if` 语句。
+
+* 流程图，如下所示：
+
+![](./assets/7.png)
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define AGE 19
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if AGE >= 18
+    printf("你已经是一个成年人了，可以为自己的行为负责！！！");
+#endif
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define AGE 17
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if AGE >= 18
+    printf("你已经是一个成年人了，可以为自己的行为负责！！！");
+#endif
+
+    return 0;
+}
+```
+
+### 6.2.2 #if … #else … #endif
