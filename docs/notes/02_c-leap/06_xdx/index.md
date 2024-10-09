@@ -1065,3 +1065,31 @@ int main() {
 >
 > * ① Windows 平台下的暂停函数的原型是`void Sleep(DWORD dwMilliseconds)`（注意 S 是大写的），参数的单位是 `ms`，位于 `<windows.h>` 头文件。
 > * ② Linux 平台下暂停函数的原型是`unsigned int sleep (unsigned int seconds)`，参数的单位是 `s`，位于 `<unistd.h>` 头文件。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#if _WIN32 // 如果是windows平台, 就引入 <windows.h>
+#include <windows.h>
+#define SLEEP(t) Sleep(t * 1000)
+#elif __linux__ // 如果是linux平台， 就引入<unistd.h>
+#include <unistd.h>
+#define SLEEP sleep
+#endif
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    SLEEP(5);
+    printf("hello, 大家好~");
+
+    return 0;
+}
+```
+
