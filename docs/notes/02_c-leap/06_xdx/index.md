@@ -944,7 +944,9 @@ int main() {
 
 > [!NOTE]
 >
-> 应用场景：用于判断某个宏是否定义过。
+> * ① 应用场景：用于判断某个宏是否定义过。
+> * ② 类似于分支结构中的 `if...else` 语句。
+> * ③ 最典型的应用就是解决头文件重复问题。
 
 
 
@@ -952,17 +954,114 @@ int main() {
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(){
-    #ifdef _DEBUG
-        printf("正在使用 Debug 模式编译程序...\n");
-    #else
-        printf("正在使用 Release 模式编译程序...\n");
-    #endif
+int main() {
 
-    system("pause");
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#ifdef _DEBUG
+    printf("正在使用 Debug 模式编译程序...\n");
+#else
+    printf("正在使用 Release 模式编译程序...\n");
+#endif
+
     return 0;
 }
 ```
 
+### 6.4 \#if defined
+
+* 语法：
+
+```c
+#if defined 宏名
+  ...
+#elif defined 宏名
+  ...
+#else
+  ...
+#endif
+```
+
+> [!NOTE]
+>
+> * ① 应用场景：用于判断某个宏是否定义过。
+> * ② 类似于分支结构中的 `if...elseif..else` 语句。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if defined(_DEBUG)
+    printf("正在使用 Debug 模式编译程序...\n");
+#elif defined(NDEBUG)
+    printf("正在使用 Release 模式编译程序...\n");
+#elif defined(RELWITHDEBINFO)
+    printf("正在使用 RelWithDebInfo 模式编译程序...\n");
+#elif defined(_MINSIZEREL)
+    printf("正在使用 Minsizerel 模式编译程序...\n");
+#else
+    printf("正在使用未知模式编译程序...\n");
+#endif
+
+    return 0;
+}
+```
+
+## 6.4 #ifndef
+
+* 语法：
+
+```c
+#ifndef 宏名
+    ... 
+#else 
+    ...  
+#endif
+```
+
+> [!NOTE]
+>
+> `#ifndef...#endif` 指令跟 `#ifdef...#endif`正好相反。它用来判断，如果某个宏没有被定义过。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#ifndef _DEBUG
+    printf("正在使用 Release 模式编译程序...\n");
+#else
+    printf("正在使用 Debug 模式编译程序...\n");
+#endif
+
+    return 0;
+}
+```
+
+## 6.5 应用示例
+
+* 需求：开发一个 C 语言程序，让它暂停 5 秒以后再输出内容，并且要求跨平台。
+
+> [!NOTE]
+>
+> 不同平台下的暂停函数和头文件都不一样，如下所示：
+>
+> * ① Windows 平台下的暂停函数的原型是`void Sleep(DWORD dwMilliseconds)`（注意 S 是大写的），参数的单位是 `ms`，位于 `<windows.h>` 头文件。
+> * ② Linux 平台下暂停函数的原型是`unsigned int sleep (unsigned int seconds)`，参数的单位是 `s`，位于 `<unistd.h>` 头文件。
