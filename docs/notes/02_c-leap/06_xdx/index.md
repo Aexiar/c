@@ -144,15 +144,57 @@ int main() {
 }
 ```
 
+### 1.4.3 Windows 平台预处理
 
-
-* 上述程序，在 Windows 上进行预处理，即：
+* 上述程序，对于 Windows 平台，进行预处理，即：
 
 ```c
-gcc 
+gcc -E main.c -o main.i
 ```
 
+![](./assets/2.gif)
 
+* 处理后的代码就是这样的，如下所示：
+
+```c {2,6}
+#include <stdio.h>
+#include <windows.h>
+
+int main() {
+    
+    Sleep(5000);
+    
+    puts("Hello World\n");
+
+    return 0;
+}
+```
+
+### 1.4.4 Linux 平台预处理
+
+* 上述程序，对于 Linux 平台，进行预处理，即：
+
+```c
+gcc -E main.c -o main.i
+```
+
+![](./assets/3.gif)
+
+* 处理后的代码就是这样的，如下所示：
+
+```c {2,6}
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    
+    sleep(5);
+
+    puts("Hello World\n");
+
+    return 0;
+}
+```
 
 
 
@@ -160,13 +202,229 @@ gcc
 
 ## 2.1 概述
 
+* `#define` 在 C 语言中就称为宏定义命令，它是 C 语言预处理命令中的一种。所谓的`宏定义`，就是用一个标识符（宏名称）来表示一个替换文本，如果在后面的代码中出现了该标识符（宏名称），预处理器就会将它替换为对应的文本，我们也称该过程是宏替换或宏展开。
+* 语法：
 
+```c
+#define 宏名称 替换文本
+```
+
+> [!NOTE]
+>
+> * ① 宏定义不是说明或语句，在行末不必加分号，如果加上分号则连分号也一起替换。
+> * ② 宏名称：宏的名称，是一个标识符，通常使用大写字母表示，以便和普通的变量名进行区别。
+> * ③ 替换文本：宏名称在代码中的每次出现都会被替换为这段文本。
+> * ④ 宏定义必须写在函数之外，其作用域为宏定义命令起到源程序结束。如果要终止其作用域可使用`#undef`命令。
+> * ⑤ 宏定义是用宏名来表示一个替换文本，在宏展开时又以该替换文本取代宏名，这只是一种简单粗暴的替换。替换文本中可以含任何字符，它可以是常数、表达式、if 语句、函数等，预处理程序对它不作任何检查，如果有错误，只能在编译已被宏展开后的源程序时发现。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+// N 是宏名称，3 是替换文本
+#define N 3 // [!code highlight]
+
+int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int sum = 20 + N; // [!code highlight]
+
+    printf("sum = %d\n", sum); // sum = 23
+
+    return 0;
+}
+```
+
+## 2.2 使用宏定义常量
+
+* 需求：编写一个程序，求圆的面积，要求使用宏定义 PI。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define PI 3.1415926 // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int r = 0;
+    printf("请输入圆的半径：");
+    scanf("%d", &r);
+
+    double area = PI * r * r; // [!code highlight]
+    printf("圆的面积为：%.2f\n", area);
+
+    return 0;
+}
+```
+
+## 2.3 使用宏定义数据类型
+
+* 需求：编程一个程序，模拟布尔类型。
+
+> [!NOTE]
+>
+> * ① C 23 标准中已经提供了布尔类型，即：`nullptr_t`，其值是 `nullptr`。
+> * ② 但是，在 ANSI C 标准中是没有布尔类型的，使用 `0` 表示`假`，`1` 表示`真`。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define BOOL int // [!code highlight]
+#define TRUE 1 // [!code highlight]
+#define FALSE 0 // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    BOOL isPass = FALSE; // [!code highlight]
+    BOOL isOk   = TRUE; // [!code highlight]
+
+    printf("isPass = %d\n", isPass); // isPass = 0
+    printf("isOk = %d\n", isOk);     // isOk = 1
+
+    return 0;
+}
+```
+
+## 2.4 使用宏定义替换文本
+
+* 需求：程序中反复使用的表达式可以使用宏定义，要求将`M` 替换为 `(n*n+3*n)`。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define M (n * n + 3 * n) // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int n = 3;
+    // int sum = 3 * (n*n+3*n) + 4 * (n*n+3*n) + 5 * (n*n+3*n);
+    int sum = 3 * M + 4 * M + 5 * M; // [!code highlight]
+
+    printf("sum = %d\n", sum); // sum = 216
+
+    return 0;
+}
+```
+
+## 2.5 宏定义嵌套
+
+* 需求：宏定义允许嵌套，在宏定义的替换文本中可以使用已经定义的宏名，在宏展开时由预处理程序层层替换。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define PI 3.1415926 // [!code highlight]
+#define AREA PI *r *r // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int r = 0;
+    printf("请输入圆的半径：");
+    scanf("%d", &r);
+
+    printf("圆的面积为：%.2f\n", AREA); // [!code highlight]
+
+    return 0;
+}
+```
+
+## 2.6 取消宏定义
+
+* 需求：有的时候，我们希望在某个函数内取消宏定义。
+
+> [!NOTE]
+>
+> 宏定义必须写在函数之外，其作用域为宏定义命令起到源程序结束。如果要终止其作用域可使用`#undef`命令。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define PI 3.1415926 // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int r = 0;
+    printf("请输入圆的半径：");
+    scanf("%d", &r);
+
+    double area = PI * r * r;
+    printf("圆的面积为：%.2f\n", area);
+
+    return 0;
+}
+
+// 取消宏定义
+#undef PI // [!code highlight]
+
+void func() {
+    // 错误，这里不能使用 PI
+    // printf("PI=%f", PI); // [!code error]
+}
+```
 
 
 
 # 第三章：带参数的宏定义
 
+## 3.1 概述
 
+* C 语言允许宏带有参数。在宏定义中的参数称为“形式参数”，在宏调用中的参数称为“实际参数”，这点和函数有些类似。
+* 带参宏定义语法：
+
+```c
+#define 宏名(形参列表) 替换文本
+```
+
+> [!NOTE]
+>
+> * ① 对带参数的宏，在展开过程中不仅要进行字符串替换，还要用实参去替换形参。
+> * ② 带参宏定义的一般形式为`#define宏名(形参列表) 替换文本`，在替换文本中可以含有各个形参。
+
+* 带参宏调用语法：
+
+```c
+宏名(实参列表);
+```
 
 
 
