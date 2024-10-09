@@ -428,6 +428,161 @@ void func() {
 
 
 
+* 示例：使用函数来获取两个数中的较大的数
+
+```c
+#include <stdio.h>
+
+/**
+ * 获取两个整数中的最大值
+ * @param a
+ * @param b
+ * @return
+ */
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int a = 10;
+    int b = 20;
+
+    int maxValue = max(a, b);
+
+    printf("maxValue = %d\n", maxValue); // maxValue = 20
+
+    return 0;
+}
+```
+
+
+
+* 示例：使用带参宏定义来获取两个整数中的最大值
+
+```c
+#include <stdio.h>
+
+#define MAX(a, b) a > b ? a : b // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int a = 10;
+    int b = 20;
+
+    int maxValue = MAX(a, b);
+
+    printf("maxValue = %d\n", maxValue); // maxValue = 20
+
+    return 0;
+}
+
+```
+
+## 3.2 使用细节和注意事项
+
+* ① 带参宏定义中，形参之间可以出现空格，但是宏名和形参列表之间不能有空格出现。
+* ② 在带参宏定义中，不会为形式参数分配内存，因此不必指明数据类型，而在宏调用中，实参包含了具体的数据，要用它们去替换形参，因此实参必须要指明数据类型。
+* ③ 在宏定义中，替换文本内的形参通常要用括号括起来以避免出错。
+
+
+
+* 示例：演示 ① 
+
+```c
+#include <stdio.h>
+
+#define MAX (a, b) a > b ? a : b // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int a = 10;
+    int b = 20;
+
+    // MAX 就相当于 (a, b) a > b ? a : b
+    // MAX(a, b) 就相当于 (a, b) a > b ? a : b(a, b)
+    int maxValue = MAX(a, b); // [!code error]
+
+    printf("maxValue = %d\n", maxValue); 
+
+    return 0;
+}
+
+```
+
+
+
+* 示例：演示 ③ 
+
+```c
+#include <stdio.h>
+
+// 带参宏定义,字符串内的形参通常要用括号括起来以避免出错
+#define SQ(y) (y) * (y) // [!code highlight]
+
+int main()
+{
+    int a, sq;
+    printf("input a number: ");
+    scanf("%d", &a);
+
+    // 宏替换为 (a+1) * (a+1)
+    sq = SQ(a + 1);  // [!code highlight]
+    printf("sq=%d\n", sq);
+
+    return 0;
+}
+```
+
+## 3.3 带参宏定义和函数的区别
+
+* ① 宏展开仅仅是文本的替换，不会对表达式进行计算；宏在编译之前就被处理掉了，它没有机会参与编译，也不会占用内存。
+* ② 函数是一段可以重复使用的代码，会被编译，会给它分配内存，每次调用函数， 就是执行这块内存中的代码。
+
+
+
+* 示例：使用函数计算平方值
+
+```c
+#include <stdio.h>
+
+/**
+ * 求平方值
+ * @param y
+ * @return
+ */
+int SQ(int y) {
+    return ((y) * (y));
+}
+
+int main() {
+
+    for (int i = 1; i <= 5; i++) {
+        printf("%d^2 = %d\n", i, SQ(i));
+    }
+
+    return 0;
+}
+```
+
+
+
+* 示例：使用带参宏定义计算平方值
+
+```c
+```
+
+
+
 # 第四章：文件包含
 
 
