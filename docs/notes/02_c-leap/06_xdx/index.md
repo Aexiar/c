@@ -914,7 +914,7 @@ int main() {
     setbuf(stdout, nullptr);
 
 #if AGE < 6
-    printf("你现在处于幼儿阶段\n
+    printf("你现在处于幼儿阶段\n");
 #elif AGE < 12
     printf("你现在处于少年阶段\n");
 #elif AGE < 18
