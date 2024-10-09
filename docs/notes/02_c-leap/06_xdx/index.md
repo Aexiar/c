@@ -555,11 +555,6 @@ int main()
 ```c
 #include <stdio.h>
 
-/**
- * 求平方值
- * @param y
- * @return
- */
 int SQ(int y) {
     return ((y) * (y));
 }
@@ -579,6 +574,18 @@ int main() {
 * 示例：使用带参宏定义计算平方值
 
 ```c
+#include <stdio.h>
+
+#define SQ(y) ((y) * (y))
+
+int main() {
+
+    for (int i = 1; i <= 5; i++) {
+        printf("%d^2 = %d\n", i, SQ(i));
+    }
+
+    return 0;
+}
 ```
 
 
