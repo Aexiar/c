@@ -1255,6 +1255,16 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-D_DEBUG)
+elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+    add_definitions(-DNDEBUG)
+elseif (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    add_definitions(-DRELWITHDEBINFO)
+elseif (CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+    add_definitions(-DMINSIZEREL)
+endif ()
+
 # 辅助函数，用于递归查找所有源文件
 function(collect_sources result dir)
     file(GLOB_RECURSE new_sources "${dir}/*.c")
@@ -1311,7 +1321,6 @@ foreach (SOURCE ${SOURCES})
         endif ()
     endif ()
 endforeach ()
-
 ```
 
 ## 6.4 配置 .clang-format 文件
