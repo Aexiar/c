@@ -1073,10 +1073,10 @@ int main() {
 ```c
 #include <stdio.h>
 
-#if _WIN32 // 如果是windows平台, 就引入 <windows.h>
+#if _WIN32 // 如果是 Windows 平台, 就引入 <windows.h>
 #include <windows.h>
 #define SLEEP(t) Sleep(t * 1000)
-#elif __linux__ // 如果是linux平台， 就引入<unistd.h>
+#elif __linux__ // 如果是 Linux 平台， 就引入<unistd.h>
 #include <unistd.h>
 #define SLEEP sleep
 #endif
