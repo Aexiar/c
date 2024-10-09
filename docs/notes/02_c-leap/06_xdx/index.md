@@ -809,3 +809,140 @@ int main() {
 ```
 
 ### 6.2.2 #if … #else … #endif
+
+* 语法：
+
+```c
+#if 条件表达式
+	...
+#else
+    ...    
+#endif
+```
+
+> [!NOTE]
+>
+> * ① `#if...#endif`之间还可以加入 `#else` 指令，用于指定判断条件不成立时，需要编译的语句。
+> * ② `#if … #else … #endif` 指令相当于分支结构中的 `if...else` 语句。
+
+* 流程图，如下所示：
+
+![](./assets/8.png)
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define AGE 19
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if AGE > 18
+    printf("你已经是一个成年人了，可以为自己的行为负责！！！");
+#else
+    printf("你还是一个未成年人，需要监护人监护！！！");
+#endif
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define AGE 17
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if AGE > 18
+    printf("你已经是一个成年人了，可以为自己的行为负责！！！");
+#else
+    printf("你还是一个未成年人，需要监护人监护！！！");
+#endif
+
+    return 0;
+}
+```
+
+### 6.2.3 #if … #elif … #else … #endif
+
+* 语法：
+
+```c
+#if 条件表达式1
+	...
+#elif 条件表达2
+    ...    
+#else
+    ...    
+#endif
+```
+
+> [!NOTE]
+>
+> `#if … #elif … #else … #endif` 指令相当于分支结构中的 `if...elseif..else` 语句。
+
+* 流程图，如下所示：
+
+![](./assets/9.png)
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+#define AGE 17
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+#if AGE < 6
+    printf("你现在处于幼儿阶段\n
+#elif AGE < 12
+    printf("你现在处于少年阶段\n");
+#elif AGE < 18
+    printf("你现在处于青年阶段\n");
+#elif AGE < 40
+    printf("你现在处于壮年阶段\n");
+#else
+    printf("你现在处于老年阶段\n");
+#endif
+
+
+    return 0;
+}
+```
+
+## 6.3 #ifdef 
+
+* 语法：
+
+```c
+#ifdef  宏名
+    ...
+#else
+    ...
+#endif
+```
+
+> [!NOTE]
+>
+> 
+
