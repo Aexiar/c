@@ -944,5 +944,25 @@ int main() {
 
 > [!NOTE]
 >
-> 
+> 应用场景：用于判断某个宏是否定义过。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    #ifdef _DEBUG
+        printf("正在使用 Debug 模式编译程序...\n");
+    #else
+        printf("正在使用 Release 模式编译程序...\n");
+    #endif
+
+    system("pause");
+    return 0;
+}
+```
 
