@@ -160,7 +160,7 @@ int main() {
 }
 ```
 
-### 1.4.2 给枚举变量赋值
+### 1.4.3 给枚举变量赋值
 
 * 枚举变量的值应该是枚举类型中的任意一个枚举元素（没有常量），不能是其他的值。
 * 语法：
@@ -301,18 +301,18 @@ int main() {
     printf("请输入颜色(1-3)：");
     scanf("%d", &color);
     switch (color) {
-    case RED:
-        printf("红色\n");
-        break;
-    case GREEN:
-        printf("绿色\n");
-        break;
-    case BLUE:
-        printf("蓝色\n");
-        break;
-    default:
-        printf("输入错误\n");
-        break;
+        case RED:
+            printf("红色\n");
+            break;
+        case GREEN:
+            printf("绿色\n");
+            break;
+        case BLUE:
+            printf("蓝色\n");
+            break;
+        default:
+            printf("输入错误\n");
+            break;
     }
 
     return 0;
