@@ -4,13 +4,326 @@
 
 * C 语言中的变量，按照`数据类型`划分，如下所示：
 
+> [!NOTE]
+>
+> `构造类型`也会被人称为`自定义数据类型`！！！
+
 ![](./assets/1.png)
 
+* C 语言中的变量，按照`声明位置`划分，如下所示：
 
+![](./assets/2.png)
+
+* C 语言中的变量，按照`存储方式`分类，如下所示：
+
+![](./assets/3.png)
 
 ## 1.2 什么是枚举？
 
-* `枚举`（Enumeration ）是 C 语言中的一种`自定义数据类型`（构造类型），
+* 在实际生活中，我们经常会遇到一些数据的值是有限的，如：
+
+  * `星期`：Monday (星期一)、......、Sunday (星期天)。
+
+  - `性别`：Man (男)、Woman (女)。
+
+  - `季节`：Spring (春节)......Winter (冬天)。
+
+  - `支付方式`：Cash（现金）、WeChatPay（微信）、Alipay (支付宝)、BankCard (银 行卡)、CreditCard (信用卡)。
+
+  - `就职状态`：Busy、Free、Vocation、Dimission。
+
+  - `订单状态`：Nonpayment（未付款）、Paid（已付款）、Delivered（已发货）、 Return（退货）、Checked（已确认）Fulfilled（已配货）。
+  - ...
+
+* 类似上述的场景，我们就可以使用 C 语言提供的一种`构造类型` --- `枚举`（Enumeration） ，其用于`定义`一组相关的`整型常量`。它提供了一种更具可读性和可维护性的方式来定义`常量集合`。
+
+## 1.3 定义枚举
+
+* 语法：
+
+```c
+enum 枚举类型 {
+    枚举元素1, // 枚举常量1
+    枚举元素2, // 枚举常量2
+    ...
+}
+```
+
+> [!NOTE]
+>
+> `枚举元素`也称为`枚举成员`或`枚举常量`，具有如下的特点：
+>
+> * ① 枚举元素的值必须在同一枚举中是唯一的。
+> * ② 枚举元素的值必须是整数类型，通常是 int 。
+> * ③ 如果没有为枚举元素指定值，编译器会自动为它们进行分配，从 0 开始，自动递增。
+> * ④ 定义枚举的时候，也可以为枚举元素自定义值，但是需要保证唯一性和整数类型。
+
+> [!IMPORTANT]
+>
+> CLion 中`选中枚举元素`并使用快捷键 `Ctrl + Q`，或将`鼠标`悬浮在`枚举元素`上，就会自动显示枚举元素对应的值，如下所示：
+>
+> ![](./assets/4.png)
+
+
+
+* 示例：每个枚举常量的值默认为从 0 开始递增的整数
+
+```c
+#include <stdio.h>
+
+/**
+ * 定义枚举
+ */
+enum Color {
+    RED,   // 0
+    GREEN, // 1
+    BLUE   // 2
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+
+
+* 示例：定义带有显式值的枚举，如果给定一个常量的值，后续的常量会依次递增
+
+```c
+#include <stdio.h>
+
+/**
+ * 定义枚举
+ */
+enum Color {
+    RED = 1,
+    GREEN, // 2
+    BLUE   // 3
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    enum Color color = GREEN;
+    printf("color = %d\n", color);
+
+    return 0;
+}
+```
+
+## 1.4 枚举变量
+
+### 1.4.1 概述
+
+* 定义变量时所指定的类型是我们自定义的枚举类型，那么该变量就称为枚举变量。
+
+### 1.4.2 定义枚举变量
+
+* 可以使用定义好的枚举类型来声明枚举变量。
+* 语法：
+
+```c
+enum 枚举名 变量名;
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 定义枚举
+ */
+enum Color {
+    RED = 1,
+    GREEN,
+    BLUE
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    // 定义枚举变量
+    enum Color color ; // [!code highlight]
+
+    return 0;
+}
+```
+
+### 1.4.2 给枚举变量赋值
+
+* 枚举变量的值应该是枚举类型中的任意一个枚举元素（没有常量），不能是其他的值。
+* 语法：
+
+```c
+枚举变量 = 枚举常量;
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 定义枚举
+ */
+enum Color {
+    RED = 1,
+    GREEN,
+    BLUE
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 给枚举变量赋值
+    enum Color color = BLUE; // [!code highlight]
+    
+    printf("color = %d\n", color);
+
+    return 0;
+}
+```
+
+## 1.5 枚举的本质到底是什么？
+
+* 尽管枚举的定义语法看起来像一种新类型，但它的底层实际上是一个整型（通常是 `int` 类型）。C 语言并不强制要求枚举使用特定的整型类型，但编译器通常会选择使用 `int` 来表示枚举。
+* 在 C 语言中，枚举类型和整数类型是兼容的。你可以在需要整数的地方使用枚举值，也可以将枚举值赋给整型变量。这是因为枚举成员在编译时就被替换为其对应的整数值。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 定义枚举
+ */
+enum Color {
+    RED = 1,
+    GREEN, // 2
+    BLUE   // 3
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    enum Color color = 0;
+
+    printf("sizeof(color) = %zu \n", sizeof(color)); // sizeof(color) = 4
+    printf("sizeof(RED) = %zu \n", sizeof(RED));     // sizeof(RED) = 4
+    printf("sizeof(GREEN) = %zu \n", sizeof(GREEN)); // sizeof(GREEN) = 4
+    printf("sizeof(BLUE) = %zu \n", sizeof(GREEN));  // sizeof(BLUE) = 4
+    printf("sizeof(int) = %zu \n", sizeof(int));     // sizeof(int) = 4
+
+    return 0;
+}
+```
+
+## 1.6 应用示例
+
+* 如果枚举常量的值是连续的，我们可以使用循环遍历；如果枚举常量的值不是连续的，则无法遍历。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+// 定义枚举类型
+enum Weekday {
+    MONDAY = 1,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+};
+int main() {
+
+    // 定义枚举变量
+    enum Weekday day;
+
+    // 使用循环遍历出所有的枚举常量
+    for (day = MONDAY; day <= SUNDAY; day++) {
+        printf("%d \n", day);
+    }
+
+    return 0;
+}
+```
+
+## 1.7 应用示例
+
+* 枚举变量通常用于控制语句中，如：switch 语句。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 定义枚举
+ */
+enum Color {
+    RED = 1,
+    GREEN, // 2
+    BLUE   // 3
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    enum Color color;
+    
+    printf("请输入颜色(1-3)：");
+    scanf("%d", &color);
+    switch (color) {
+    case RED:
+        printf("红色\n");
+        break;
+    case GREEN:
+        printf("绿色\n");
+        break;
+    case BLUE:
+        printf("蓝色\n");
+        break;
+    default:
+        printf("输入错误\n");
+        break;
+    }
+
+    return 0;
+}
+```
+
+
+
+# 第二章：结构体（⭐）
+
+
 
 
 
