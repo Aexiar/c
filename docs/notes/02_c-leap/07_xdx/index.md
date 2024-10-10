@@ -389,7 +389,7 @@ struct 结构体名{
 
 * 示例：
 
-```c
+```c {6-12}
 #include <stdio.h>
 
 /**
@@ -416,7 +416,7 @@ int main() {
 
 * 示例：
 
-```c
+```c {6-10}
 #include <stdio.h>
 
 /**
@@ -441,7 +441,7 @@ int main() {
 
 * 示例：
 
-```c
+```c {6-11}
 #include <stdio.h>
 
 /**
@@ -467,7 +467,7 @@ int main() {
 
 * 示例：
 
-```c
+```c {6-13}
 #include <stdio.h>
 
 /**
@@ -495,7 +495,7 @@ int main() {
 
 * 示例：
 
-```c
+```c {6-12}
 #include <stdio.h>
 
 /**
@@ -518,13 +518,421 @@ int main() {
 }
 ```
 
-## 2.5 声明结构体变量
+## 2.5 定义结构体变量
 
 ### 2.5.1 概述
 
-* 定义了新的数据类型（结构体类型）以后，就可以声明该类型的变量，这与声明其他类型变量的写法是一样的。
+* 定义了新的数据类型（结构体类型）以后，就可以定义该类型的变量，这与定义其他类型变量的写法是一样的。
 
-2.5.2
+### 2.5.2 方式一
+
+* 语法：
+
+```c
+struct 结构体类型名称 结构体变量名;
+```
+
+> [!NOTE]
+>
+> * ① 需要先定义结构体，然后再定义结构体变量。
+> * ② `struct` 关键字不能省略；否则， C 语言编译器将会报错。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量
+    struct Student student; // [!code highlight]
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明猫的结构体
+ */
+struct Cat {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义猫结构体的变量
+    struct Cat cat; // [!code highlight]
+    
+    return 0;
+}
+```
+
+### 2.5.3 方式二
+
+* 语法：
+
+```c
+struct 结构体名{
+    数据类型1 成员名1;   // 分号结尾
+    数据类型2 成员名2;
+    ……
+    数据类型n 成员名n;
+} 结构体变量1，结构体变量2,...; 
+```
+
+> [!NOTE]
+>
+> 在声明结构体的同时定义结构体变量。
+
+
+
+* 示例：
+
+```c {6,12}
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体的同时定义结构体变量
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+} stu1,stu2; // stu1 和 stu2 是结构体变量
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c {6,10}
+#include <stdio.h>
+
+/**
+ * 声明猫的结构体的同时定义结构体变量
+ */
+struct Cat {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+} cat; // cat 是结构体变量
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+
+
+### 2.5.4 方式三
+
+* 语法：
+
+```c
+struct {
+    数据类型1 成员名1;   // 分号结尾
+    数据类型2 成员名2;
+    ……
+    数据类型n 成员名n;
+} 结构体变量1，结构体变量2,...; 
+```
+
+> [!NOTE]
+>
+> * ① 在声明结构体的同时定义结构体变量，但是不给结构体名。
+> * ② 和`方式二`相比，后面的程序将无法通过该结构体来定义变量，除非使用 `typedef` 关键字。
+
+
+
+* 示例：
+
+```c {6,12}
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体的同时定义结构体变量
+ */
+struct {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+} stu1,stu2; // stu1 和 stu2 是结构体变量
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c {6,10}
+#include <stdio.h>
+
+/**
+ * 声明猫的结构体的同时定义结构体变量
+ */
+struct {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+} cat; // cat 是结构体变量
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+## 2.6 结构体变量中成员的获取和赋值
+
+### 2.6.1 概述
+
+* 成员是结构体的一个组成部分，一般是基本数据类型、也可以是数组、指针、结构体等。结构体的成员也可以称为属性。
+* 结构体和数组类似，也是一组数据的集合，结构体使用点号 `.` 获取单个成员，可以进行赋值和取值。
+
+### 2.6.2 结构体成员逐个赋值
+
+* 语法：
+
+```c
+结构体变量名.成员名 = 值; // 值可以是常量或变量
+```
+
+
+
+* 示例：
+
+```c {23-26,29-32}
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * 声明人类的结构体
+ */
+struct Person {
+    char   name[20]; // 姓名
+    char   gender;   // 性别
+    int    age;      // 年龄
+    double weight;   // 体重
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义猫结构体的变量
+    struct Person person;
+
+    // 结构体变量中成员赋值
+    strcpy(person.name, "张三");
+    person.gender = 'M';
+    person.age    = 20;
+    person.weight = 60.5;
+
+    // 结构体变量中成员的访问
+    printf("姓名：%s\n", person.name);     // 姓名：张三
+    printf("性别：%c\n", person.gender);   // 性别：M
+    printf("年龄：%d\n", person.age);      // 年龄：20
+    printf("体重：%.2f\n", person.weight); // 体重：60.50
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c {24-28,31-35}
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量
+    struct Student student;
+
+    // 结构体变量中成员赋值
+    student.id = 10001;
+    strcpy(student.name, "张三");
+    student.gender = 'M';
+    student.age    = 20;
+    strcpy(student.address, "北京市海淀区");
+
+    // 输出结构体变量中成员的值
+    printf("学号: %d\n", student.id);      // 学号: 10001
+    printf("姓名: %s\n", student.name);    // 姓名: 张三
+    printf("性别: %c\n", student.gender);  // 性别: M
+    printf("年龄: %d\n", student.age);     // 年龄: 20
+    printf("地址: %s\n", student.address); // 地址: 北京市海淀区
+
+    return 0;
+}
+```
+
+### 2.6.3 使用大括号一次性对结构体所有成员赋值
+
+* 语法：
+
+```c
+struct 结构体类型 结构体变量 = {...};
+```
+
+```c
+struct 结构体类型 结构体变量 = {.成员 = xxx,...};
+```
+
+> [!IMPORTANT]
+>
+> CLion 中其实是有这类语法提示的，如下所示：
+>
+> ![](./assets/8.png)
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量并进行初始化
+    struct Student student = {10001, "张三", 'M', 20, "北京市海淀区"}; // [!code highlight]
+
+    // 输出结构体变量中成员的值
+    printf("学号: %d\n", student.id);      // 学号: 10001
+    printf("姓名: %s\n", student.name);    // 姓名: 张三
+    printf("性别: %c\n", student.gender);  // 性别: M
+    printf("年龄: %d\n", student.age);     // 年龄: 20
+    printf("地址: %s\n", student.address); // 地址: 北京市海淀区
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c {19-22}
+#include <stdio.h>
+
+/**
+ * 声明人类的结构体
+ */
+struct Person {
+    char   name[20]; // 姓名
+    char   gender;   // 性别
+    int    age;      // 年龄
+    double weight;   // 体重
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义人类结构体的变量并进行初始化
+    struct Person person = {.gender = 'M', 
+                            .name = "张三",
+                            .age = 15,
+                            .weight = 60.5}; 
+
+    // 结构体变量中成员的访问
+    printf("姓名：%s\n", person.name);     // 姓名：张三
+    printf("性别：%c\n", person.gender);   // 性别：M
+    printf("年龄：%d\n", person.age);      // 年龄：20
+    printf("体重：%.2f\n", person.weight); // 体重：60.50
+
+    return 0;
+}
+```
+
+
 
 
 
