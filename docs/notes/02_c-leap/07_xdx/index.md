@@ -1420,7 +1420,407 @@ int main() {
 
 ## 2.6 结构体数组
 
+### 2.6.1 回顾数组
 
+* 语法：
+
+```c
+数据类型 数组名[元素个数|长度];
+```
+
+> [!NOTE]
+>
+> - ① 数据类型：表示的是数组中每一个元素的数据类型。
+> - ② 数组名：必须符合标识符规则和规范。
+> - ③ 元素个数或长度：表示的是数组中最多可以容纳多少个元素（不能是负数、也不能是 0 ）。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+int main() {
+
+    // 先指定元素的个数和类型，再进行初始化
+
+    // 定义数组
+    int arr[3];
+
+    // 给数组元素赋值
+    arr[0] = 10;
+    arr[1] = 20;
+    arr[2] = 30;
+
+    return 0;
+}
+```
+
+### 2.6.2 结构体数组
+
+* 语法：
+
+```c
+struct 结构体类型 数组名[元素个数|长度]; // 先定义结构体类型，再使用结构体类型定义数组变量
+```
+
+```c
+struct 结构体名 { // 定义结构体类型的同时，定义结构体数组
+  数据类型 成员1;
+  数据类型 成员2;
+  ...  
+} 数组名[数组长度];
+```
+
+
+
+> [!NOTE]
+>
+> 结构体数组就是数组中的元素都是结构体变量。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+struct Student {
+    int   age;
+    char *name;
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // stuArr 是结构体数组名
+    struct Student stuArr[3]; // [!code highlight]
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明猫的结构体
+ */
+struct Cat {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // catArr 是结构体数组名
+    struct Cat catArr[10]; // [!code highlight]
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+/**
+ *  定义结构体类型的同时，定义结构体数组
+ */
+struct Student {
+    int   age;
+    char *name;
+} stuArr[3]; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明结构体的同时，定义结构体数组
+ */
+struct Cat {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+} catArr[10]; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+### 2.6.3 结构体数组中元素的初始化
+
+* 语法：
+
+```c
+struct 结构体类型 数组名[元素个数|长度] = {{...},{...},...}
+```
+
+```c
+struct 结构体名 { 
+  数据类型 成员1;
+  数据类型 成员2;
+  ...  
+} 数组名[数组长度] = = {{...},{...},...}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+/**
+ *  定义结构体类型的同时，定义结构体数组
+ */
+struct Student {
+    int   age;
+    char *name;
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 声明结构体数组的时候，进行初始化
+    struct Student stuArr[3] = {
+        {.name = "Tom", .age = 18},
+        {.name = "Jack", .age = 19},
+        {.name = "Lucy", .age = 20}};
+
+    // 访问结构体数组中的元素
+    for (int i = 0; i < sizeof(stuArr) / sizeof(stuArr[0]); ++i) {
+        printf("name = %s ，", stuArr[i].name);
+        printf("age = %d \n", stuArr[i].age);
+    }
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明猫的结构体的同时，定义结构体数组
+ */
+struct Cat {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+} catArr[2] = {{"Tom", 2, "white"}, {"Jack", 3, "black"}};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 访问结构体数组中的元素
+    for (int i = 0; i < sizeof(catArr) / sizeof(catArr[0]); ++i) {
+        printf("name = %s ，", catArr[i].name);
+        printf("age = %d ，", catArr[i].age);
+        printf("color = %s \n", catArr[i].color);
+    }
+
+    return 0;
+}
+```
+
+### 2.6.4 结构体数组元素的成员的调用
+
+* 语法：使用数组角标方式
+
+```c
+结构体数组名[下标].成员名
+```
+
+* 语法：使用指向数组或数组元素的指针
+
+```c
+指针->成员名
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+/**
+ *  定义结构体类型的同时，定义结构体数组
+ */
+struct Student {
+    int   age;
+    char *name;
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 声明结构体数组的时候，进行初始化
+    struct Student stuArr[3] = {
+        {.name = "Tom", .age = 18},
+        {.name = "Jack", .age = 19},
+        {.name = "Lucy", .age = 20}};
+
+    // 访问结构体数组中的元素
+    for (int i = 0; i < sizeof(stuArr) / sizeof(stuArr[0]); ++i) {
+        printf("name = %s ，", stuArr[i].name);
+        printf("age = %d \n", stuArr[i].age);
+    }
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明猫的结构体的同时，定义结构体数组
+ */
+struct Cat {
+    char name[20];  // 姓名
+    int  age;       // 年龄
+    char color[50]; // 颜色
+} catArr[2] = {{"Tom", 2, "white"}, {"Jack", 3, "black"}};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 访问结构体数组中的元素
+    for (int i = 0; i < sizeof(catArr) / sizeof(catArr[0]); ++i) {
+        printf("name = %s ，", catArr[i].name);
+        printf("age = %d ，", catArr[i].age);
+        printf("color = %s \n", catArr[i].color);
+    }
+
+    return 0;
+}
+```
+
+### 2.6.5 应用示例
+
+* 需求：计算全班学生的总成绩、平均成绩和以及 140 分以下的人数。
+
+> [!NOTE]
+>
+> 全班学生的信息，如下所示：
+>
+> | 学号 | 姓名 | 性别 | 年龄 | 成绩 |
+> | ---- | ---- | ---- | ---- | ---- |
+> | 1000 | 张三 | M    | 18   | 145  |
+> | 1001 | 李四 | M    | 19   | 135  |
+> | 1002 | 王五 | F    | 20   | 110  |
+> | 1003 | 赵六 | F    | 21   | 60   |
+> | 1004 | 田七 | F    | 22   | 120  |
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int    id;     // 学号
+    char  *name;   // 姓名
+    char   gender; // 性别
+    int    age;    // 年龄
+    double price;  // 成绩
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义结构体变量并赋值
+    struct Student stuArr[5] = {
+        {.id = 1000, .name = "张三", .age = 18, .gender = 'M', .price = 145},
+        {.id = 1001, .name = "李四", .age = 19, .gender = 'M', .price = 135},
+        {.id = 1002, .name = "王五", .age = 20, .gender = 'F', .price = 110},
+        {.id = 1003, .name = "赵六", .age = 21, .gender = 'F', .price = 60},
+        {.id = 1004, .name = "田七", .age = 22, .gender = 'F', .price = 120},
+    };
+
+    // 计算数组的长度
+    int len = sizeof(stuArr) / sizeof(stuArr[0]);
+
+    // 总成绩
+    double total = 0.0;
+    // 平均成绩
+    double avg;
+    // 140 分以下的人数
+    int count = 0;
+
+    // 遍历数组
+    for (int i = 0; i < len; ++i) {
+
+        total += stuArr[i].price;
+
+        if (stuArr[i].price < 140) {
+            count++;
+        }
+    }
+
+    avg = total / len;
+
+    printf("总成绩 = %.2f\n", total);         // 总成绩 = 570.00
+    printf("平均成绩 = %.2f\n", avg);         // 平均成绩 = 114.00
+    printf("140 分以下的人数 = %d\n", count); // 140 分以下的人数 = 4
+
+    return 0;
+}
+```
 
 
 
