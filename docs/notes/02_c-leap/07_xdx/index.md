@@ -1462,7 +1462,8 @@ int main() {
 * 语法：
 
 ```c
-struct 结构体类型 数组名[元素个数|长度]; // 先定义结构体类型，再使用结构体类型定义数组变量
+// 先定义结构体类型，再使用结构体类型定义数组变量
+struct 结构体类型 数组名[元素个数|长度]; 
 ```
 
 ```c
@@ -1783,7 +1784,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    // 定义结构体变量并赋值
+    // 定义结构体数组变量并赋值
     struct Student stuArr[5] = {
         {.id = 1000, .name = "张三", .age = 18, .gender = 'M', .price = 145},
         {.id = 1001, .name = "李四", .age = 19, .gender = 'M', .price = 135},
@@ -1822,13 +1823,262 @@ int main() {
 }
 ```
 
-
-
 ## 2.7 结构体指针
 
+### 2.7.1 声明结构体指针
+
+* 语法：
+
+```c
+struct 结构体名 * 结构体指针变量名;
+```
+
+> [!NOTE]
+>
+> * ① 当一个指针变量指向结构体时，我们就称它为**`结构体指针`**。
+> * ② 结构体指针的应用场景：
+>   * 指向单一的结构体变量。
+>   * 作为函数的参数。
+>   * 指向结构体数组。
+> * ③ 结构体变量和数组名不同，数组名在表达式中会被转换为数组指针；但是，结构体变量名不会，无论在任何表达式中它表示的都是整个集合本身，要想取得结构体变量的地址，必须在前面加`&`。
 
 
 
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量并进行初始化
+    struct Student student = {10001, "张三", 'M', 20, "北京市海淀区"}; 
+
+    // 声明结构体指针
+    struct Student *stuPointer = &student; // [!code highlight]
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+} stu = {10001, "张三", 'M', 20, "北京市海淀区"},*stuPointer = &stu; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    return 0;
+}
+```
+
+### 2.7.2 获取结构体的成员
+
+* 语法：
+
+```c
+(*结构体指针).成员
+```
+
+```c
+结构体指针 -> 成员
+```
+
+> [!IMPORTANT]
+>
+> CLion 中是有技巧的，直接通过`结构体指针.成员`会将其转换为`结构体指针 -> 成员`，如下所示：
+>
+> ![](./assets/18.gif)
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量并进行初始化
+    struct Student student = {10001, "张三", 'M', 20, "北京市海淀区"};
+
+    // 声明结构体指针
+    struct Student *p = &student;
+
+    // 访问结构体变量中的成员
+    printf("id = %d \n", (*p).id);
+    printf("name = %s \n", (*p).name);
+    printf("gender = %c \n", (*p).gender);
+    printf("age = %d \n", (*p).age);
+    printf("address = %s \n", (*p).address);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量并进行初始化
+    struct Student student = {10001, "张三", 'M', 20, "北京市海淀区"};
+
+    // 声明结构体指针
+    struct Student *p = &student;
+
+    // 访问结构体变量中的成员
+    printf("id = %d \n", p->id);
+    printf("name = %s \n", p->name);
+    printf("gender = %c \n", p->gender);
+    printf("age = %d \n", p->age);
+    printf("address = %s \n", p->address);
+
+    return 0;
+}
+```
+
+### 2.7.3 结构体指针作为函数的形参
+
+* 结构体变量名代表的是整个集合本身，作为函数参数时，传递的整个集合的独立副本（值传递），而改变副本影响不到函数外部的原始数据。
+
+```c {14,26,28,30}
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+void addAge(struct Student stu) {
+    stu.age += 1;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量并进行初始化
+    struct Student stu = {10001, "张三", 'M', 20, "北京市海淀区"};
+
+    printf("age = %d \n", stu.age); // age = 20 
+
+    addAge(stu);
+
+    printf("age = %d \n", stu.age); // age = 20 
+
+    return 0;
+}
+```
+
+* 但是，在开发中，我们通常希望传入函数的是同一份数据，即：函数内部修改数据以后，也会反映到函数外部。此时，就应该传递结构体指针。
+
+```c {14,26,28,30}
+#include <stdio.h>
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int  id;          // 学号
+    char name[20];    // 姓名
+    char gender;      // 性别
+    int  age;         // 年龄
+    char address[50]; // 地址
+};
+
+void addAge(struct Student *stu) {
+    stu->age += 1;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义学生结构体的变量并进行初始化
+    struct Student stu = {10001, "张三", 'M', 20, "北京市海淀区"};
+
+    printf("age = %d \n", stu.age); // age = 20
+
+    addAge(&stu);
+
+    printf("age = %d \n", stu.age); // age = 21 
+
+    return 0;
+}
+```
+
+### 2.7.3 结构体指针指向结构体数组
 
 
 
