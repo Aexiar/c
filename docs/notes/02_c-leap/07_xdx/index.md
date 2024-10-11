@@ -359,7 +359,9 @@ int main() {
 >
 > C 语言没有其他语言的对象（object）和类（class）的概念，struct 结构很大程度上提供了对象和类的功能。
 
-## 2.4 声明结构体
+## 2.4 结构体的基本使用
+
+### 2.4.1 声明结构体
 
 * 语法：
 
@@ -518,13 +520,13 @@ int main() {
 }
 ```
 
-## 2.5 定义结构体变量
+### 2.4.2 定义结构体变量
 
-### 2.5.1 概述
+#### 2.4.2.1 概述
 
 * 定义了新的数据类型（结构体类型）以后，就可以定义该类型的变量，这与定义其他类型变量的写法是一样的。
 
-### 2.5.2 方式一
+#### 2.4.2.2 方式一
 
 * 语法：
 
@@ -602,7 +604,7 @@ int main() {
 }
 ```
 
-### 2.5.3 方式二
+#### 2.4.2.3 方式二
 
 * 语法：
 
@@ -673,7 +675,7 @@ int main() {
 
 
 
-### 2.5.4 方式三
+#### 2.4.2.4 方式三
 
 * 语法：
 
@@ -743,14 +745,14 @@ int main() {
 }
 ```
 
-## 2.6 结构体变量中成员的获取和赋值
+### 2.4.3 结构体变量中成员的获取和赋值
 
-### 2.6.1 概述
+#### 2.4.3.1 概述
 
 * 成员是结构体的一个组成部分，一般是基本数据类型、也可以是数组、指针、结构体等。结构体的成员也可以称为属性。
 * 结构体和数组类似，也是一组数据的集合，结构体使用点号 `.` 获取单个成员，可以进行赋值和取值。
 
-### 2.6.2 结构体成员逐个赋值
+#### 2.4.3.2 结构体成员逐个赋值
 
 * 语法：
 
@@ -845,7 +847,7 @@ int main() {
 }
 ```
 
-### 2.6.3 使用大括号一次性对结构体所有成员赋值
+#### 2.4.3.3 使用大括号一次性对结构体所有成员赋值
 
 * 语法：
 
@@ -945,7 +947,237 @@ int main() {
 }
 ```
 
+### 2.4.4 应用示例
 
+* 需求：创建一个 Box 的结构体，在其中定义三个成员分别表示一个立方体的长、宽和高（长、宽、高可以由控制台输入），并且定义一个函数获取立方体的体积。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明 Box 的结构体
+ */
+struct Box {
+    double length; // 长
+    double width;  // 年龄
+    double height; // 高度
+};
+
+/**
+ * 获取 Box 的体积
+ * @param box
+ * @return
+ */
+double getVolume(struct Box box) {
+    return box.length * box.width * box.height;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 创建结构体变量
+    struct Box box;
+
+    // 输入
+    printf("请输入长：");
+    scanf("%lf", &box.length);
+    printf("请输入宽：");
+    scanf("%lf", &box.width);
+    printf("请输入高：");
+    scanf("%lf", &box.height);
+
+    // 调用函数获取体积
+    printf("体积为：%.2lf\n", getVolume(box));
+
+    return 0;
+}
+```
+
+### 2.4.5 总结
+
+* `结构体`是一个`自定义数据类型`（构造类型），表示的是一种数据类型。
+* `结构体变量`就是一个`具体`的`变量`，例如：
+
+```c
+int num = 10; // int 是数据类型，而 num 是一个具体的 int 类型的变量
+```
+
+```c
+struct Car car ; // Car 是结构体数据类型，而 car 是一个具体的 Car 类型的变量
+```
+
+> [!NOTE]
+>
+> * 结构体就相当于是一个汽车图纸，是一个模板。而生产出来的具体的一辆辆的汽车，就类似于一个个的结构体变量。这些结构体变量都含有相同的成员， 将结构体变量的成员比作“零件”，同一张图纸生产出来的零件的作用都是一样的。
+>
+> ![](./assets/9.png)
+>
+> * 如果学过 Java 等面向对象的语言，就可以将`结构体`当做是`类`，而`结构体变量`当做是`对象`。但是，两者不是完全等价，因为其底层的内存结构是不一样的。
+
+## 2.5 进一步认识结构体
+
+### 2.5.1 结构体嵌套
+
+* 之前说过，结构体中的成员可以包含以下数据类型：
+
+  * ① 基本数据类型：整型、浮点型、字符型、布尔型。
+
+  * ② 指针类型。
+
+  * ③ 枚举类型。
+
+  * ④ 结构体类型：
+    * 可以包含其他结构体作为成员（称为嵌套结构体）。
+    * 结构体指针。
+
+  * ⑤ 联合体类型。
+
+  * ⑥ 位域。
+
+* 如果一个结构体的成员中是另外一个结构体，那么就构成了结构体嵌套。
+
+> [!IMPORTANT]
+>
+> * 也许，你会有疑问，为什么结构体中的成员不能包含自己，如下所示：
+>
+> ```c
+> struct A {
+>     int data;
+>     struct A self; // 错误，结构体不能包含自己
+> };
+> ```
+>
+> * 原因之一是`内存分配`问题，即：编译器会试图计算结构体`A`的大小，但是因为`A`中包含另一个`A`，这个`A`中又包含另一个`A`，这种嵌套会无限递归下去。编译器无法确定最终的大小，因为这个定义永远不会结束。
+> * 原因之二是`逻辑上的循环`问题，即：如果结构体包含自己，这意味着每个结构体实例会包含另一个结构体实例，后者又包含另一个结构体实例，导致逻辑上的循环引用。这是不可能实现的，因为系统的内存和逻辑不能支持这种无穷递归。
+> * 解决方案：虽然不能直接包含自己，但是可以通过`指针`来引用自身。指针有固定的大小（通常是4字节或8字节，取决于系统架构），因此不会造成上述的无限递归问题。
+
+
+
+* 示例：
+
+```c {7,15,17}
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * 声明姓名结构体
+ */
+struct Name { 
+    char firstName[50];
+    char lastName[50];
+};
+
+/**
+ * 声明学生的结构体
+ */
+struct Student {
+    int         id;          // 学号
+    struct Name name;        // 姓名
+    char        gender;      // 性别
+    int         age;         // 年龄
+    char        address[50]; // 地址
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义结构体变量并赋值
+    struct Student stu1 = {1001, {"张", "三"}, 'M', 20, "北京市海淀区"};
+
+    printf("学号: %d\n", stu1.id);
+    printf("姓名: %s\n", strcat(stu1.name.firstName, stu1.name.lastName));
+    printf("性别: %c\n", stu1.gender);
+    printf("年龄: %d\n", stu1.age);
+    printf("地址: %s\n", stu1.address);
+
+    printf("\n");
+
+    // 定义结构体变量并赋值
+    struct Name    name = {.firstName = "李", .lastName = "四"};
+    struct Student stu2 = {1002, name, 'F', 21, "上海市浦东新区"};
+    printf("学号: %d\n", stu2.id);
+    printf("姓名: %s\n", strcat(stu2.name.firstName, stu2.name.lastName));
+    printf("性别: %c\n", stu2.gender);
+    printf("年龄: %d\n", stu2.age);
+    printf("地址: %s\n", stu2.address);
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c {6,15,21}
+#include <stdio.h>
+
+/**
+ * 声明日期的结构体
+ */
+struct Date {
+    int year;
+    int month;
+    int day;
+};
+
+/**
+ * 声明员工的结构体
+ */
+struct Employee {
+    int         id;          // 员工编号
+    char        name[20];    // 员工姓名
+    char        gender;      // 员工性别
+    int         age;         // 员工年龄
+    char        address[30]; // 员工住址
+    struct Date hireDate;    // 员工的入职时间
+};
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义员工结构体的变量
+    struct Employee employee = {1001, "张三", 'M', 20, "北京市海淀区", 
+                                {2018, 10, 1}};
+
+    printf("员工编号: %d\n", employee.id);
+    printf("员工姓名: %s\n", employee.name);
+    printf("员工性别: %c\n", employee.gender);
+    printf("员工年龄: %d\n", employee.age);
+    printf("员工住址: %s\n", employee.address);
+    printf("入职时间: %d-%d-%d\n", employee.hireDate.year
+           , employee.hireDate.month, employee.hireDate.day);
+
+    printf("\n");
+
+    // 定义员工结构体的变量
+    struct Date     hireDate  = {2019, 10, 1};
+    struct Employee employee2 = {.id = 1002, 
+                                 .name = "李四", 
+                                 .gender = 'F', 
+                                 .age = 21, 
+                                 .address = "上海市浦东新区"};
+    employee2.hireDate        = hireDate;
+    printf("员工编号: %d\n", employee2.id);
+    printf("员工姓名: %s\n", employee2.name);
+    printf("员工性别: %c\n", employee2.gender);
+    printf("员工年龄: %d\n", employee2.age);
+    printf("员工住址: %s\n", employee2.address);
+    printf("入职时间: %d-%d-%d\n", employee2.hireDate.year, 
+           employee2.hireDate.month, employee2.hireDate.day);
+
+    return 0;
+}
+```
 
 
 
@@ -957,127 +1189,4 @@ int main() {
 
 
 
-在C语言、C++等编程语言中，结构体（`struct`）是一种用户自定义的数据类型，可以包含不同类型的数据字段。结构体的目的是将多个不同类型的数据组合在一起形成一个整体。结构体中可以包含以下数据类型：
 
-1. **基本数据类型**：
-   - 整型 (`int`, `short`, `long`, `unsigned int`, `unsigned long` 等)
-   - 浮点型 (`float`, `double`)
-   - 字符型 (`char`)
-   - 布尔类型 (`bool`，通常在C++中使用)
-
-2. **指针类型**：
-   - 指向特定数据类型的指针（如 `int*`, `char*` 等）
-   - 函数指针（如 `int (*funcPtr)(int, int)`）
-
-3. **数组类型**：
-   - 定长数组（如 `int arr[10]`, `char str[50]`）
-   - 字符串数组（C语言中的字符数组用于存储字符串）
-
-4. **枚举类型**：
-   - 枚举类型（如 `enum day {SUN, MON, TUE}`）
-
-5. **结构体类型**：
-   - 可以包含其他结构体作为成员（称为嵌套结构体）
-   - 结构体指针
-
-6. **联合体类型（union）**：
-   - 可以包含联合体（`union`），用于多个成员共享同一块内存。
-
-7. **位域（Bit fields）**：
-   - 在C语言中，结构体中可以使用位域来精确控制字段占用的比特位。
-
-示例代码：
-
-```c
-#include <stdio.h>
-
-// 定义结构体
-struct Person {
-    char name[50];     // 字符数组
-    int age;           // 整型
-    float height;      // 浮点型
-    struct Address {   // 嵌套结构体
-        char city[50];
-        int zipCode;
-    } address;
-};
-
-int main() {
-    // 创建结构体变量
-    struct Person person1 = {"Alice", 30, 5.6, {"New York", 10001}};
-    
-    // 访问结构体成员
-    printf("Name: %s\n", person1.name);
-    printf("Age: %d\n", person1.age);
-    printf("Height: %.1f\n", person1.height);
-    printf("City: %s\n", person1.address.city);
-    
-    return 0;
-}
-```
-
-结构体是灵活且强大的工具，允许我们将各种类型的数据组合在一起，便于代码管理与逻辑抽象。
-
-
-
-
-
-结构体不能直接包含自己作为成员，这是因为这样会导致**无限递归定义**，结构体的大小无法确定，编译器无法正确分配内存。
-
-### 原因详解：
-
-1. **内存分配问题**：
-   假设你定义一个结构体`struct A`，其中包含一个类型为`struct A`的成员：
-   
-   ```c
-   struct A {
-       int data;
-       struct A self; // 错误，结构体不能包含自己
-   };
-   ```
-
-   编译器会试图计算结构体`A`的大小，但是因为`A`中包含另一个`A`，这个`A`中又包含另一个`A`，这种嵌套会无限递归下去。编译器无法确定最终的大小，因为这个定义永远不会结束。
-
-2. **逻辑上的循环**：
-   如果结构体包含自己，这意味着每个结构体实例会包含另一个结构体实例，后者又包含另一个结构体实例，导致逻辑上的循环引用。这是不可能实现的，因为系统的内存和逻辑不能支持这种无穷递归。
-
-### 可行的解决方案：
-
-虽然不能直接包含自己，但是可以通过**指针**来引用自身。指针有固定的大小（通常是4字节或8字节，取决于系统架构），因此不会造成上述的无限递归问题。
-
-### 示例：通过指针包含自身
-```c
-#include <stdio.h>
-
-// 定义结构体
-struct Node {
-    int data;
-    struct Node* next;  // 使用指针引用自己
-};
-
-int main() {
-    // 创建结构体节点
-    struct Node node1;
-    struct Node node2;
-    
-    // 初始化数据
-    node1.data = 1;
-    node2.data = 2;
-    
-    // 链接节点
-    node1.next = &node2;
-    node2.next = NULL;  // 最后一个节点的 next 指针为 NULL
-
-    // 访问节点
-    printf("Node 1 data: %d\n", node1.data);
-    printf("Node 2 data: %d\n", node1.next->data);
-
-    return 0;
-}
-```
-
-在这个例子中，`struct Node`中包含了一个指向同类型结构体的指针`next`，这样可以形成链表等数据结构。通过使用指针，避免了无限递归定义，并且能达到引用自身的目的。
-
-### 总结：
-- 结构体不能直接包含自身作为成员，因为会导致编译器无法确定结构体的大小，产生无限递归。
-- 可以通过使用指针来实现结构体引用自身的需求。
