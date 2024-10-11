@@ -1179,6 +1179,68 @@ int main() {
 }
 ```
 
+### 2.5.2 结构体占用的内存空间
+
+#### 2.5.2.1 概述
+
+* 假设结构体变量是这样定义的，如下所示：
+
+```c
+struct Student{ 
+    char *name;  //姓名
+    int num;  //学号
+    int age;  //年龄
+    char group;  //所在学习小组
+    float score;  //成绩
+} stu1,stu2 ;
+```
+
+* 理论上讲结构体变量的各个成员在内存中是连续存储的，和数组类似，如：上面的结构体变量 stu1 和 stu2 的内存分布，如下所示：
+
+![](./assets/10.svg)
+
+* 我们也可以通过代码，来验证：
+
+```c
+#include <stdio.h>
+
+struct Student { 
+    char *name;  // 姓名
+    int   num;   // 学号
+    int   age;   // 年龄
+    char  group; // 所在学习小组
+    float score; // 成绩
+} stu1, stu2;
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // sizeof(stu1.name) = 8
+    printf("sizeof(stu1.name) = %zu\n", sizeof(stu1.name));
+    // sizeof(stu1.num) = 4
+    printf("sizeof(stu1.num) = %zu\n", sizeof(stu1.num));     
+    // sizeof(stu1.age) = 4
+    printf("sizeof(stu1.age) = %zu\n", sizeof(stu1.age)); 
+    // sizeof(stu1.group) = 1
+    printf("sizeof(stu1.group) = %zu\n", sizeof(stu1.group)); 
+    // sizeof(stu1.score) = 4
+    printf("sizeof(stu1.score) = %zu\n", sizeof(stu1.score)); 
+
+    // total = 21
+    printf("total = %zu\n", sizeof(stu1.name) 
+           + sizeof(stu1.num) 
+           + sizeof(stu1.age) 
+           + sizeof(stu1.group) 
+           + sizeof(stu1.score));
+
+    return 0;
+}
+```
+
+
+
 
 
 # 第三章：共用体
