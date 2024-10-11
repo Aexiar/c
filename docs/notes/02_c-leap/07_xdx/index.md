@@ -1195,7 +1195,7 @@ struct Student{
 } stu1,stu2 ;
 ```
 
-* 理论上讲结构体变量的各个成员在内存中是连续存储的，和数组类似，如：上面的结构体变量 stu1 和 stu2 的内存分布，如下所示：
+* 理论上讲结构体变量的各个成员在内存中是连续存储的，和数组类似，如：上面的结构体变量 `stu1` 和 `stu2` 的内存分布，如下所示：
 
 ![](./assets/10.svg)
 
@@ -1238,6 +1238,57 @@ int main() {
     return 0;
 }
 ```
+
+* 但是，在编译器的具体实现中，各个成员之间可能会存在缝隙，对于 `stu1` 和 `stu2` 来说，成员变量 `group` 和 `score` 之间存在 `3` 个字节的空白填充，如下所示：
+
+![](./assets/11.svg)
+
+* 我们也可以通过代码，来验证：
+
+```c
+#include <stdio.h>
+
+struct Student { // 没有写 stu
+    char *name;  // 姓名
+    int   num;   // 学号
+    int   age;   // 年龄
+    char  group; // 所在学习小组
+    float score; // 成绩
+} stu1, stu2;
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // sizeof(stu1.name) = 8
+    printf("sizeof(stu1.name) = %zu\n", sizeof(stu1.name));
+    // sizeof(stu1.num) = 4
+    printf("sizeof(stu1.num) = %zu\n", sizeof(stu1.num));     
+    // sizeof(stu1.age) = 4
+    printf("sizeof(stu1.age) = %zu\n", sizeof(stu1.age)); 
+    // sizeof(stu1.group) = 1
+    printf("sizeof(stu1.group) = %zu\n", sizeof(stu1.group)); 
+    // sizeof(stu1.score) = 4
+    printf("sizeof(stu1.score) = %zu\n", sizeof(stu1.score)); 
+
+    // total = 21
+    printf("total = %zu\n", sizeof(stu1.name) 
+           + sizeof(stu1.num) 
+           + sizeof(stu1.age) 
+           + sizeof(stu1.group) 
+           + sizeof(stu1.score));
+
+    // sizeof(stu1) = 24
+    printf("sizeof(stu1) = %zu\n", sizeof(stu1)); 
+
+    return 0;
+}
+```
+
+* 至于结构体变量中的各个成员变量，为什么会存在“裂缝”，就是因为`内存对齐`。
+
+#### 2.5.2.2 内存对齐
 
 
 
