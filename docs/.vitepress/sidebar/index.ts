@@ -26,10 +26,11 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: '函数一', link: `/notes/02_c-leap/04_${commonDirectoryName}/` },
         { text: '函数二', link: `/notes/02_c-leap/05_${commonDirectoryName}/` },
         { text: '预处理器', link: `/notes/02_c-leap/06_${commonDirectoryName}/` },
-        { text: '自定义数据类型', link: `/notes/02_c-leap/07_${commonDirectoryName}/` },
-        { text: '常见的库函数', link: `/notes/02_c-leap/08_${commonDirectoryName}/` },
-        { text: '内存管理', link: `/notes/02_c-leap/09_${commonDirectoryName}/` },
-        { text: '文件操作', link: `/notes/02_c-leap/10_${commonDirectoryName}/` },
+        { text: '自定义数据类型一', link: `/notes/02_c-leap/07_${commonDirectoryName}/` },
+        { text: '自定义数据类型二', link: `/notes/02_c-leap/08_${commonDirectoryName}/` },
+        { text: '常见的库函数', link: `/notes/02_c-leap/09_${commonDirectoryName}/` },
+        { text: '内存管理', link: `/notes/02_c-leap/10_${commonDirectoryName}/` },
+        { text: '文件操作', link: `/notes/02_c-leap/11_${commonDirectoryName}/` },
       ]
     },
     {
