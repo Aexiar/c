@@ -10,10 +10,9 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: 'C 语言入门', link: `/notes/01_c-basic/01_${commonDirectoryName}/` },
         { text: '变量和进制', link: `/notes/01_c-basic/02_${commonDirectoryName}/` },
         { text: '数据类型和运算符', link: `/notes/01_c-basic/03_${commonDirectoryName}/` },
-        { text: '大话小数', link: `/notes/01_c-basic/04_${commonDirectoryName}/` },
-        { text: '流程控制', link: `/notes/01_c-basic/05_${commonDirectoryName}/` },
-        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/06_${commonDirectoryName}/` },
-        { text: '数组', link: `/notes/01_c-basic/07_${commonDirectoryName}/` },
+        { text: '流程控制', link: `/notes/01_c-basic/04_${commonDirectoryName}/` },
+        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/05_${commonDirectoryName}/` },
+        { text: '数组', link: `/notes/01_c-basic/06_${commonDirectoryName}/` },
       ]
     },
     {
