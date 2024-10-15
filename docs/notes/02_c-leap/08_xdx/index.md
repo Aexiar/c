@@ -435,3 +435,390 @@ int main() {
 
 
 # 第二章：typedef（⭐）
+
+## 2.1 概述
+
+* 之前，我们在使用结构体或共用体的时候，经常会这么写，如下所示：
+
+```c {15,25-28}
+#include <stdio.h>
+
+/**
+ * 声明结构体
+ */
+struct Person {
+    char name[20];
+    int  id;
+};
+
+/**
+ * 打印结构体成员中的属性
+ * @param person
+ */
+void toString(struct Person person) {
+    printf("编号：%d ，姓名：%s \n", person.id, person.name);
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义结构体变量并进行初始化
+    struct Person p1 = {.id = 1001, .name = "张三"};
+    struct Person p2 = {.id = 1002, .name = "李四"};
+    struct Person p3 = {.id = 1003, .name = "王五"};
+    struct Person p4 = {.id = 1004, .name = "赵六"};
+
+    // 输出结构体成员中的属性
+    toString(p1);
+    toString(p2);
+    toString(p3);
+    toString(p4);
+
+    return 0;
+}
+```
+
+> [!NOTE]
+>
+> * ① 在声明结构体类型的时候，使用 struct 关键字很好理解。
+> * ② 但是，在使用结构体变量给其成员赋值的时候，还要携带 `struct` 关键字就显得多余，但是不携带编译器又会报错，因为编译器不识别 `Person` 到底是什么，只会认为是一个字符串，而不是数据类型。
+
+* 如果对比 Java 语言，你会发现 Java 语言的`强类型系统`是多么优秀，如下所示：
+
+```java
+class Person {
+   int id;
+   String name; 
+}
+
+class Test {
+    public static void main(String[] args){
+        // Java 编译器可以直接认为 Person 就是一个数据类型
+        // 而不需要我们写 class Person p = new Person();
+        Person p = new Person(); // [!code highlight]
+        p.id = 1000;
+        p.name = "张三";
+    }
+}
+```
+
+* C 语言提供了 typedef 关键字可以让我们给类型起别名（重命名），如下所示：
+
+```c
+typedef 旧名 新名（别名）;
+```
+
+> [!NOTE]
+>
+> * ① `typedef` 不创建新类型，只是为现有类型提供了一个别名。
+> * ② 主要用途是简化复杂的类型声明，增强代码可读性。
+
+* 那么，我们就可以将上面的代码简化下，如下所示：
+
+```c {15,25-28}
+#include <stdio.h>
+
+/**
+ * 声明结构体
+ */
+typedef struct Person { // [!code highlight]
+    char name[20];
+    int  id;
+} Person; // [!code highlight]
+
+/**
+ * 打印结构体成员中的属性
+ * @param person
+ */
+void toString(Person person) {
+    printf("编号：%d ，姓名：%s \n", person.id, person.name);
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义结构体变量并进行初始化
+    Person p1 = {.id = 1001, .name = "张三"};
+    Person p2 = {.id = 1002, .name = "李四"};
+    Person p3 = {.id = 1003, .name = "王五"};
+    Person p4 = {.id = 1004, .name = "赵六"};
+
+    // 输出结构体成员中的属性
+    toString(p1);
+    toString(p2);
+    toString(p3);
+    toString(p4);
+
+    return 0;
+}
+```
+
+## 2.2 使用方式
+
+### 2.2.1 概述
+
+* 使用 typedef 可以给基本数据类型、结构体、公用体、指针类型起别名。
+
+> [!IMPORTANT]
+>
+> 在实际开发中，使用 typedef 给结构体起别名居多！！！
+
+### 2.2.2 给基本数据类型起别名
+
+* 语法：
+
+```c
+typedef 类型名 别名;
+```
+
+> [!NOTE]
+>
+> * ① 在实际开发中，我们经常将 typedef 声明的类型名的第 1 个字母用大写表示，如：`Integer`。
+> * ② 在系统提供的标准类型别名的标识符，通常使用下划线的命名风格，如：`size_t` 。
+
+
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+// 将 Integer 作为 int 的别名
+typedef int Integer; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义变量，并使用类型别名
+    Integer a = 20; // [!code highlight]
+    int     b = 30;
+
+    printf("%d + %d = %d\n", a, b, a + b);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+// 将 Integer 作为 int 的别名
+typedef int Integer; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义变量，并使用类型别名
+    Integer a, b; // [!code highlight]
+
+    a = 20;
+    b = 30;
+
+    printf("%d + %d = %d\n", a, b, a + b);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+// 将 Byte 作为 unsigned char 的别名
+typedef unsigned char Byte; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义变量，并使用类型别名
+    Byte c = 'a'; // [!code highlight]
+
+    printf("%c\n", c);
+
+    return 0;
+}
+```
+
+### 2.2.3 为结构体、共用体起别名
+
+* 语法：
+
+```c
+typedef struct 结构体名 {
+    ...
+} 别名;
+```
+
+```c
+typedef struct 共用体名 {
+    ...
+} 别名;
+```
+
+> [!NOTE]
+>
+> 因为 C 语言中，结构体名和公用体名都可以省略，所以 typedef 为结构体和共用体起别名，又可以这样：
+>
+> ```c
+> typedef struct { // 匿名结构体
+>     ...
+> } 别名;
+> ```
+>
+> ```c
+> typedef struct { // 匿名公用体
+>     ...
+> } 别名;
+> ```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 声明结构体
+ */
+typedef struct {
+    char name[20];
+    int  id;
+} Person; // [!code highlight]
+
+/**
+ * 打印结构体成员中的属性
+ * @param person
+ */
+void toString(Person person) { // [!code highlight]
+    printf("编号：%d ，姓名：%s \n", person.id, person.name);
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    // 定义结构体变量并进行初始化
+    Person p1 = {.id = 1001, .name = "张三"}; // [!code highlight]
+    Person p2 = {.id = 1002, .name = "李四"}; // [!code highlight]
+    Person p3 = {.id = 1003, .name = "王五"}; // [!code highlight]
+    Person p4 = {.id = 1004, .name = "赵六"}; // [!code highlight]
+
+    // 输出结构体成员中的属性
+    toString(p1);
+    toString(p2);
+    toString(p3);
+    toString(p4);
+
+    return 0;
+}
+```
+
+### 2.2.4 为指针类型起别名
+
+* 语法：
+
+```c
+typedef 指针类型 别名;
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+// 为指针类型起别名
+typedef int* P_INT; // [!code highlight]
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int arr[] = {1, 2, 3, 4, 5};
+
+    // 使用指针变量 p 指向数组 arr
+    P_INT p = arr; // [!code highlight]
+
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", *(p + i));
+    }
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+// 为指针类型起别名
+typedef int (*P_INT)(int, int); // [!code highlight]
+
+/**
+ * 求和函数
+ */
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    P_INT p = add; // [!code highlight]
+    printf("%d\n", (*p)(1, 2));
+
+    return 0;
+}
+```
+
+## 2.3 typedef 和 #define 的区别
+
+* `#define` 是在`预处理阶段`处理 的，它只能作简单的字符串替换。
+* `typedef` 是在`编译阶段`处理 的，且并非简单的字符串替换。
+
+## 2.4 为什么要给类型定义别名？
+
+### 2.4.1 概述
+
+* 其实，无非就是以下三个优点：
+  * ① 提升代码的可读性：原类型名往往是一个通用的称呼，而别名是此场景下的一个精准描述。
+  * ② 提升代码的扩展性：这一点在数据结构中会体现的很明显。
+  * ③ 提升代码的跨平台性移植性：类型别名的语法最重要的用途就是增强代码的跨平台移植性。
+
+### 2.4.2 类型别名如何提升跨平台性移植性？
+
+* 我们都知道，C 语言由于编译器、平台之间的差异，经常会出现同一个类型，但存储方式不同的情况，比如：
+  * int 类型在绝大多数现代桌面平台下，占用 4 个字节 32 位内存空间。大多数应用级 C 程序员接触的 int 类型，也是 4 个字节的 int 类型。
+  * 但是在某些小型机器或者嵌入式平台下，int 类型可能就会变成占用 2 个字节 16 位内存空间的整数类型。（因为要节省内存空间）
+
+* 于是代码在跨平台移植时，就会出现以下问题：
+
+```c
+int num = 100000;
+```
+
