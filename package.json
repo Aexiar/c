@@ -15,10 +15,10 @@
     "@types/node": "^22.7.5",
     "canvas-confetti": "^1.9.3",
     "markdown-it-mathjax3": "^4.3.2",
-    "vitepress": "^1.4.0"
+    "vitepress": "^1.4.1"
   },
   "dependencies": {
-    "@theojs/lumen": "^3.4.0",
+    "@theojs/lumen": "^3.5.1",
     "dayjs": "1.11.13",
     "dotenv": "^16.4.5",
     "font-pingfang-sc-font-weight-improved": "^1.0.7",
