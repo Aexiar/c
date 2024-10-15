@@ -33,17 +33,6 @@ export const sidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
-      text: 'C 语言高级',
-      collapsed: true,
-      items: [
-        { text: '变量和内存分布', link: `/notes/03_senior/01_${commonDirectoryName}/` },
-        { text: '指针强化', link: `/notes/03_senior/02_${commonDirectoryName}/` },
-        { text: '结构体和文件的高级用法', link: `/notes/03_senior/03_${commonDirectoryName}/` },
-        { text: '链表和回调函数', link: `/notes/03_senior/04_${commonDirectoryName}/` },
-        { text: '编译过程和面向接口', link: `/notes/03_senior/05_${commonDirectoryName}/` },
-      ]
-    },
-    {
       text: '数据结构和算法',
       collapsed: true,
       items: [
