@@ -2138,3 +2138,32 @@ int main(){
 }
 ```
 
+#### 3.2.2.5 深入理解 const 关键字
+
+* const 关键字声明的变量，即：const 常量，一旦定义的时候就必须初始化，后面的任何赋值行为都将发生错误。
+
+```c
+#include <stdio.h>
+
+int getNum(){
+    return 100;
+}
+
+int main(){
+    
+    int n = 90;
+    
+    const int MAX_NUM = getNum();  //运行时初始化
+    
+    const int MaxNum2 = n;  //运行时初始化
+    
+    const int MaxNum3 = 80;  //编译时初始化
+    
+    printf("%d, %d, %d\n", MaxNum1, MaxNum2, MaxNum3);
+
+    return 0;
+}
+```
+
+
+
