@@ -2145,25 +2145,67 @@ int main(){
 ```c
 #include <stdio.h>
 
-int getNum(){
-    return 100;
-}
+int main() {
 
-int main(){
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    const double PI = 3.14;
     
-    int n = 90;
-    
-    const int MAX_NUM = getNum();  //运行时初始化
-    
-    const int MaxNum2 = n;  //运行时初始化
-    
-    const int MaxNum3 = 80;  //编译时初始化
-    
-    printf("%d, %d, %d\n", MaxNum1, MaxNum2, MaxNum3);
+    // 错误，不能修改常量
+    PI = 3.1415;  // [!code error]
 
     return 0;
 }
 ```
 
+* 其实，这支持 C 语言的编译器在语法层面的限制而已：`我们无法通过变量名去修改一个 const 常量的取值，否则将会编译失败`。但是，作为程序员，我们可以在程序运行的时候，去修改 const 常量的取值，如下所示：
 
+```c {10,12,14}
+#include <stdio.h>
+
+int getNum(){
+    return 100;
+}
+
+int main(){
+    int n = 90;
+    
+    const int MAX_NUM1 = getNum();  // 运行时初始化
+    
+    const int MAX_NUM2 = n;  // 运行时初始化
+    
+    const int MAX_NUM3 = 80;  // 编译时初始化
+  
+    printf("%d, %d, %d\n", MAX_NUM1, MAX_NUM2, MAX_NUM3);
+
+    return 0;
+}
+```
+
+* 如果你还不能理解运行时，那么用户输入来修改 const 常量，总会属于运行时吧，如下所示：
+
+```c
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    const int num = 10;
+
+    printf("修改 num 的值：");
+    scanf("%d", &num); // [!code highlight]
+
+    // const int num = 20
+    printf("const int num = %d\n", num);
+
+    return 0;
+}
+```
+
+> [!CAUTION]
+>
+> 正因为 C 语言的这种
 
