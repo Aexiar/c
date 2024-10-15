@@ -44,28 +44,6 @@ export const sidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
-      text: 'Socket网络通信',
-      collapsed: true,
-      items: [
-        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
-        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
-        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
-        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
-        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
-      ]
-    },
-    {
-      text: '多线程编程（基于 Linux）',
-      collapsed: true,
-      items: [
-        { text: '变量和内存分布', link: `/notes/02_c-advance/01_${commonDirectoryName}/` },
-        { text: '指针强化', link: `/notes/02_c-advance/02_${commonDirectoryName}/` },
-        { text: '结构体和文件的高级用法', link: `/notes/02_c-advance/03_${commonDirectoryName}/` },
-        { text: '链表和回调函数', link: `/notes/02_c-advance/04_${commonDirectoryName}/` },
-        { text: '编译过程和面向接口', link: `/notes/02_c-advance/05_${commonDirectoryName}/` },
-      ]
-    },
-    {
       text: '项目构建工具',
       collapsed: true,
       items: [
