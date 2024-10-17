@@ -7,13 +7,14 @@ export const sidebar: DefaultTheme.Sidebar = {
       collapsed: true,
       items: [
         { text: '编程基础', link: `/notes/01_c-basic/00_${commonDirectoryName}/` },
-        { text: 'C 语言入门', link: `/notes/01_c-basic/01_${commonDirectoryName}/` },
-        { text: '变量和进制', link: `/notes/01_c-basic/02_${commonDirectoryName}/` },
-        { text: '数据类型和运算符', link: `/notes/01_c-basic/03_${commonDirectoryName}/` },
-        { text: '流程控制', link: `/notes/01_c-basic/04_${commonDirectoryName}/` },
-        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/05_${commonDirectoryName}/` },
-        { text: '数组一', link: `/notes/01_c-basic/06_${commonDirectoryName}/` },
-        { text: '数组二', link: `/notes/01_c-basic/07_${commonDirectoryName}/` },
+        { text: 'C 语言入门一', link: `/notes/01_c-basic/01_${commonDirectoryName}/` },
+        { text: 'C 语言入门二', link: `/notes/01_c-basic/02_${commonDirectoryName}/` },
+        { text: '变量和进制', link: `/notes/01_c-basic/03_${commonDirectoryName}/` },
+        { text: '数据类型和运算符', link: `/notes/01_c-basic/04_${commonDirectoryName}/` },
+        { text: '流程控制', link: `/notes/01_c-basic/05_${commonDirectoryName}/` },
+        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/06_${commonDirectoryName}/` },
+        { text: '数组一', link: `/notes/01_c-basic/07_${commonDirectoryName}/` },
+        { text: '数组二', link: `/notes/01_c-basic/08_${commonDirectoryName}/` },
       ]
     },
     {
