@@ -72,7 +72,11 @@ hero:
     - theme: alt
       text: "开源软件"
       link: "/open-software/notes/"
-      target: '_blank'              
+      target: '_blank'
+    - theme: alt
+      text: "书籍"
+      link: "/books/notes/"
+      target: '_blank'                      
 
 # 按钮下方的描述
 features:
