@@ -236,7 +236,7 @@ int main() {
 > [!NOTE]
 >
 > * ① `内存泄漏`和`内存溢出`都与内存管理不当有关，但它们发生的机制和直接影响是不同的。
-> * ② 避免`内存泄露`和`内存溢出`都是编写高效、可靠软件的重要方面。
+> * ② 避免`内存泄漏`和`内存溢出`都是编写高效、可靠软件的重要方面。
 
 ## 3.2 内存泄漏和内存溢出的联系和区别
 
@@ -257,3 +257,254 @@ int main() {
 > * ① `内存泄漏`有可能会在长时间积累后导致`内存溢出`，但这并不是必然的。
 > * ② `内存溢出`可以在多种情况下发生，而`内存泄漏`只是其中可能的一个诱因。
 > * ③ 因此，虽然`内存泄漏`可能最终引发`内存溢出`，但两者之间并非每次都是直接关联的。
+
+
+
+# 第四章：内存泄漏检测和性能分析（⭐）
+
+## 4.1 内存泄漏检测
+
+### 4.1.1 概述
+
+* C 语言中的指针是否使用是个颇具争议的话题，现代化的高级编程语言通过各种策略和机制，在编译期就能解决指针危险的问题。但是，遗憾的是，C 语言的指针很大程度上，在运行期才会暴露问题。
+* 幸运的是，我们可以使用 `Valgrind` 项目来进行`内存泄漏检测`和`性能分析`，而 `Valgrind` 只支持 Linux 。
+
+### 4.1.2 安装
+
+* 在 WSL2 上安装 Valgrind ：
+
+```shell
+dnf -y upgrade && dnf -y install valgrind # AlmaLinux
+```
+
+```shell
+apt -y update && apt -y upgrade && apt -y install valgrind # Ubuntu
+```
+
+![](./assets/10.gif)
+
+* 查看 valgrind 可执行文件的安装位置：
+
+```shell
+which valgrind
+```
+
+![](./assets/11.gif)
+
+### 4.1.3 整合
+
+* CLion 中将工具链设置为 WSL2 ：
+
+![](./assets/12.gif)
+
+* CLion 中配置 valgrind 的路径：
+
+![](./assets/13.png)
+
+* 查看 WSL2 中 cmake 的版本：
+
+```shell
+cmake --version
+```
+
+![](./assets/14.png)
+
+* 修改项目中 CMakeLists.txt 中 cmake 的版本：
+
+```{1} txt
+cmake_minimum_required(VERSION 3.26.5) # 3.26.5
+
+# 项目名称和版本号
+project(c-study VERSION 1.0 LANGUAGES C)
+
+# 设置 C 标准
+set(CMAKE_C_STANDARD 23)
+set(CMAKE_C_STANDARD_REQUIRED True)
+
+# 辅助函数，用于递归查找所有源文件
+function(collect_sources result dir)
+    file(GLOB_RECURSE new_sources "${dir}/*.c")
+    set(${result} ${${result}} ${new_sources} PARENT_SCOPE)
+endfunction()
+
+# 查找顶层 include 目录（如果存在）
+if (EXISTS "${CMAKE_SOURCE_DIR}/include")
+    include_directories(${CMAKE_SOURCE_DIR}/include)
+endif ()
+
+# 查找所有源文件
+set(SOURCES)
+collect_sources(SOURCES ${CMAKE_SOURCE_DIR})
+
+# 用于存储已经处理过的可执行文件名，防止重复
+set(EXECUTABLE_NAMES)
+
+# 创建可执行文件
+foreach (SOURCE ${SOURCES})
+    # 获取文件的相对路径
+    file(RELATIVE_PATH REL_PATH ${CMAKE_SOURCE_DIR} ${SOURCE})
+    # 将路径中的斜杠替换为下划线，生成唯一的可执行文件名
+    string(REPLACE "/" "_" EXECUTABLE_NAME ${REL_PATH})
+    string(REPLACE "\\" "_" EXECUTABLE_NAME ${EXECUTABLE_NAME})
+    string(REPLACE "." "_" EXECUTABLE_NAME ${EXECUTABLE_NAME})
+
+    # 处理与 CMakeLists.txt 文件同名的问题
+    if (${EXECUTABLE_NAME} STREQUAL "CMakeLists_txt")
+        set(EXECUTABLE_NAME "${EXECUTABLE_NAME}_exec")
+    endif ()
+
+    # 检查是否已经创建过同名的可执行文件
+    if (NOT EXECUTABLE_NAME IN_LIST EXECUTABLE_NAMES)
+        list(APPEND EXECUTABLE_NAMES ${EXECUTABLE_NAME})
+        
+		# 链接 math 库
+        LINK_LIBRARIES(m)
+        
+        # 创建可执行文件
+        add_executable(${EXECUTABLE_NAME} ${SOURCE})
+
+        # 查找源文件所在的目录，并添加为包含目录（头文件可能在同一目录下）
+        get_filename_component(DIR ${SOURCE} DIRECTORY)
+        target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR})
+
+        # 检查并添加子目录中的 include 目录（如果存在）
+        if (EXISTS "${DIR}/include")
+            target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR}/include)
+        endif ()
+
+        # 检查并添加 module 目录中的所有 C 文件（如果存在）
+        if (EXISTS "${DIR}/module")
+            file(GLOB_RECURSE MODULE_SOURCES "${DIR}/module/*.c")
+            target_sources(${EXECUTABLE_NAME} PRIVATE ${MODULE_SOURCES})
+        endif ()
+    endif ()
+endforeach ()
+```
+
+* 在 CLion 中正常运行代码：
+
+![](./assets/15.gif)
+
+* 在 CLion 中通过 valgrind 运行代码：
+
+![](./assets/16.gif)
+
+## 4.2 性能分析
+
+### 4.2.1 概述
+
+* `perf` 是一个 Linux 下的性能分析工具，主要用于监控和分析系统性能。它可以帮助开发者和系统管理员了解系统中哪些部分在消耗资源、识别性能瓶颈以及分析程序的运行效率。
+
+### 4.2.2 安装
+
+#### 4.2.2.1 AlmaLinux9
+
+* 在 WSL2 中的 AlmaLinux 安装 perf ：
+
+```shell
+dnf -y install perf
+```
+
+![](./assets/17.gif)
+
+#### 4.2.2.2 Ubuntu 22.04
+
+* 在 WSL2 中的 Ubuntu 安装 perf ：
+
+```shell
+apt -y update \
+	&& apt -y install linux-tools-common \
+	linux-tools-generic linux-tools-$(uname -r)
+```
+
+![](./assets/18.gif)
+
+> [!NOTE]
+>
+> 之所以报错的原因，在于 WSL2 中的 Ubuntu 的内核是定制化的（微软自己维护的），并非 Ubuntu 的母公司 Canonical 发布的标准内核，所以需要我们手动编译安装。
+
+* 查看内核版本：
+
+```shell
+uname -sr
+```
+
+![](./assets/19.gif)
+
+* 设置环境变量，方便后续引用：
+
+```shell
+export KERNEL_VERSION=$(uname -r | cut -d'-' -f1)
+```
+
+![](./assets/20.gif)
+
+* 安装依赖库：
+
+```shell
+apt -y update && \
+	apt -y install binutils-dev debuginfod default-jdk \
+	default-jre libaio-dev libbabeltrace-dev libcap-dev \
+	libdw-dev libdwarf-dev libelf-dev libiberty-dev \
+    liblzma-dev libnuma-dev libperl-dev libpfm4-dev \
+    libslang2-dev libssl-dev libtraceevent-dev libunwind-dev \
+    libzstd-dev libzstd1 python3-setuptools python3 \
+    python3-dev systemtap-sdt-dev zlib1g-dev bc dwarves \
+    bison flex libnewt-dev libdwarf++0 \
+    libelf++0 libbfb0-dev python-dev-is-python3
+```
+
+![](./assets/21.gif)
+
+* 下载源码：
+
+```shell
+git clone \
+    --depth 1 \
+    --single-branch --branch=linux-msft-wsl-${KERNEL_VERSION} \
+    https://github.com/microsoft/WSL2-Linux-Kernel.git
+```
+
+![](./assets/22.gif)
+
+* 编译内核代码：
+
+```shell
+cd WSL2-Linux-Kernel
+```
+
+```shell
+make -j $(nproc) KCONFIG_CONFIG=Microsoft/config-wsl
+```
+
+![](./assets/23.gif)
+
+* 编译 perf 工具：
+
+```shell
+cd tools/perf
+```
+
+```shell
+make clean && make
+```
+
+![](./assets/24.gif)
+
+* 复制到 PATH 变量所指向的路径中：
+
+```shell
+cp perf /usr/bin/
+```
+
+![](./assets/25.gif)
+
+### 4.2.3 整合
+
+* CLion 中配置 perf 的路径：
+
+![](./assets/26.png)
+
+* 在 CLion 中通过 perf 运行代码：
+
+![](./assets/27.gif)
