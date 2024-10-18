@@ -1735,6 +1735,52 @@ int num = 10;
 > * ③ 运算符所组成的表达式。
 > * ④ 运算符有无副作用，即：运算后是否会修改操作数的值。
 
+> [!CAUTION]
+>
+> * ① 其实，在后端语言，如：C、C++、Java 等，表达式和语法并不会区分的很明显。
+> * ② 但是，对于前端 JavaScript 框架中的 React 而言，其在 `JSX` 中要求 `{}`中必须是表达式，而不能是语句，如下所示：
+>
+> ```js {22,25,28}
+> import React, { useState } from 'react';
+> 
+> function Welcome() {
+>   const [isLoggedIn, setIsLoggedIn] = useState(false);
+> 
+>   // 切换登录状态的函数
+>   const toggleLogin = () => {
+>     setIsLoggedIn(!isLoggedIn);
+>   };
+> 
+>   // 在 JSX 外部处理逻辑
+>   let message;
+>   if (isLoggedIn) {
+>     message = "Welcome back!";
+>   } else {
+>     message = "Please sign in";
+>   }
+> 
+>   return (
+>     <div>
+>       {/* 使用 JSX 表达式来渲染内容 */}
+>       <h1>{message}</h1>
+> 
+>       {/* 使用三元运算符 */}
+>       <p>{isLoggedIn ? "You have new notifications." : "No notifications"}</p>
+> 
+>       {/* 使用逻辑运算符 && 渲染内容 */}
+>       {isLoggedIn && <p>You are logged in as a premium user.</p>}
+> 
+>       {/* 切换登录状态按钮 */}
+>       <button onClick={toggleLogin}>
+>         {isLoggedIn ? "Log out" : "Log in"}
+>       </button>
+>     </div>
+>   );
+> }
+> 
+> export default Welcome;
+> ```
+
 ## 2.2 算术运算符
 
 * 算术运算符是对数值类型的变量进行运算的，如下所示：
