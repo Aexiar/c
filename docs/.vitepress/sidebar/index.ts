@@ -13,10 +13,12 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: '变量和进制', link: `/notes/01_c-basic/04_${commonDirectoryName}/` },
         { text: '数据类型和运算符', link: `/notes/01_c-basic/05_${commonDirectoryName}/` },
         { text: 'C 语言中的字符集', link: `/notes/01_c-basic/06_${commonDirectoryName}/` },
-        { text: '流程控制', link: `/notes/01_c-basic/07_${commonDirectoryName}/` },
-        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/08_${commonDirectoryName}/` },
-        { text: '数组一', link: `/notes/01_c-basic/09_${commonDirectoryName}/` },
-        { text: '数组二', link: `/notes/01_c-basic/10_${commonDirectoryName}/` },
+        { text: '格式化输入输出', link: `/notes/01_c-basic/07_${commonDirectoryName}/` },
+        { text: '虚拟地址空间', link: `/notes/01_c-basic/08_${commonDirectoryName}/` },
+        { text: '流程控制', link: `/notes/01_c-basic/09_${commonDirectoryName}/` },
+        { text: '内存泄漏和内存溢出', link: `/notes/01_c-basic/10_${commonDirectoryName}/` },
+        { text: '数组一', link: `/notes/01_c-basic/11_${commonDirectoryName}/` },
+        { text: '数组二', link: `/notes/01_c-basic/12_${commonDirectoryName}/` },
       ]
     },
     {
