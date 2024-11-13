@@ -1135,7 +1135,7 @@ int main() {
 
 ![](./assets/12.png)
 
-* char 类型同样分为 signed char（无符号）和 unsigned char（有符号），其中 signed char 取值范围 -128 ~ 127，unsigned char 取值范围 0 ~ 255，默认是否带符号取决于当前运行环境。
+* char 类型同样分为 signed char（有符号）和 unsigned char（无符号），其中 signed char 取值范围 -128 ~ 127，unsigned char 取值范围 0 ~ 255，默认是否带符号取决于当前运行环境。
 * `字符类型的数据`在计算机中`存储`和`读取`的过程，如下所示：
 
 ![](./assets/13.png)
