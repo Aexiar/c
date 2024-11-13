@@ -1488,7 +1488,47 @@ int main() {
 
 > [!CAUTION]
 >
-> 避免无符号整数与有符号整数的混合运算，因为 C 语言会自动将 signed int 转为 unsigned int ，可能不会得到预期的结果。
+> * ① 避免无符号整数与有符号整数的混合运算，因为 C 语言会自动将 signed int 转为 unsigned int ，可能不会得到预期的结果！！！
+>
+> ```c
+> #include <stdio.h>
+> 
+> int main() {
+> 
+>     // 禁用 stdout 缓冲区
+>     setbuf(stdout, nullptr);
+> 
+>     int          i = -1;
+>     unsigned int u = 100;
+> 
+>     if (i < u) {
+>         // -1 >= 100
+>         printf("%d < %u\n", i, u); // [!code warning]
+>     } else {
+>         printf("%d >= %u\n", i, u);
+>     }
+> 
+>     return 0;
+> }
+> ```
+>
+> * ② 无符号整数一般用于底层开发（MySQL 数据库中字段的类型就提供有 UNSIGNED），在应用层使用较少！！！
+>
+> ```sql {2}
+> CREATE TABLE `students`(
+>     student_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,-- 学生ID，自动增长，主键
+>     first_name VARCHAR(50) NOT NULL,  -- 名字，最多50个字符，不允许为空
+>     last_name VARCHAR(50) NOT NULL, -- 姓氏，最多50个字符，不允许为空
+>     gender ENUM('Male', 'Female', 'Other') NOT NULL, -- 性别（可以是男、女或其他）
+>     birth_date DATE NOT NULL, -- 出生日期（日期类型）
+>     class VARCHAR(20), -- 班级（最多20个字符）
+>     enrollment_date DATE DEFAULT CURRENT_DATE,-- 入学日期（默认为当前日期）
+>     gpa DECIMAL(3, 2) UNSIGNED,-- 平均成绩（最多3位数字，2位小数，UNSIGNED）
+>     email VARCHAR(100), -- 电子邮箱（最多100个字符）
+>     phone_number VARCHAR(15),-- 电话号码（最多15个字符）
+>     address TEXT -- 地址（可变长度，适合存储较长的文本）
+> );
+> ```
 
 
 
