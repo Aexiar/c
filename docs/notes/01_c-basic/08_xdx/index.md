@@ -1668,6 +1668,8 @@ int main() {
 
 ## 7.3 强制类型转换
 
+### 7.3.1 概述
+
 * 隐式类型转换中的宽类型赋值给窄类型，编译器是会产生警告的，提示程序存在潜在的隐患，如果非常明确地希望转换数据类型，就需要用到强制（或显式）类型转换。
 * 语法：
 
@@ -1675,7 +1677,7 @@ int main() {
 数据类型 变量名 = (类型名)变量、常量或表达式;
 ```
 
-> [!WARNING]
+> [!CAUTION]
 >
 > 强制类型转换可能会导致精度损失！！！
 
@@ -1700,6 +1702,82 @@ int main(){
     return 0;
 }
 ```
+
+### 7.3.2 应用场景
+
+* ① 从浮点数到整数的转换：在一些数学或算法应用中，可能需要将浮点数转换为整数，通常会丢失小数部分，此时需要使用强制类型转换。 
+* ② 计算浮点数的小数部分。
+* ③ 类型不匹配的运算操作：当进行运算时，操作数的类型可能不匹配，强制类型转换可以确保所有操作数的类型兼容，从而避免类型错误。
+
+
+
+* 示例：从浮点数到整数的转换
+
+```c {10}
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    float f = 3.14f;
+
+    int num = (int)f;
+
+    printf("%d\n", num);
+
+    return 0;
+}
+```
+
+
+
+* 示例：计算浮点数的小数部分
+
+```c {10}
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    float f = 3.14f;
+    
+    float fracPart = f - (int)f; 
+
+    printf("%.2f\n", fracPart);
+
+    return 0;
+}
+```
+
+
+
+* 示例： 类型不匹配的运算操作
+
+```c {12}
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int i = 10;
+
+    int j = 3;
+
+    double d = (double)i / j;
+
+    printf("%.2lf\n", d);
+
+    return 0;
+}
+```
+
+
 
 ## 7.4 数据类型转换只是临时性的
 
