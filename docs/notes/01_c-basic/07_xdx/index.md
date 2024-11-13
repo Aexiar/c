@@ -539,7 +539,8 @@ int b = -10;
 
 ```c
 unsigned int a = 10;
-unsigned int b = -10;
+// 其实是不对的，因为无符号位只能是自然数；但是，C 语言就是这么坑爹！！！
+unsigned int b = -10; // [!code error]
 ```
 
 ![](./assets/28.svg)
