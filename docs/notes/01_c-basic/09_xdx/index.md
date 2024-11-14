@@ -480,7 +480,10 @@ int main() {
 
 > [!NOTE]
 >
-> 操作数在进行位运算的时候，以它的补码形式计算！！！
+> * ① 操作数在进行`位运算`的时候，以它的补码形式计算！！！
+> * ② C 语言中的`位运算符`，分为如下的两类：
+> * * 按位运算符：按位与（`&`）、按位或（`|`）、按位异或（`^`）、按位取反（`~`）。
+>   * 移位运算符：左移（`<<`）、右移（`>>`）。
 
 ## 6.2 输出二进制位
 
@@ -503,13 +506,17 @@ int main() {
  * @param num 整数
  * @return 二进制表示的字符串，不包括前导的 '0b' 字符
  */
-char* getBinary(int num) {
-    static char binaryString[33];
+char *getBinary(int num) {
+    static char binaryString[33 + (sizeof(int) * 8 / 8)];
     int         i, j;
 
     for (i = sizeof(num) * 8 - 1, j = 0; i >= 0; i--, j++) {
         const int bit   = (num >> i) & 1;
         binaryString[j] = bit + '0';
+        // 每 8 位后添加一个空格
+        if ((i % 8) == 0 && i != 0) {
+            binaryString[++j] = ' ';
+        }
     }
 
     binaryString[j] = '\0';
@@ -517,7 +524,9 @@ char* getBinary(int num) {
 }
 
 int main() {
-
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int a = 17;
     int b = -12;
 
