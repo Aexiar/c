@@ -462,7 +462,7 @@ int main() {
 
 
 
-# 第六章：位运算符（了解）
+# 第六章：位运算符
 
 ## 6.1 概述
 
@@ -644,7 +644,7 @@ int main() {
 > * ② **自反性（归零性）**（异或自己等于 0）：a ^ a = 0 。
 > * ③ **交换性**：a ^ b = b ^ a。
 > * ④ **结合性**： (a ^ b) ^ c = a ^ (b ^ c) 。 
-> * ⑤ **对合运算**：a ^ b ^ b = a ^ 0 = a 。 
+> * ⑤ **对合性**：a ^ b ^ b = a ^ 0 = a 。 
 
 ### 6.5.2 按位异或的理解
 
@@ -789,11 +789,202 @@ int main() {
 
 ![](./assets/32.svg)
 
-### 6.8.5 对合运算
+### 6.8.5 对合性
+
+* 对于任意的两个数`a`和`b`，进行两次`异或`运算，结果会恢复到原来的数值，即：`a^b^b = a` 。
+
+> [!NOTE]
+>
+> * ① `a ^ b ^ b = a` --> `a ^ b ^ b` --> `a ^ (b ^ b)` --> `a ^ 0` --> `a`。
+> * ② `a ^ b ^ a = b` --> `b ^ a ^ a` --> `b ^ (a ^ a)` --> `b ^ 0` --> `b`。
+
+> [!IMPORTANT]
+>
+> `异或运算`可以很好地应用于是`加密算法`和`数据校验`等领域，我们可以利用`异或运算`的`对合性`对`数据`进行`加密`和`解密`，如：在加密过程中，使用一个`密钥`对`数据`进行`异或运算`；再使用`相同的密钥`对`加密之后的结果`进行`异或运算`，就能够恢复原数据（`对称加密`）。
 
 
+
+* 示例：`1011 0111 ^ 0101 1000 ^ 0101 1000 =  1011 0111`
+
+![](./assets/33.svg)
 
 ## 6.9 常见的面试题
+
+### 6.9.1 面试题 1
+
+* 需求：判断一个整数是否为奇数？
+
+> [!NOTE]
+>
+> * ① 从`数学`角度讲，如果一个数 `num` ，满足 `num % 2 != 0` 的条件，就说明该数是一个奇数；否则，该数是一个偶数。
+> * ② 从`计算机底层`角度讲，一个有符号整数，在计算机底层存储的`二进制`是 $b_{n-1}b_{n-2} \ldots b_1b_0$；那么，其对应的`十进制`是 $(-1)^{b_{n-1}} \cdot b_{n-1} \cdot 2^{n-1} + b_{n-2} \cdot 2^{n-2} + b_{n-3} \cdot 2^{n-3} + \dots + b_1 \cdot 2^1 + b_0 \cdot 2^0$，如果对应的十进制最后一位$b_0 \cdot 2^0$是奇数，则说明该数为奇数（和 `0x1` 进行按位与运算）；否则，该数是一个偶数。
+
+
+
+* 示例：数学角度方式
+
+```c
+#include <stdio.h>
+
+/**
+ * 判断一个数是否为奇数
+ *
+ * @param num
+ * @return
+ */
+bool isOdd(int num) {
+    return num % 2 != 0; // [!code highlight]
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = -10;
+
+    printf("%d 是奇数：%s\n", num, isOdd(num) ? "true" : "false");
+
+    num = -3;
+
+    printf("%d 是奇数：%s\n", num, isOdd(num) ? "true" : "false");
+
+    return 0;
+}
+```
+
+
+
+* 示例：计算机底层角度方式
+
+```c
+#include <stdio.h>
+
+/**
+ * 判断一个数是否为奇数
+ *
+ * @param num
+ * @return
+ */
+bool isOdd(int num) {
+    return (num & 0x1) == 1; // [!code highlight]
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = -10;
+
+    printf("%d 是奇数：%s\n", num, isOdd(num) ? "true" : "false");
+
+    num = -3;
+
+    printf("%d 是奇数：%s\n", num, isOdd(num) ? "true" : "false");
+
+    return 0;
+}
+```
+
+### 6.9.2 面试题 2
+
+* 需求：如何判断一个非 0 的整数是否是 2 的幂（1、2、4、8、16）？
+
+> [!NOTE]
+>
+> * ① 从`数学角度`讲，如果一个整数 num 可以被 2 整数，就让 num 除以 2 （假设 num = 2 ，那么 num /= 2 ，则 num = 1）...，如果最后 num = 1 ，则说明整数 num 是 2 的幂；否则，该整数 num 不是 2 的幂。
+> * ② 从`计算机底层`角度讲，如果一个整数 num 是 2 的幂，那么它的二进制表示中只有一个是 1 ，其余都是 0 ，如：1（0001）、2（0010）、4（0100）、8（1000），我们可以得到一个规律：如果 num 和 num - 1 进行`按位与`运算，结果为 0 ；那么，该整数 num 就是 2 的幂；否则，该整数 num 不是 2 的幂。
+
+
+
+* 示例：数学角度方式
+
+```c {13-16}
+#include <stdio.h>
+
+/**
+ * 判断一个非 0 的整数是否是 2 的幂
+ *
+ * @param num
+ * @return
+ */
+bool isPowOfTwo(int num) {
+    if (num <= 0) {
+        return false;
+    }
+    while (num % 2 == 0) {
+        num /= 2;
+    }
+    return num == 1;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = 1;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+    num = 2;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+    num = 3;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+    num = 4;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+
+    return 0;
+}
+```
+
+
+
+* 示例：计算机底层角度方式
+
+```c
+#include <stdio.h>
+
+/**
+ * 判断一个非 0 的整数是否是 2 的幂
+ *
+ * @param num
+ * @return
+ */
+bool isPowOfTwo(int num) {
+    if (num <= 0) {
+        return false;
+    }
+
+    return (num & (num - 1)) == 0; // [!code highlight]
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = 1;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+    num = 2;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+    num = 3;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+    num = 4;
+    printf("%d 是 2 的幂：%s\n", num, isPowOfTwo(num) ? "true" : "false");
+
+
+    return 0;
+}
+```
+
+
 
 
 
