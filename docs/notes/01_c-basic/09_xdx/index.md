@@ -131,6 +131,9 @@
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int x  = 12;
     int x1 = -x, x2 = +x;
 
@@ -152,6 +155,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int a = 5;
     int b = 2;
@@ -174,6 +180,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int res1 = 10 % 3;
     printf("10 %% 3 = %d\n", res1); // 10 % 3 = 1
@@ -199,6 +208,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int i1 = 10, i2 = 20;
     int i  = i1++;
@@ -242,6 +254,9 @@ int main() {
     百位数：1
  */
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int num = 153;
 
@@ -287,6 +302,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int a = 8;
     int b = 7;
@@ -342,6 +360,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int a = 0;
     int b = 0;
@@ -372,6 +393,9 @@ int main() {
 
 // 短路现象
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int i = 0;
     int j = 10;
@@ -397,6 +421,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int i = 1;
     int j = 10;
     if (i || j++ > 0) {
@@ -444,6 +471,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int a = 3;
     a += 3; // a = a + 3
@@ -1020,6 +1050,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int m      = 110;
     int n      = 20;
