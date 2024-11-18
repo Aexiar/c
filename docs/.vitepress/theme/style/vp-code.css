@@ -4,7 +4,6 @@
 .vp-doc div[class*=language-] {
   box-shadow: 0 10px 30px 0 rgb(0 0 0 / 40%);
   padding-top: 20px;
-  position: relative;  /* 确保代码块本身可以相对定位 */
 }
 
 /* 代码块：添加macOS风格的小圆点 */
@@ -19,16 +18,15 @@
   background-color: #ff5f56;
   border-radius: 50%;
   box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
-  z-index: 2;  /* 确保伪元素位于上层，能够响应悬停 */
+  z-index: 1;  /* 确保伪元素位于上层，能够响应悬停 */
   transition: all 0.3s ease;  /* 添加平滑过渡效果 */
 }
 
 /* 鼠标悬停时，添加放大动画 */
-.vp-doc div[class*=language-]::before:hover {
-  transform: scale(1.2);  /* 增大圆点 */
+.vp-doc div[class*=language-]:hover::before {
+  transform: scale(1.1);  /* 增大圆点 */
   background-color: #ff2a68;
   box-shadow: 20px 0 0 #ffdb3d, 40px 0 0 #2ac2a4;
-  z-index: 999999;
 }
 
 /* 代码块：下移行号 隐藏右侧竖线 */
