@@ -1200,7 +1200,7 @@ int main() {
 > [!NOTE]
 >
 > * ① 借用第三个变量充当临时容器，来实现需求。
-> * ② 借用按位异或运算符的对合性，即：`a^b^b = a` 。
+> * ② 借用`按位异或运算符`的对合性，即：`a^b^b = a` 。
 
 
 
@@ -1221,8 +1221,8 @@ int main() {
     printf("a = %d, b = %d\n", a, b);
 
     int temp = a;
-    a        = b;
-    b        = temp;
+    a = b;
+    b = temp;
 
     // a = 20, b = 10
     printf("a = %d, b = %d\n", a, b);
@@ -1267,15 +1267,48 @@ int main() {
 > [!NOTE]
 >
 > * ① 如果 nums = [1,4,2,1,2]，那么只出现 1 次的元素就是 4 。
+> * ② 借用`按位异或运算符`的`恒等性`，即：`a ^ 0 = a`，和`按位异或运算符`的`自反性`（归零性），即：`a ^ a = 0`。
 
 
 
 * 示例：
 
-```c
+```c {11-20}
+#include <stdio.h>
+
+/**
+ * 任何数与 0 异或等于其本身，任何数与其自身异或等于 0 。
+ * 因此，数组中成对出现的数字将通过异或运算抵消为 0 ，
+ * 最终剩下的结果就是唯一出现一次的数字。
+ * @param arr
+ * @param len
+ * @return
+ */
+int findOnly(const int arr[], size_t len) {
+
+    int singleNum = 0;
+
+    for (int i = 0; i < len; ++i) {
+        singleNum ^= arr[i];
+    }
+
+    return singleNum;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int nums[] = {1, 4, 2, 1, 2};
+
+    int num = findOnly(nums, sizeof(nums) / sizeof(int));
+
+    printf("%d\n", num); // 4
+
+    return 0;
+}
 ```
-
-
 
 ### 6.9.6 面试题 6
 
