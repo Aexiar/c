@@ -67,6 +67,9 @@
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 声明一个整型变量，取名为 a
     int a;
@@ -88,6 +91,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 声明一个整型变量，取名为 b ，并直接赋值（初始化，实际开发中最为常用）
     int b = 200;
@@ -109,7 +115,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 同时声明多个整型的变量并赋值
     int c1 = 10, c2 = 20, c3 = 30;
     printf("c1 = %d\n", c1);
@@ -451,7 +460,10 @@ int printf (const char *__format, ...) {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明变量并赋值
     int num = 18;
 
@@ -475,6 +487,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int num = 10;
 
     printf("变量所占内存空间的大小：%zd字节\n", sizeof(num));
@@ -499,6 +514,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int num = 10;
 
     printf("变量 num 的值是：%d\n", num);
@@ -545,6 +563,9 @@ int scanf(const char *__format, ...) {
 int main() {
 
     // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    // 禁用 stdout 缓冲区
     // CLion debug 独有，后文不再提及，如果 debug 有问题，就添加如下代码
     setbuf(stdout, NULL);
     
@@ -570,6 +591,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     int num;
 
     printf("请输入一个整数：");
@@ -598,6 +622,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     int a, b, c;
     printf("请输入整数 a 、b 和 c 的值：");
     scanf("%d %d %d", &a, &b, &c);
@@ -742,6 +769,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     printf("整数常量 =》%d\n", 1);
     printf("字符常量 =》%c\n", 'A');
     printf("浮点数常量 =》%f\n", 12.3);
@@ -778,6 +808,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     double radius = 2.5;
 
     double area = PI * radius * radius;
@@ -809,6 +842,9 @@ const double PI = 3.1415926;
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     double radius = 2.5;
 
     double area = PI * radius * radius;
@@ -849,7 +885,10 @@ enum sex {
 };
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     printf("%d\n", MALE);
     printf("%d\n", FEMALE);
 
@@ -870,6 +909,10 @@ enum Sex {
 };
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     enum Sex sex;
 
     printf("请输入性别(1 表示男性, 2 表示女性)：");
