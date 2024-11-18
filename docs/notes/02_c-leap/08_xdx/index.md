@@ -1594,7 +1594,7 @@ int main() {
 
 * 但是，之前也说过，数组名作为函数的参数，编译器会自动将其转换为指向该数组第 `0` 个元素的指针，如下所示：
 
-```c {4,28}
+```c {4,29}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1612,6 +1612,7 @@ int max(int arr[], int len) {
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1655,17 +1656,18 @@ int main() {
 
 * 许多初学者，无意间会对没有初始化的指针进行操作，非常危险，如下所示：
 
-```c {7,10}
+```c
 #include <stdio.h>
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    char *str;
+    char *str;  // [!code highlight]
     printf("请输入：");
     
-    gets(str);
+    gets(str); // [!code highlight]
     
     printf("%s\n", str);
 
@@ -1712,18 +1714,19 @@ char *str = NULL;
 
 * 很多库函数都对传入的指针做了判断，如果是空指针就不做任何操作，或给出对应的提示，如下所示：
 
-```c {7,11}
+```c
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    char *str = NULL;
+    char *str = NULL; // [!code highlight]
 
     printf("请输入：");
 
-    gets(str);
+    gets(str); // [!code highlight]
 
     printf("%s\n", str);
 
@@ -1797,10 +1800,11 @@ int *p = NULL;
 
 * 示例：
 
-```c {7,11]
+```c
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
@@ -1808,7 +1812,7 @@ int main() {
 
     printf("请输入：");
 
-    gets(str);
+    gets(str); // [!code highlight]
 
     printf("%s\n", str);
 
@@ -1824,10 +1828,11 @@ int main() {
 
 * 示例：
 
-```c {12}
+```c {13}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
@@ -1859,7 +1864,7 @@ int main() {
 
 * 示例：
 
-```c {14}
+```c
 #include <stdio.h>
 
 int *test() { // [!code warning]
@@ -1870,10 +1875,11 @@ int *test() { // [!code warning]
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    int *p = test();
+    int *p = test(); // [!code highlight]
 
     printf("num = %d", *p);
 
@@ -1935,15 +1941,16 @@ int main() {
 
 * 示例：
 
-```c {8}
+```c
 #include <malloc.h>
 #include <stdio.h>
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    char *str = (char *)malloc(sizeof(char) * 30);
+    char *str = (char *)malloc(sizeof(char) * 30); // [!code highlight]
 
     printf("请输入[0,30]个字符: ");
 
@@ -1977,8 +1984,8 @@ int main() {
  */
 void swap(int *a, int *b) {
     int temp = *a;
-    *a       = *b;
-    *b       = temp;
+    *a = *b;
+    *b = temp;
 }
 
 int main() {
