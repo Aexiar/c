@@ -255,6 +255,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char str[30];
     char c;
     int  i;
@@ -272,7 +276,11 @@ int main() {
 
 ```c {3}
 #include <stdio.h>
+
 int main() {
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char str[30] = {'\0'};
     char c;
     int  i;
@@ -301,7 +309,12 @@ size_t strlen (const char *__s)
 ```c {13}
 #include <stdio.h>
 #include <string.h>
+
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char str[30] = {'\0'};
     char c;
     int  i;
@@ -329,6 +342,7 @@ int main() {
 #include <stdio.h>
 
 int main(){
+    
 	// 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
     
@@ -376,6 +390,7 @@ int main() {
 #include <stdio.h>
 
 int main(){
+    
 	// 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
     
@@ -439,6 +454,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -468,6 +484,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int arr[3] = {0};
     printf("%d", arr[10000]);
     return 0;
@@ -489,6 +509,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int arr[3] = {0};
 
     // 获取数组的元素
@@ -509,6 +533,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int arr[3] = {0, 1, 2, 3, 4};
 
     size_t length = sizeof(arr) / sizeof(int);
@@ -526,10 +554,14 @@ int main() {
 
 * 但是，对于字符串而言，就会出现不可控的情况，如下所示：
 
-```c {4}
+```c {8}
 #include <stdio.h>
-int main()
-{
+
+int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char str[10] = "Hello World，Hello World，Hello World，";
     puts(str);
     return 0;
