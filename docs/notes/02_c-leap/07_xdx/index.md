@@ -187,7 +187,7 @@ int main() {
 
 * 之所以，我们要学习 C 语言（语言规则），就是为了让 C 语言的编译器，帮助我们生成计算机指令和数据，进而操纵计算机，如下所示：
 
-```c {4}
+```c
 #include <stdio.h>
 
 int main(){
@@ -195,7 +195,7 @@ int main(){
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
     
-    puts("Hello World"); // [!code]
+    puts("Hello World"); // [!code highlight]
     
     return 0;
 }
@@ -299,7 +299,7 @@ int main() {
 
 * 示例：
 
-```c {12}
+```c
 #include <stdio.h>
 
 int main() {
@@ -312,7 +312,7 @@ int main() {
 
     // 声明指针变量，并指向普通变量 num
     // 普通变量需要通过 & 取地址符，来获取普通变量对应的内存空间的首地址
-    int *p = &num;
+    int *p = &num; // [!code highlight]
 
     // 输出普通变量
     printf("num = %d\n", num);
@@ -495,10 +495,11 @@ int main() {
 
 * 示例：
 
-```c {12-15,18-19,22-25,28-29,32-35}
+```c
 #include <stdio.h>
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -556,10 +557,11 @@ size_t sizeof(变量名);
 
 * 示例：
 
-```c {21-22}
+```c {22-23}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -619,6 +621,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -648,10 +651,11 @@ int main() {
 
 * 示例：
 
-```c {20}
+```c {21}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -701,10 +705,11 @@ int main() {
 
 * 示例：
 
-```c {14}
+```c {15}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -732,6 +737,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -776,10 +782,11 @@ int main() {
 
 * 指针除了可以获取内存中的数据，即：`查询数据`，如下所示：
 
-```c {14}
+```c {15}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -798,10 +805,11 @@ int main() {
 
 * 还可以修改内存中的数据或向内存中存储数据，即：`修改数据`或`存储数据`，如下所示：
 
-```c {17}
+```c {18}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -853,6 +861,7 @@ int *p = &a; // * 仅仅用来表明 p 是一个指针变量，而不是普通�
 > #include <stdio.h>
 > 
 > int main() {
+>     
 >     // 禁用 stdout 缓冲区
 >     setbuf(stdout, NULL);
 > 
@@ -863,7 +872,7 @@ int *p = &a; // * 仅仅用来表明 p 是一个指针变量，而不是普通�
 >      * 下面有一些代码，可能会使得 p 指向一个非空地址，即：不是空指针
 >      * 但是，并不确定 p 一定是非空指针，所以判断 NULL 处理就是必然操作（基操）
 >      */
->     
+> 
 >     .... 
 > 
 >     // 在解引用之前检查 p 是否为 NULL
@@ -882,10 +891,11 @@ int *p = &a; // * 仅仅用来表明 p 是一个指针变量，而不是普通�
 
 * 示例：
 
-```c {13}
+```c {14}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -924,10 +934,11 @@ int main() {
 
 * 示例：
 
-```c {20-22}
+```c {21-23}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -945,8 +956,8 @@ int main() {
 
     // 交换
     int temp = *p1;
-    *p1      = *p2;
-    *p2      = temp;
+    *p1 = *p2;
+    *p2 = temp;
 
     // 输出
     printf("交换后：m = %d, n = %d\n", m, n);
@@ -969,11 +980,12 @@ int main() {
  */
 void swap(int *a, int *b) {
     int temp = *a;
-    *a       = *b;
-    *b       = temp;
+    *a = *b;
+    *b = temp;
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1166,10 +1178,11 @@ p ± n // p 是指针变量，n 是整数
 
 * 示例：
 
-```c {13-15}
+```c {14-16}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1191,10 +1204,11 @@ int main() {
 
 * 示例：
 
-```c {17}
+```c {18}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1245,6 +1259,7 @@ void print(int arr[], int len) {
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1271,6 +1286,7 @@ void print(const int *p, int len) {
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1314,6 +1330,7 @@ p++;
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1337,10 +1354,11 @@ int main() {
 
 * 示例：
 
-```c {17}
+```c {18}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1380,11 +1398,12 @@ int main() {
 
 * 示例：
 
-```c {19}
+```c {20}
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1435,6 +1454,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
