@@ -11,6 +11,9 @@
 
 int main(){
     
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     double num1 = 0;
     double num2 = 0;
     double num3 = 0;
@@ -32,6 +35,10 @@ int main(){
 #include <stdio.h>
 
 int main(){
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明数组
     double nums[50];
     // 数组的长度
@@ -235,7 +242,10 @@ address(arr[i]) = base_address(arr[0]) + index * sizeof(element);
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 先指定元素的个数和类型，再进行初始化
 
     // 声明数组
@@ -282,6 +292,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明数组和部分初始化：
     // 会将给定的值从数组的开始位置一个个的赋值，没有赋值的地方，用 0 填充
     int arr[5] = {1, 2};
