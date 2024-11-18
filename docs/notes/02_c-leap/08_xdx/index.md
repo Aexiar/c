@@ -49,11 +49,12 @@
 
 * 示例：
 
-```c {16}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -64,7 +65,7 @@ int main() {
     int len = sizeof(arr) / sizeof(int);
 
     // 使用传统方式遍历数组
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++) { // [!code highlight]
         printf("arr[%d] = %d\n", i, arr[i]);
     }
 
@@ -80,11 +81,12 @@ int main() {
 
 * 示例：
 
-```c {18}
+```c {19}
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -113,11 +115,12 @@ int main() {
 
 * 示例：
 
-```c {15}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -128,7 +131,7 @@ int main() {
     int len = sizeof(arr) / sizeof(int);
 
     // 将 arr 的地址赋值给 p
-    int *p = arr;
+    int *p = arr; // [!code highlight]
 
     // 使用指针方式遍历数组
     for (int i = 0; i < len; i++) {
