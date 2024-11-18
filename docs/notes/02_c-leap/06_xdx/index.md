@@ -47,8 +47,9 @@ char str[32];
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
-    setbuf(stdout, NULL);
+    setbuf(stdout, nullptr);
 
     // 字符数组，不是字符串
     char c1[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd'};
@@ -75,8 +76,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
-    setbuf(stdout, NULL);
+    setbuf(stdout, nullptr);
 
     char c1[] = {"Hello World"}; // 注意使用双引号，非单引号
     char c2[] = "Hello World";   //  //可以省略一对 {} 来初始化数组元素
@@ -107,6 +109,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -128,6 +131,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -159,6 +163,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -181,6 +186,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -204,7 +210,12 @@ int main() {
 
 ```c {3}
 #include <stdio.h>
+
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char str[30];
     char c;
     int  i;
@@ -242,6 +253,7 @@ int main() {
 
 ```c {9}
 #include <stdio.h>
+
 int main() {
     char str[30];
     char c;
