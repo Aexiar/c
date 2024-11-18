@@ -133,6 +133,9 @@
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     int num1 = 0b10100110; // 二进制
     int num2 = 0717563; // 八进制
     int num3 = 1000; // 十进制
