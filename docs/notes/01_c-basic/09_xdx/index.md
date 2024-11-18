@@ -930,7 +930,7 @@ int main() {
 
 ![](./assets/33.svg)
 
-## 6.9 常见的面试题
+## 6.9 经典面试题
 
 ### 6.9.1 面试题 1
 
@@ -1112,6 +1112,18 @@ int main() {
 
 
 
+### 6.9.4 面试题 4
+
+
+
+
+
+### 6.9.5 面试题 5
+
+
+
+
+
 # 第七章：三元运算符（⭐）
 
 ## 7.1 概述
@@ -1135,14 +1147,15 @@ int main() {
 #include <stdio.h>
 
 int main() {
-    
+
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    int m      = 110;
-    int n      = 20;
-    int result = m > n ? m : n;
-    printf("result = %d\n", result); // result = 110
+    int m   = 110;
+    int n   = 20;
+    int max = m >= n ? m : n;
+    // 110 和 20 中的最大值是：110
+    printf("%d 和 %d 中的最大值是：%d\n", m, n, max);
 
     return 0;
 }
