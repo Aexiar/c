@@ -182,7 +182,7 @@ int main() {
 
 * 示例：
 
-```c {13}
+```c 
 #include <stdio.h>
 
 int main() {
@@ -196,7 +196,7 @@ int main() {
     // scanf() 在读取数据时需要的是数据的地址，这一点是恒定不变的。
     // 对于 int、char、float 等类型的变量都要在前边添加 & 以获取它们的地址。
     // 而数组或者字符串用于 scanf() 时不用添加 &，它们本身就会转换为地址。
-    scanf("%[^\n]", str); 
+    scanf("%[^\n]", str); // [!code highlight]
 
     printf("字符串是：%s\n", str);
 
@@ -208,7 +208,7 @@ int main() {
 
 * 有的时候，程序的逻辑要求我们必须逐个字符为数组赋值，这个时候就很容易遗忘字符串结束标识 `'\0'`，如下所示：
 
-```c {3}
+```c
 #include <stdio.h>
 
 int main() {
@@ -216,7 +216,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
     
-    char str[30];
+    char str[30]; // [!code highlight]
     char c;
     int  i;
     for (c = 65, i = 0; c <= 90; c++, i++) {
@@ -251,7 +251,7 @@ int main() {
 
 * 如果要避免这些问题也很简单，在字符串后面手动添加 `'\0'` 就可以了，即：
 
-```c {9}
+```c 
 #include <stdio.h>
 
 int main() {
@@ -265,7 +265,7 @@ int main() {
     for (c = 65, i = 0; c <= 90; c++, i++) {
         str[i] = c;
     }
-    str[i] = '\0';
+    str[i] = '\0'; // [!code highlight]
     printf("%s\n", str);
 
     return 0;
@@ -274,14 +274,14 @@ int main() {
 
 * 但是，上述的写法实在麻烦，为什么不在定义数组的时候，给数组中的每个元素都初始化，这样才能从根本上避免上述问题，即：
 
-```c {3}
+```c
 #include <stdio.h>
 
 int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
     
-    char str[30] = {'\0'};
+    char str[30] = {'\0'}; // [!code highlight]
     char c;
     int  i;
     for (c = 65, i = 0; c <= 90; c++, i++) {
@@ -306,7 +306,7 @@ size_t strlen (const char *__s)
 
 * 示例：
 
-```c {13}
+```c 
 #include <stdio.h>
 #include <string.h>
 
@@ -324,7 +324,7 @@ int main() {
     // ABCDEFGHIJKLMNOPQRSTUVWXYZ
     printf("%s\n", str);
     // ABCDEFGHIJKLMNOPQRSTUVWXYZ 的长度是 26
-    printf("%s 的长度是 %zu\n", str, strlen(str)); 
+    printf("%s 的长度是 %zu\n", str, strlen(str));  // [!code highlight]
 
     return 0;
 }
@@ -450,7 +450,7 @@ int main() {
 
 * 请看下面的代码：
 
-```c {9-10,15}
+```c {10-11,15-16}
 #include <stdio.h>
 
 int main() {
@@ -490,6 +490,7 @@ int main() {
     
     int arr[3] = {0};
     printf("%d", arr[10000]);
+    
     return 0;
 }
 ```
@@ -521,6 +522,7 @@ int main() {
     for (size_t i = 0; i < length; i++) {
         printf("%d\n", arr[i]);
     }
+    
     return 0;
 }
 ```
@@ -544,6 +546,7 @@ int main() {
     for (size_t i = 0; i < length; i++) {
         printf("%d\n", arr[i]);
     }
+    
     return 0;
 }
 ```
@@ -564,6 +567,7 @@ int main() {
     
     char str[10] = "Hello World，Hello World，Hello World，";
     puts(str);
+    
     return 0;
 }
 ```
@@ -623,7 +627,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组和全部初始化：数组初始化的元素个数等于数组的长度。
     int arr[5] = {1, 2, 3, 4, 5};
 
@@ -646,6 +653,10 @@ int main() {
 #include <stdlib.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int n;  // 数组的大小
     printf("请输入数组的大小: ");
     scanf("%d", &n);
