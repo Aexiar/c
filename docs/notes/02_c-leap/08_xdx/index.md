@@ -185,11 +185,12 @@ p = &num;
 
 * 对于指针变量 p 而言，怎么使用，取决于程序员的编码，如下所示：
 
-```c {19}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -204,7 +205,7 @@ int main() {
 
     // 使用指针方式遍历数组
     for (int i = 0; i < len; i++) {
-        printf("arr[%d] = %d\n", i, *(p + i));
+        printf("arr[%d] = %d\n", i, *(p + i)); // [!code highlight]
     }
 
     return 0;
@@ -230,10 +231,11 @@ int main() {
 
 * 示例：
 
-```c {14,18}
+```c
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
@@ -244,10 +246,10 @@ int main() {
     int len = sizeof(arr) / sizeof(int);
 
     // 定义指针变量指向数组的第 0 个元素
-    int *p = arr;
+    int *p = arr; // [!code highlight]
 
     // 遍历数组
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i) { // [!code highlight]
         printf("arr[%d] = %d\n", i, p[i]);
     }
 
@@ -285,6 +287,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -296,7 +299,7 @@ int main() {
 
     // 使用传统方式遍历数组
     for (int i = 0; i < len; i++) {
-        printf("arr[%d] = %d\n", i, arr[i]);
+        printf("arr[%d] = %d\n", i, arr[i]); // [!code highlight]
     }
 
     return 0;
@@ -307,11 +310,12 @@ int main() {
 
 * 示例：指针法
 
-```c {17}
+```c {18}
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -335,11 +339,12 @@ int main() {
 
 * 示例：指针法
 
-```c {15,19}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -350,10 +355,10 @@ int main() {
     int len = sizeof(arr) / sizeof(int);
 
     // 将 arr 的地址赋值给 p
-    int *p = arr;
+    int *p = arr; // [!code highlight]
 
     // 使用指针方式遍历数组
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++) { // [!code highlight]
         printf("arr[%d] = %d\n", i, *(p + i));
     }
 
@@ -365,11 +370,12 @@ int main() {
 
 * 示例：指针法
 
-```c {15,19}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -380,10 +386,10 @@ int main() {
     int len = sizeof(arr) / sizeof(int);
 
     // 将 arr 的地址赋值给 p
-    int *p = arr;
+    int *p = arr; // [!code highlight]
 
     // 使用指针方式遍历数组
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++) { // [!code highlight]
         printf("arr[%d] = %d\n", i, *p++);
     }
 
@@ -395,10 +401,11 @@ int main() {
 
 * 示例：指针法
 
-```c {11,18}
+```c
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
@@ -406,13 +413,13 @@ int main() {
     int arr[] = {1, 2, 3, 4, 5};
 
     // 获取数组长度
-    int len = sizeof(arr) / sizeof(int);
+    int len = sizeof(arr) / sizeof(int); 
 
     // 定义指针变量指向数组的第 0 个元素
-    int *p = arr;
+    int *p = arr; // [!code highlight]
 
     // 遍历数组
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i) { // [!code highlight]
         printf("arr[%d] = %d\n", i, p[i]);
     }
 
@@ -490,23 +497,24 @@ char c2[] = "Hello World";   // 可以省略一对 {} 来初始化数组元素
 
 * 示例：下标法
 
-```c {9,16}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char str[] = "Hello World";
+    char str[] = "Hello World"; // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 使用下标法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", str[i]);
+        printf("%c", str[i]); // [!code highlight]
     }
 
     return 0;
@@ -517,23 +525,24 @@ int main() {
 
 * 示例：指针法
 
-```c {9,16}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char str[] = "Hello World";
+    char str[] = "Hello World";  // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 使用指针法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", *(str + i));
+        printf("%c", *(str + i));  // [!code highlight]
     }
 
     return 0;
@@ -544,26 +553,27 @@ int main() {
 
 * 示例：指针法
 
-```c {9,15,19}
+```c 
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char str[] = "Hello World";
+    char str[] = "Hello World";  // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 定义指针变量
-    char *p = str;
+    char *p = str;  // [!code highlight]
 
     // 使用指针法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", *(p + i));
+        printf("%c", *(p + i)); // [!code highlight]
     }
 
     return 0;
@@ -574,26 +584,27 @@ int main() {
 
 * 示例：
 
-```c {9,15,19}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char str[] = "Hello World";
+    char str[] = "Hello World"; // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 定义指针变量
-    char *p = str;
+    char *p = str; // [!code highlight]
 
     // 使用指针法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", *p++);
+        printf("%c", *p++); // [!code highlight]
     }
 
     return 0;
@@ -619,23 +630,24 @@ char *str = "Hello World";
 
 * 示例：
 
-```c {9,16}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char *str = "Hello World";
+    char *str = "Hello World"; // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 使用下标法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", str[i]);
+        printf("%c", str[i]); // [!code highlight]
     }
 
     return 0;
@@ -651,18 +663,19 @@ int main() {
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char *str = "Hello World";
+    char *str = "Hello World"; // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 使用指针法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", *(str + i));
+        printf("%c", *(str + i)); // [!code highlight]
     }
 
     return 0;
@@ -673,26 +686,27 @@ int main() {
 
 * 示例：
 
-```c {9,15,19}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char *str = "Hello World";
+    char *str = "Hello World"; // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 定义指针变量
-    char *p = str;
+    char *p = str; // [!code highlight]
 
     // 使用指针法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", *(p + i));
+        printf("%c", *(p + i)); // [!code highlight]
     }
 
     return 0;
@@ -703,26 +717,27 @@ int main() {
 
 * 示例：
 
-```c {9,15,19}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
     // 定义字符串
-    char *str = "Hello World";
+    char *str = "Hello World"; // [!code highlight]
 
     // 获取数组的长度
     size_t len = strlen(str);
 
     // 定义指针变量
-    char *p = str;
+    char *p = str; // [!code highlight]
 
     // 使用指针法，遍历字符串
     for (int i = 0; i < len; i++) {
-        printf("%c", *p++);
+        printf("%c", *p++); // [!code highlight]
     }
 
     return 0;
@@ -759,11 +774,12 @@ int main() {
 
 * 换言之，如果针对字符串常量，进行修改，程序将会报错，如下所示：
 
-```c {12,15}
+```c
 #include <stdio.h>
 #include <string.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -771,7 +787,7 @@ int main() {
     char *str = "Hello World";
 
     // 正确，可以改变指针变量本身的指向
-    str = "abc";
+    str = "abc"; // [!code highlight]
 
     // 错误，因为不能修改字符串常量中的字符
     str[0] = 'a'; // [!code error]
@@ -804,14 +820,15 @@ int main() {
 
 * 示例：
 
-```c {7}
+```c
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    char str[30] = {'\0'};
+    char str[30] = {'\0'}; // [!code highlight]
 
     printf("请输入字符串：");
     gets(str);
@@ -913,10 +930,11 @@ double **pp = &p; // 表示 pp 指针所指向的是一个 double* 类型的数�
 
 * 示例：定义二级指针
 
-```c {9,12}
+```c {10,13}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -936,10 +954,11 @@ int main() {
 
 * 示例：定义多级指针
 
-```c {9,12,15}
+```c {10,13,16}
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -970,11 +989,12 @@ int main() {
 >
 > 这里所说的`指针`是`指针变量`，而不是`内存地址`。
 
-```c {15}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -985,7 +1005,7 @@ int main() {
     int len = sizeof(arr) / sizeof(int);
 
     // 将 arr 的地址赋值给 p
-    int *p = arr;
+    int *p = arr; // [!code highlight]
 
     // 使用指针方式遍历数组
     for (int i = 0; i < len; i++) {
@@ -1005,11 +1025,12 @@ int main() {
 > * ① 在大多数情况下，数组名确实会转换会指针（内存地址）；但是，并不代表数组就和指针（指针变量）等价。
 > * ② 很好理解，当定义完数组之后，数组就不会再变化了，即：在程序运行过程中，数组名就是一个内存地址，不会再发生变化，我们可以将数组名认为是一个常量地址。但是，指针变量是一个变量，而变量是可以变化的。
 
-```c {15-16,19-20}
+```c {16-17,20-21}
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1149,7 +1170,7 @@ int *p = NULL;
 
 * 示例：
 
-```c {25}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1164,6 +1185,7 @@ void print(int arr[], int len) {
 }
 
 int main() {
+   
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1174,7 +1196,7 @@ int main() {
     int len = sizeof(arr) / sizeof(arr[0]);
 
     // 打印数组
-    print(arr, len);
+    print(arr, len); // [!code highlight]
 
     return 0;
 }
@@ -1188,11 +1210,12 @@ int main() {
 
 * 示例：
 
-```c {12,15}
+```c {13,16}
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1230,11 +1253,12 @@ int main() {
 
 * 示例：
 
-```c {12}
+```c
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1242,7 +1266,7 @@ int main() {
     int arr[6] = {1, 2, 3, 4, 5, 6};
 
     // 计算数组的长度
-    int len = sizeof(arr) / sizeof(arr[0]);
+    int len = sizeof(arr) / sizeof(arr[0]); // [!code highlight]
 
     // 打印数组的长度
     printf("len = %d\n", len); // len = 6
@@ -1264,11 +1288,12 @@ int main() {
 
 * 示例：
 
-```c {11}
+```c {12}
 #include <stddef.h>
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1294,17 +1319,20 @@ int main() {
 
 * 在 C  语言中，函数的参数不仅仅可以是整数、小数、字符等具体的数据，如下所示：
 
-```c {1,10}
-int add(int a,int b){
+```c
+int add(int a,int b){ // [!code highlight]
     ...
 }
 
 int main(){
+        
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, NULL);
     
     int a = 10;
     int b = 20;
     
-    add(a,b);
+    add(a,b); // [!code highlight]
     
     return 0;
 }
@@ -1312,17 +1340,20 @@ int main(){
 
 * 还可以是指向它们的指针，如下所示：
 
-```c {1,10}
-int add(int* a,int* b){
+```c
+int add(int* a,int* b){ // [!code highlight]
     ...
 }
 
 int main(){
     
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, NULL); 
+    
     int a = 10;
     int b = 20;
     
-    add(&a,&b);
+    add(&a,&b); // [!code highlight]
     
     return 0;
 }
@@ -1349,7 +1380,7 @@ int main(){
 
 * 为了程序的通用性，我们想到最为有效的方案可能就是借助函数了，如下所示：
 
-```c {9-14,21-22,28}
+```c {9-14,22-23,29}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1360,12 +1391,13 @@ int main(){
  */
 void swap(int a, int b) {
     int temp = 0;
-    a        = temp;
-    b        = a;
-    a        = b;
+    a = temp;
+    b = a;
+    a = b;
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1424,7 +1456,7 @@ int main() {
 
 * 对于上述的代码，我们将其标注一下，如下所示：
 
-```c {9-14,21-22,28}
+```c {9-14,22-23,29}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1435,12 +1467,13 @@ int main() {
  */
 void swap(int a, int b) { // 在栈中
     int temp = 0;    // 在栈中
-    a        = temp; // 在栈中
-    b        = a;    // 在栈中
-    a        = b;    // 在栈中
+    a = temp; // 在栈中
+    b = a;    // 在栈中
+    a = b;    // 在栈中
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1475,7 +1508,7 @@ int main() {
 
 * 如果我们改用`指针`作为函数的`参数`，就可以很容易实现：在函数中的交换两个变量的值，如下所示：
 
-```c {9-13,20-21,27}
+```c {9-13,21-22,28}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1486,11 +1519,12 @@ int main() {
  */
 void swap(int *a, int *b) {
     int temp = *a;
-    *a       = *b;
-    *b       = temp;
+    *a = *b;
+    *b = temp;
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -1520,7 +1554,7 @@ int main() {
 
 * 在 C 语言中，数组是一系列数据的集合，无法直接通过`参数`将它们一次性的传递给函数内部。如果需要在函数内部操作数组，则必须传递`数组指针`，如下所示：
 
-```c {4,28}
+```c {4,29}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1538,6 +1572,7 @@ int max(int *p, int len) {
 }
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
