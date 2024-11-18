@@ -19,13 +19,6 @@
   border-radius: 50%;
   box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
   z-index: 1;  /* 确保伪元素位于上层，能够响应悬停 */
-  transition: all 0.3s ease;  /* 添加平滑过渡效果 */
-}
-
-/* 鼠标悬停时，添加放大动画 */
-.vp-doc div[class*=language-]:hover::before {
-  transform: scale(1.1);  /* 增大圆点 */
-  cursor: pointer !important;  /* 鼠标变为手指形状 */
 }
 
 /* 代码块：下移行号 隐藏右侧竖线 */
