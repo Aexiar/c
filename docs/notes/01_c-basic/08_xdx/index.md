@@ -117,6 +117,9 @@ short x = -10; // 有符号短整型
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义有符号 short 类型
     signed short s1 = -100;
 
@@ -142,6 +145,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     size_t s1 = sizeof(unsigned short);
     printf("unsigned short 的存储空间是 %zu 字节 \n", s1); // 2
@@ -165,9 +171,14 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    printf("unsigned short 类型的范围是[0,%hu]\n", USHRT_MAX); // [0,65535]
-    printf("short 类型的范围是[%hd,%hd]\n", SHRT_MIN,SHRT_MAX); // [-32768,32767]
+    // [0,65535]
+    printf("unsigned short 类型的范围是[0,%hu]\n", USHRT_MAX); 
+    // [-32768,32767]
+    printf("short 类型的范围是[%hd,%hd]\n", SHRT_MIN,SHRT_MAX); 
 
     return 0;
 }
@@ -200,10 +211,12 @@ int x = -10; // 有符号整型
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 定义有符号 int 类型
     signed int i1 = -100;
-
     printf("i1 = %d \n", i1); // i1 = -100
 
     // 定义无符号 int 类型
@@ -226,6 +239,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     size_t i1 = sizeof(unsigned int);
     printf("unsigned int 的存储空间是 %zu 字节 \n", i1); // 4
@@ -249,9 +265,14 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    printf("unsigned int 类型的范围是[0,%u]\n", UINT_MAX); // [0,4294967295]
-    printf("int 类型的范围是[%d,%d]\n", INT_MIN,INT_MAX); // [-2147483648,2147483647]
+    // [0,4294967295]
+    printf("unsigned int 类型的范围是[0,%u]\n", UINT_MAX);
+    // [-2147483648,2147483647]
+    printf("int 类型的范围是[%d,%d]\n", INT_MIN,INT_MAX); 
 
     return 0;
 }
@@ -284,10 +305,12 @@ long x = -10; // 有符号长整型
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 定义有符号 long 类型
     signed long l1 = -100;
-
     printf("l1 = %ld \n", l1); // l1 = -100
 
     // 定义无符号 long 类型
@@ -310,6 +333,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     size_t l1 = sizeof(unsigned long);
     printf("unsigned long 的存储空间是 %zu 字节 \n", l1); // 4
@@ -333,9 +359,14 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    printf("unsigned long 类型的范围是[0,%lu]\n", ULONG_MAX); // [0,4294967295]
-    printf("long 类型的范围是[%ld,%ld]\n", LONG_MIN,LONG_MAX); // [-2147483648,2147483647]
+    // [0,4294967295]
+    printf("unsigned long 类型的范围是[0,%lu]\n", ULONG_MAX);
+    // [-2147483648,2147483647]
+    printf("long 类型的范围是[%ld,%ld]\n", LONG_MIN,LONG_MAX);
 
     return 0;
 }
@@ -368,10 +399,12 @@ long long x = -10; // 有符号长长整型
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 定义有符号 long long 类型
     signed long long ll1 = -100;
-
     printf("ll1 = %lld \n", ll1); // ll1 = -100
 
     // 定义无符号 long long 类型
@@ -394,6 +427,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     size_t ll1 = sizeof(unsigned long long);
     printf("unsigned long long 的存储空间是 %zu 字节 \n", ll1); // 8
@@ -417,9 +453,14 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    printf("unsigned long long 类型的范围是[0,%llu]\n", ULLONG_MAX); // [0,18446744073709551615]
-    printf("long long 类型的范围是[%lld,%lld]\n", LLONG_MIN,LLONG_MAX); // [-9223372036854775808,9223372036854775807]
+     // [0,18446744073709551615]
+    printf("unsigned long long 类型的范围是[0,%llu]\n", ULLONG_MAX);
+    // [-9223372036854775808,9223372036854775807]
+    printf("long long 类型的范围是[%lld,%lld]\n", LLONG_MIN,LLONG_MAX); 
 
     return 0;
 }
@@ -456,6 +497,9 @@ long long num3 = 100LL; // 100LL 就是字面量
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int num = 100;
     printf("num = %d\n", num); // num = 100
@@ -514,6 +558,9 @@ int main() {
 #include <stdint.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 变量 x32 声明为 int32_t 类型，可以保证是 32 位(4个字节)的宽度。
     int32_t x32 = 45933945;
@@ -550,9 +597,11 @@ sizeof(表达式)
 #include <stddef.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     size_t s = sizeof(int);
-
     printf("%zu \n", s); // 4
 
     return 0;
@@ -568,11 +617,12 @@ int main() {
 #include <stddef.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int num = 10;
-
     size_t s = sizeof(num);
-
     printf("%zu \n", s); // 4
 
     return 0;
@@ -588,9 +638,11 @@ int main() {
 #include <stddef.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     size_t s = sizeof(10);
-
     printf("%zu \n", s); // 4
 
     return 0;
@@ -769,6 +821,9 @@ $S_n = a_1 \times \frac{1 - r^n}{1 - r}$
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     unsigned short s1 = USHRT_MAX + 1;
     printf("无符号的上溢出 = %hu \n", s1); // 0
@@ -789,6 +844,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     short s1 = SHRT_MAX + 1;
     printf("有符号的上溢出 = %hd \n", s1); // -32768
@@ -862,6 +920,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     float f1 = 10.0;
 
@@ -880,6 +941,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     double d1 = 13.14159265354;
 
@@ -898,6 +962,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     long double d1 = 13.14159265354;
 
@@ -916,9 +983,12 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    float       f1 = 3.1415926;
-    double      d2 = 3.14e2;
+    float f1 = 3.1415926;
+    double d2 = 3.14e2;
 
     printf("f1 = %.2f \n", f1); // f1 = 3.14
     printf("f1 = %.2e \n", f1); // f1 = 3.14e+00
@@ -943,9 +1013,12 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    float       f1 = 3.1415926f;
-    double      d2 = 3.1415926;
+    float f1 = 3.1415926f;
+    double d2 = 3.1415926;
     long double d3 = 3.1415926L;
 
     printf("f1 = %.2f \n", f1); // f1 = 3.14
@@ -968,6 +1041,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+     // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     printf("float 的存储空间是 %zu 字节 \n", sizeof(float)); // 4
     printf("double 的存储空间是 %zu 字节 \n", sizeof(double)); // 8
@@ -990,6 +1066,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+     // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     printf("float 的取值范围是：[%.38f, %f] \n", FLT_MIN, FLT_MAX);
     printf("double 的取值范围是：[%lf, %lf] \n", DBL_MIN, DBL_MAX);
@@ -1074,8 +1153,10 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char c = '&';
-
     printf("c = %c \n", c); // c = &
 
     char c2 = 'a';
@@ -1100,6 +1181,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     printf("char 的存储空间是 %d 字节\n", sizeof(char)); // 1 
     printf("unsigned char 的存储空间是 %d 字节\n", sizeof(unsigned char)); // 1
@@ -1121,6 +1205,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     printf("char 范围是[%d,%d] \n", CHAR_MIN,CHAR_MAX); // [-128,127]
     printf("unsigned char 范围是[0,%d]\n", UCHAR_MAX); // [0,255]
@@ -1149,6 +1236,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // char 类型字面量需要使用单引号包裹
     char a1 = 'A';
     char a2 = '9';
@@ -1164,8 +1255,8 @@ int main() {
 
     // char 类型取值范围
     unsigned char c1 = 200; // 无符号 char 取值范围 0 ~255
-    signed char   c2 = 200; // 有符号 char 取值范围 -128~127，c2会超出范围
-    char          c3 = 200; // 当前系统，char 默认是 signed char
+    signed char c2 = 200; // 有符号 char 取值范围 -128~127，c2会超出范围
+    char c3 = 200; // 当前系统，char 默认是 signed char
     printf("c1=%d, c2=%d, c3=%d", c1, c2, c3);
 
     return 0;
@@ -1189,6 +1280,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     char a = '1';
     char b = '2';
@@ -1222,9 +1316,12 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 存储字符串
-    char  str[] = "我";
+    char str[] = "我";
     char *str2  = "爱你";
 
     puts(str); // 我
@@ -1242,9 +1339,12 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 存储字符串
-    char  str[] = "你";
+    char str[] = "你";
     char *str2  = "是好人";
 
     printf("%s\n", str); // 你
@@ -1274,6 +1374,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
 	// 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
     
@@ -1309,6 +1410,7 @@ int main() {
 #define FALSE 0
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
     
@@ -1338,10 +1440,11 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    int   temp; // 使用 int 类型的变量临时存储输入
+    int temp; // 使用 int 类型的变量临时存储输入
     _Bool handsome = 0;
     printf("帅不帅[0 丑，1 帅]： ");
     scanf("%d", &temp);
@@ -1498,7 +1601,7 @@ int main() {
 >     // 禁用 stdout 缓冲区
 >     setbuf(stdout, nullptr);
 > 
->     int          i = -1;
+>     int i = -1;
 >     unsigned int u = 100;
 > 
 >     if (i < u) {
@@ -1542,6 +1645,9 @@ int main() {
  * 比如 short 转为 int ，int 转为 long 等。
  */
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     short s1 = 10;
 
@@ -1566,8 +1672,11 @@ int main() {
 
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    int          n2 = -100;
+    int n2 = -100;
     unsigned int n3 = 20;
 
     // n2 是有符号，n3 是无符号。
@@ -1592,8 +1701,11 @@ int main() {
 * 比如 float 转为 double ，double 转为 long double 。
 */
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
-    float  f1 = 1.25f;
+    float f1 = 1.25f;
     double d2 = 4.58667435;
 
     // f1 是 float 类型，d2 是 double 类型。
@@ -1617,8 +1729,11 @@ int main() {
  * 整型与浮点型运算，整型转为浮点型
  */
 int main() {
-
-    int    n4 = 10;
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    int n4 = 10;
     double d3 = 1.67;
 
     // n4 是 int 类型，d3 是 double 类型。
@@ -1651,15 +1766,18 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     // 赋值：窄类型赋值给宽类型
-    int    a1 = 10;
+    int a1 = 10;
     double a2 = a1;
     printf("a2: %.2f\n", a2); // a2: 10.00
 
     // 转换：将宽类型转换为窄类型
     double b1 = 10.5;
-    int    b2 = b1;
+    int b2 = b1;
     printf("b2: %d\n", b2); // b2: 10
 
     return 0;
@@ -1689,6 +1807,10 @@ int main() {
 #include <stdio.h>
 
 int main(){
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     double d1 = 1.934;
     double d2 = 4.2;
     int num1 = (int)d1 + (int)d2;         // d1 转为 1，d2 转为 4，结果是 5
@@ -1807,10 +1929,14 @@ int main() {
 
 ```c {8}
 #include <stdio.h>
+
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     double total = 100.12; // 总价
-    int    count = 2;      // 总数
+    int count = 2;      // 总数
     double price = 0.0;    // 单价
 
     int totalInt = (int)total; // 强制类型转换
