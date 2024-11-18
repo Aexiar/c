@@ -311,7 +311,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明数组和全部初始化：数组初始化的元素个数等于数组的长度。
     int arr[5] = {1, 2, 3, 4, 5};
 
@@ -339,7 +342,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 指定元素的类型，不指定元素个数，同时进行初始化
     int arr[] = {1, 2, 3, 4, 5};
 
@@ -369,7 +375,12 @@ int main() {
 
 ```c
 #include <stdio.h>
+
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int arr[10] = {1, 2, 3, 4, 5};
 
     printf("arr[0] = %d \n", arr[0]); // arr[0] = 1
@@ -443,7 +454,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 先指定元素的个数和类型，再进行初始化
 
     // 定义数组
@@ -483,7 +497,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 先指定元素的个数和类型，再进行初始化
 
     // 定义数组
@@ -511,7 +528,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组和部分初始化：
     // 会将给定的值从数组的开始位置一个个的赋值，没有赋值的地方，用 0 填充
     int arr[5] = {1, 2};
@@ -535,7 +555,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 指定元素的类型，不指定元素个数，同时进行初始化
     int arr[] = {1, 2, 3, 4, 5};
 
@@ -558,7 +581,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组和全部初始化：数组初始化的元素个数等于数组的长度。
     int arr[5] = {1, 2, 3, 4, 5};
 
@@ -592,7 +618,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组和全部初始化：数组初始化的元素个数等于数组的长度。
     int arr[] = {1, 2, 3, 4, 5};
 
@@ -633,7 +662,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组和全部初始化：数组初始化的元素个数等于数组的长度。
     int arr[] = {1, 2, 3, 4, 5};
 
@@ -661,7 +693,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组并初始化
     int arr[] = {12, 2, 31, 24, 15, 36, 67, 108, 29, 51};
 
@@ -685,7 +720,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组
     int arr[10];
 
@@ -731,7 +769,10 @@ int arr[] = {1,2,3,4,5};
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组
     int arr[10];
 
@@ -821,6 +862,9 @@ int b[5] = a ; // [!code error]
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组并初始化
     int arr[] = {12, 2, 31, 24, 15, 36, 67, 108, 29, 51};
 
@@ -862,7 +906,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+   
     // 定义数组并初始化
     int arr[] = {12, 2, 31, 24, 15, -36, 67, 108, 29, 51};
 
@@ -903,7 +950,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组并初始化
     int arr[] = {12, 2, 31, 24, 2, -36, 67, 108, 29, 51};
 
@@ -962,6 +1012,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义数组并初始化
     int a[] = {12, 2, 31, 24, 15, -36, 67, 108, 29, 51};
     int b[SIZE];
@@ -1002,7 +1055,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 原始数组
     int arr[] = {12, 2, 31, 24, 15, -36, 67, 108, 29, 51};
 
@@ -1042,7 +1098,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 原始数组
     int arr[] = {12, 2, 31, 24, 15, -36, 67, 108, 29, 51};
 
@@ -1093,7 +1152,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 原始数组
     int arr[] = {12, 2, 31, -24, 15, -36, 67, 891, 29, 51};
 
@@ -1145,7 +1207,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 原始数组
     int arr[] = {12, 2, 31, -24, 15, -36, 67, 891, 29, 51};
 
@@ -1228,7 +1293,10 @@ int search(int arr[], int len, int num) {
 }
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int arr[] = {1, 2, 3, 4, 5, 6};
 
     int len = sizeof(arr) / sizeof(arr[0]);
@@ -1351,7 +1419,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明二维数组并初始化
     int arr[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 
@@ -1394,7 +1465,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明二维数组并初始化
     int arr[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
 
@@ -1437,7 +1511,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明二维数组并进行初始化
     int arr[][4] = {{1, 2, 3, 4}, {5, 6}, {9, 10, 11, 12}};
 
@@ -1489,7 +1566,10 @@ int arr[3][4];
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明二维数组并进行初始化
     int arr[][4] = {{1, 2, 3, 4}, {5, 6}, {9, 10, 11, 12}};
 
@@ -1534,7 +1614,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 声明二维数组，用于保存成绩
     double arr[3][5];
 
