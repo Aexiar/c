@@ -25,7 +25,7 @@
 /* 鼠标悬停时，添加放大动画 */
 .vp-doc div[class*=language-]:hover::before {
   transform: scale(1.1);  /* 增大圆点 */
-  cursor: pointer;  /* 鼠标变为手指形状 */
+  cursor: pointer !important;  /* 鼠标变为手指形状 */
 }
 
 /* 代码块：下移行号 隐藏右侧竖线 */
