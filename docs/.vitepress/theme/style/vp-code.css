@@ -28,6 +28,7 @@
   transform: scale(1.2);  /* 增大圆点 */
   background-color: #ff2a68;
   box-shadow: 20px 0 0 #ffdb3d, 40px 0 0 #2ac2a4;
+  z-index: 999999;
 }
 
 /* 代码块：下移行号 隐藏右侧竖线 */
