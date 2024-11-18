@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^5.1.0",
-    "@theojs/lumen": "^4.0.0",
+    "@theojs/lumen": "^4.1.0",
     "busuanzi.pure.js": "^1.0.3",
     "dayjs": "1.11.13",
     "dotenv": "^16.4.5",
