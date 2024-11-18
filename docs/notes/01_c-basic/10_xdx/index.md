@@ -264,7 +264,10 @@ source /etc/default/locale
 #include <stddef.h>
 
 int main() {
-
+    
+	// 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     /* 存储宽字符，如：中文 */
     wchar_t a = L'中';
     wchar_t b = L'中';
@@ -297,7 +300,10 @@ int main() {
 #include <wchar.h>
 
 int main() {
-
+	
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     /* 存储宽字符，如：中文 */
     wchar_t a = L'中';
     wchar_t b = L'国';
@@ -342,6 +348,9 @@ int main() {
 #include <wchar.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     /* 存储宽字符，如：中文 */
     wchar_t  a[] = L"中国人";
@@ -391,6 +400,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 存储字符串
     char  str[] = "我";
     char *str2  = "爱你";
