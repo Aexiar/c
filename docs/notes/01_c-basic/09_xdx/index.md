@@ -1339,22 +1339,6 @@ int main() {
 #include <stdio.h>
 
 /**
- * @param arr
- * @param len
- * @return
- */
-int findOnly(const int arr[], size_t len) {
-
-    int singleNum = 0;
-
-    for (int i = 0; i < len; ++i) {
-        singleNum ^= arr[i];
-    }
-
-    return singleNum;
-}
-
-/**
  * 要找出一个不为 0 的整数值为 1 的最低有效位
  * @param num
  * @return
@@ -1400,7 +1384,6 @@ int main() {
 
     return 0;
 }
-
 ```
 
 
