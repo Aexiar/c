@@ -1126,7 +1126,7 @@ int main() {
 >  x = 1101 0100
 > -x = 0010 1100
 >  & -------------
->      0000 0100    
+>      0000 0100
 > ```
 
 
@@ -1317,12 +1317,90 @@ int main() {
 > [!NOTE]
 >
 > * ① 如果 nums = [1,2,1,3,2,5]，那么只出现 2 次的元素就是 [3,5] 或 [5,3] 。
+>
+> * ② 思路（假设这两个元素是 a 和 b）：
+>
+>   * 核心思路就是分区：
+>
+>   ```txt
+>   a(3),1,1...
+>   b(5),2,2...
+>   ```
+>
+>   * 对数组中的所有元素进行异或运算（xor），得到两个只出现一次的元素的异或结果（成对出现的元素的异或结果为 0 ，所以最终的结果就是这两个只出现一次的元素的异或结果），即：a ^ b = xor（不为 0）。
+>   * 因为 a 和 b 不同，那么 a 和 b 的二进制补码，至少有一位是不同的，即：a ^ b 至少有一位是 1 （xor 至少有一位是 1）。
+>   * 根据`面试题 3` LSB 找出值为 1 的最低有效位，即：LSB = xor & (-xor)，并且 LSB 是 2 的幂（a 和 b 在这一位上是不同的，也就意味着根据 LSB 可以将所有元素分区）。
 
 
 
 * 示例：
 
 ```c
+#include <stdio.h>
+
+/**
+ * @param arr
+ * @param len
+ * @return
+ */
+int findOnly(const int arr[], size_t len) {
+
+    int singleNum = 0;
+
+    for (int i = 0; i < len; ++i) {
+        singleNum ^= arr[i];
+    }
+
+    return singleNum;
+}
+
+/**
+ * 要找出一个不为 0 的整数值为 1 的最低有效位
+ * @param num
+ * @return
+ */
+int findLowestSetBit(int num) {
+    return num & -num;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int nums[] = {1, 2, 1, 3, 2, 5};
+
+    int len = sizeof(nums) / sizeof(int);
+
+    int xor = 0;
+    for (int i = 0; i < len; ++i) {
+        xor ^= nums[i];
+    }
+
+    // xor = a ^ b
+    printf("xor = %d\n", xor);
+
+    // a 和 b 在这一位上是不同的
+    int lsb = findLowestSetBit(xor);
+
+    printf("lsb = %d\n", lsb);
+
+    // 根据这一位将所有元素分类
+    int a = 0, b = 0;
+    for (int i = 0; i < len; ++i) {
+        if (nums[i] & lsb) { // 1
+            a ^= nums[i];
+        } else { // 0
+            b ^= nums[i];
+        }
+    }
+
+    // a = 3, b = 5
+    printf("a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+
 ```
 
 
