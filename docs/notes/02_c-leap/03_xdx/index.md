@@ -29,6 +29,9 @@
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int x = 1;
     int y = 2;
     printf("x = %d \n", x); // x = 1
@@ -87,7 +90,10 @@ if(条件表达式){
 #include <stdio.h>
 
 int main() {
-
+   
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int heartBeats = 0;
     printf("请输入您的心率：");
     scanf("%d", &heartBeats);
@@ -114,7 +120,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int age = 0;
     printf("请输入你的年龄：");
     scanf("%d", &age);
@@ -165,6 +174,9 @@ if(条件表达式) {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int num = 0;
     printf("请输入一个整数：");
     scanf("%d", &num);
@@ -192,6 +204,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int age = 0;
     printf("请输入年龄：");
     scanf("%d", &age);
@@ -224,6 +239,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     int year = 0;
     printf("请输入年份：");
     scanf("%d", &year);
@@ -290,6 +308,9 @@ if (条件表达式1) {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);    
+    
     int score = 0;
     printf("请输入分数：");
     scanf("%d", &score);
@@ -326,7 +347,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int temperature = 0;
     printf("请输入水的温度：");
     scanf("%d", &temperature);
@@ -393,7 +417,10 @@ switch(表达式){
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     char chs;
     printf("请输入一个字符（a、b、c、d）：");
     scanf("%c", &chs);
@@ -437,6 +464,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int month;
     printf("请输入月份 (1-12)：");
     scanf("%d", &month);
@@ -507,8 +537,11 @@ int main() {
 
 int main() {
 
-    int    month;
-    int    age;
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    int month;
+    int age;
     double price = 60;
 
     printf("请输入月份 (1-12)：");
@@ -617,7 +650,10 @@ int randomInRange(int min, int max) {
 }
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 使用当前时间作为种子
     srand(time(0));
 
@@ -684,6 +720,9 @@ for(初始化条件①;循环条件表达式②;迭代语句④){
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 5; ++i) {
         printf("Hello World!\n");
     }
@@ -704,7 +743,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int sum   = 0;
     int count = 0;
 
@@ -734,6 +776,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     int count = 0;
 
@@ -768,6 +813,9 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
 
     for (int i = 10; i >= 0; i--) {
         printf("%d ", i);
@@ -795,7 +843,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int m = 12, n = 20;
 
     // 取出两个数中的较小值
@@ -868,6 +919,10 @@ while (循环条件语句②) {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int i = 1;
     while (i <= 5) {
         printf("Hello World!\n");
@@ -890,7 +945,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int sum   = 0;
     int count = 0;
 
@@ -922,7 +980,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 折叠的次数
     int count = 0;
 
@@ -1072,8 +1133,11 @@ do{
 #include <stdio.h>
 
 int main() {
-
-    int sum   = 0;
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    int sum = 0;
     int count = 0;
 
     int i = 1;
@@ -1104,6 +1168,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 账户余额
     double balance = 0.0;
     // 客户选择
@@ -1203,7 +1271,10 @@ for(初始化语句①; 循环条件语句②; 迭代语句⑦) {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 5; ++i) {
         for (int j = 1; j < 6; ++j) {
             printf("* ");
@@ -1228,7 +1299,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 5; ++i) {
         for (int j = 1; j <= i; ++j) {
             printf("* ");
@@ -1253,6 +1327,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 5; ++i) {
         for (int j = 1; j <= 6 - i; ++j) {
             printf("* ");
@@ -1276,7 +1353,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 9; ++i) {
         for (int j = 1; j <= i; ++j) {
             printf("%d × %d = %d ", i, j, i * j);
@@ -1317,7 +1397,10 @@ for(;;){
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 记录输入的整数
     int num = 0;
     // 记录正数个数
@@ -1368,7 +1451,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 0; i < 10; ++i) {
         if (i == 3) {
             break;
@@ -1390,9 +1476,12 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     bool isFlag = false;
-    int  num    = 0;
+    int num = 0;
     do {
 
         printf("请输入一个整数（必须大于 1 ）：");
@@ -1448,7 +1537,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 0; i < 10; ++i) {
         if (i == 3) {
             continue;
@@ -1470,7 +1562,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 100; i++) {
         if (i % 7 == 0 || i % 10 == 7 || i / 10 == 7) {
             continue;
@@ -1501,6 +1596,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     for (int i = 1; i <= 100; i++) {
         if (i % 7 == 0 || i % 10 == 7 || i / 10 == 7) {
             return 0; // 结束整个函数或方法
