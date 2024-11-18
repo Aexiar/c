@@ -19,6 +19,15 @@
   border-radius: 50%;
   box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
   z-index: 1;
+  transition: all 0.3s ease;  /* 添加平滑过渡效果 */
+}
+
+/* 鼠标悬停时，改变小圆点的颜色和大小 */
+.vp-doc div[class*=language-]::before:hover {
+  width: 14px;
+  height: 14px;
+  background-color: #ff2a68;  /* 改变圆点的颜色为一种鲜艳的红色 */
+  box-shadow: 20px 0 0 #ffdb3d, 40px 0 0 #2ac2a4;  /* 改变小圆点周围的阴影颜色 */
 }
 
 /* 代码块：下移行号 隐藏右侧竖线 */
