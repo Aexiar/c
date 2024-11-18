@@ -69,7 +69,10 @@
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义变量，即：开辟一块内存空间，并将初始化值存储进去
     int num = 10;
 
@@ -112,7 +115,10 @@ int main() {
 #include <stdio.h>
 
 int main() {
-
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     // 定义变量，即：开辟一块内存空间，并将初始化值存储进去
     int num = 10;
 
@@ -183,9 +189,13 @@ int main() {
 
 ```c {4}
 #include <stdio.h>
+
 int main(){
     
-    puts("Hello World");
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    puts("Hello World"); // [!code]
     
     return 0;
 }
@@ -271,6 +281,7 @@ c = a + b ;
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -292,6 +303,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
@@ -333,6 +345,7 @@ int *a,*b,*c;
 #include <stdio.h>
 
 int main() {
+    
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
