@@ -22,12 +22,11 @@
   transition: all 0.3s ease;  /* 添加平滑过渡效果 */
 }
 
-/* 鼠标悬停时，改变小圆点的颜色和大小 */
+/* 鼠标悬停时，添加放大动画 */
 .vp-doc div[class*=language-]::before:hover {
-  width: 14px;
-  height: 14px;
-  background-color: #ff2a68;  /* 改变圆点的颜色为一种鲜艳的红色 */
-  box-shadow: 20px 0 0 #ffdb3d, 40px 0 0 #2ac2a4;  /* 改变小圆点周围的阴影颜色 */
+  transform: scale(1.2);  /* 增大圆点 */
+  background-color: #ff2a68;
+  box-shadow: 20px 0 0 #ffdb3d, 40px 0 0 #2ac2a4;
 }
 
 /* 代码块：下移行号 隐藏右侧竖线 */
