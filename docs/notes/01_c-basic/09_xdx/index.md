@@ -1108,17 +1108,182 @@ int main() {
 
 ### 6.9.3 面试题 3 
 
+* 需求：给定一个值不为 0 的整数，请找出值为 1 的最低有效位（Least Significant Bit，LSB）。
+
+> [!NOTE]
+>
+> * ① 假设该值是 24 ，其对应的二进制是 0001 1000，则值为 1 的最低有效位是 2^3，即：8 。
+> * ② x + (-x) = 10000 ... 0000 。其中，x 是自然数，如：1、2 等；10000 ... 0000 中有 n 个 0 ，1 会溢出，会被丢弃，即：
+>
+> ```txt
+> 问：如果一个有符号数，在计算机中的存储是 1101 0100（补码） ，求其相反数的二进制表示？
+> 答：从右往左数，第一个为 1 的数，保留下来（100），其余按位取反，即：0010 1100
+> ```
+>
+> * ③ x & -x 的结果就是最低有效位，即：
+>
+> ```txt
+>  x = 1101 0100
+> -x = 0010 1100
+>  & -------------
+>      0000 0100    
+> ```
 
 
 
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 要找出一个不为 0 的整数值为 1 的最低有效位
+ * @param num
+ * @return
+ */
+int findLowestSetBit(int num) {
+    int x = 0x1; // 1 2 4 8 ...
+    while ((num & x) == 0) {
+        x <<= 1;
+    }
+    return x;
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = 24;
+
+    // 24 的最低有效位是：8
+    printf("24 的最低有效位是：%d\n", findLowestSetBit(num));
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+ * 要找出一个不为 0 的整数值为 1 的最低有效位
+ * @param num
+ * @return
+ */
+int findLowestSetBit(int num) {
+    return num & -num; // [!code highlight]
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = 24;
+
+    // 24 的最低有效位是：8
+    printf("24 的最低有效位是：%d\n", findLowestSetBit(num));
+
+    return 0;
+}
+```
 
 ### 6.9.4 面试题 4
 
+* 需求：给定两个不同的整数 a 和 b ，请交换它们两个的值。
+
+> [!NOTE]
+>
+> * ① 借用第三个变量充当临时容器，来实现需求。
+> * ② 借用按位异或运算符的对合性，即：`a^b^b = a` 。
 
 
 
+* 示例：
+
+```c {14-16}
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int a = 10;
+    int b = 20;
+
+    // a = 10, b = 20
+    printf("a = %d, b = %d\n", a, b);
+
+    int temp = a;
+    a        = b;
+    b        = temp;
+
+    // a = 20, b = 10
+    printf("a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c {14-16}
+#include <stdio.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int a = 10;
+    int b = 20;
+
+    // a = 10, b = 20
+    printf("a = %d, b = %d\n", a, b);
+
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+
+    // a = 20, b = 10
+    printf("a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+```
 
 ### 6.9.5 面试题 5
+
+* 需求：给出一个非空整数数组 nums，除了某个元素只出现 1 次以外，其余每个元素均出现 2 次，请找出那个只出现 1 次的元素。
+
+> [!NOTE]
+>
+> * ① 如果 nums = [1,4,2,1,2]，那么只出现 1 次的元素就是 4 。
+
+
+
+* 示例：
+
+```c
+```
+
+
+
+### 6.9.6 面试题 6
+
+* 需求：给出一个非空整数数组 nums；其中，恰好有两个元素只出现 1 次，其余所有元素均出现 2 次，请找出只出现 1 次的两个元素。
+
+> [!NOTE]
+>
+> * ① 如果 nums = [1,2,1,3,2,5]，那么只出现 2 次的元素就是 [3,5] 或 [5,3] 。
 
 
 
