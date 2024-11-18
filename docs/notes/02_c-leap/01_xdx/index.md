@@ -735,6 +735,9 @@ int main() {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
     int num;
 
     printf("请输入一个整数：");
