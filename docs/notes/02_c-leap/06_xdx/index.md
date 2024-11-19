@@ -81,7 +81,7 @@ int main() {
     setbuf(stdout, nullptr);
 
     char c1[] = {"Hello World"}; // 注意使用双引号，非单引号
-    char c2[] = "Hello World";   //  //可以省略一对 {} 来初始化数组元素
+    char c2[] = "Hello World";   // 语法糖：可以省略一对 {} 来初始化数组元素
     
 
     return 0;
