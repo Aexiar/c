@@ -86,7 +86,7 @@ export default defineConfig({
           return defaultContent
         }
       })
-      // md.use(timeline)
+      md.use(timeline)
     }
   },
   themeConfig: { // 主题设置
