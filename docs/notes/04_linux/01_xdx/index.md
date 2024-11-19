@@ -154,12 +154,12 @@
 
 * ⑨ VMware 输入许可证密钥：
 
+![VMware单击许可证.png](./assets/13.png)
+
 > [!NOTE]
 >
 > * ① VMware Workstation Pro（16.x）的许可证密钥是：`ZF71R-DMX85-08DQY-8YMNC-PPHV8`。
 > * ② VMware Workstation Pro（17.x）的许可证密钥是：`NZ4RR-FTK5H-H81C1-Q30QH-1V2LA`。
-
-![VMware单击许可证.png](./assets/13.png)
 
 ![VMware输入许可证.png](./assets/14.png)
 
