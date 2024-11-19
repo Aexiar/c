@@ -556,7 +556,7 @@ int main() {
     int n = 90;
 
     // 错误，constexpr 定义的常量是编译期常量，不可以在运行时修改
-    constexpr int MAX_NUM1 = n; // [!code error]
+    constexpr int MAX_NUM = n; // [!code error]
 
     return 0;
 }
@@ -577,10 +577,9 @@ int main() {
     int n = 90;
 
     // 错误，constexpr 定义的常量是编译期常量，不可以在运行时修改
-    constexpr int MAX_NUM1 = getNum(); // [!code error]
+    constexpr int MAX_NUM = getNum(); // [!code error]
 
     return 0;
 }
 ```
-
 
