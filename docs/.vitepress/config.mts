@@ -5,6 +5,27 @@ import dayjs from 'dayjs'
 import timeline from "vitepress-markdown-timeline"
 
 import { loadEnv } from 'vite'
+import { createAlova } from 'alova'
+import VueHook from 'alova/vue'
+import adapterFetch from 'alova/fetch'
+
+const alova = createAlova({
+  baseURL: 'https://collect.xmwxxc.com',
+  statesHook: VueHook,
+  requestAdapter: adapterFetch(),
+  timeout: 3000
+})
+
+
+const info = alova.Get("/collect/djt/", {
+  params: {
+    type: 0
+  }
+})
+
+console.log('info', info)
+
+
 const mode = process.env.NODE_ENV || 'development'
 const { VITE_BASE_URL } = loadEnv(mode, process.cwd())
 
