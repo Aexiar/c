@@ -75,13 +75,13 @@ watch(
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  z-index: 999999;
+  z-index: 99;
   pointer-events: none;
 }
 
 /* 通知 */
 .notice {
-  z-index: 999999;
+  z-index: 999;
   padding: 25px;
   background: #fff;
   width: 446px;
