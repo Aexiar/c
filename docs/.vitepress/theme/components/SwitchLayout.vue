@@ -6,7 +6,7 @@
     <template #doc-before>
       <ArticleMetadata />
     </template>
-    <template #home-hero-before>
+    <template #home-features-after>
       <Notice />
     </template>
   </DefaultTheme.Layout>
