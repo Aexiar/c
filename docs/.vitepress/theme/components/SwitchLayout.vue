@@ -1,6 +1,6 @@
 <template>
   <DefaultTheme.Layout>
-    <template #home-features-after>
+    <template #home-hero-actions-after>
       <Notice />
     </template>
     <template #doc-footer-before>
