@@ -1,13 +1,13 @@
 <template>
   <DefaultTheme.Layout>
+    <template #home-features-after>
+      <Notice />
+    </template>
     <template #doc-footer-before>
       <Backtotop />
     </template>
     <template #doc-before>
       <ArticleMetadata />
-    </template>
-    <template #home-features-after>
-      <Notice />
     </template>
   </DefaultTheme.Layout>
 </template>
