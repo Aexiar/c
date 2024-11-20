@@ -6,11 +6,6 @@ import timeline from "vitepress-markdown-timeline"
 
 import { loadEnv } from 'vite'
 
-
-
-
-
-
 const mode = process.env.NODE_ENV || 'development'
 const { VITE_BASE_URL } = loadEnv(mode, process.cwd())
 
