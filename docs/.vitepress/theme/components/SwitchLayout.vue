@@ -6,12 +6,16 @@
     <template #doc-before>
       <ArticleMetadata />
     </template>
+    <template #home-hero-info>
+      <Notice />
+    </template>
   </DefaultTheme.Layout>
 </template>
 
 <script setup lang="ts">
 import Backtotop from "./BackTop.vue";
 import ArticleMetadata from "./ArticleMetadata.vue";
+import Notice from "./Notice.vue";
 import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
