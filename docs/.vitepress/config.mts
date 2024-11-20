@@ -17,13 +17,16 @@ const alova = createAlova({
 })
 
 
-const response = await alova.Get("/collect/djt/", {
-  params: {
-    type: 0
-  }
-})
+try {
+  const response = await alova.Get("/collect/djt/", {
+    params: {
+      type: 0
+    }
+  })
+  console.log('response', response)
+} catch (e) {
 
-console.log('response', response)
+}
 
 
 const mode = process.env.NODE_ENV || 'development'
