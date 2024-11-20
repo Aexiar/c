@@ -1,11 +1,12 @@
-<template>哈哈</template>
+<template></template>
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
 import { useRoute, useData } from "vitepress";
 
 const res = useData();
-console.log("res", res);
+res.page.value.frontmatter.hero.tagline = "呵呵";
+console.log("res", res.page.value.frontmatter.hero.tagline);
 </script>
 
 <style scoped></style>
