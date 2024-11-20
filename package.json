@@ -23,6 +23,7 @@
     "@fontsource/roboto": "^5.1.0",
     "@theojs/lumen": "^4.1.0",
     "alova": "^3.2.3",
+    "axios": "^1.7.7",
     "busuanzi.pure.js": "^1.0.3",
     "dayjs": "1.11.13",
     "dotenv": "^16.4.5",
