@@ -17,13 +17,13 @@ const alova = createAlova({
 })
 
 
-const info = alova.Get("/collect/djt/", {
+const response = await alova.Get("/collect/djt/", {
   params: {
     type: 0
   }
 })
 
-console.log('info', info)
+console.log('response', response)
 
 
 const mode = process.env.NODE_ENV || 'development'
