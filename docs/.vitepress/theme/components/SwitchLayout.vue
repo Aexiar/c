@@ -1,8 +1,5 @@
 <template>
   <DefaultTheme.Layout>
-    <template #home-hero-actions-after>
-      <Notice />
-    </template>
     <template #doc-footer-before>
       <Backtotop />
     </template>
@@ -15,7 +12,6 @@
 <script setup lang="ts">
 import Backtotop from "./BackTop.vue";
 import ArticleMetadata from "./ArticleMetadata.vue";
-import Notice from "./Notice.vue";
 import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
