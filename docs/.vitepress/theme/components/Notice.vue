@@ -2,11 +2,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
-import { useRoute,useData } from "vitepress";
+import { useRoute, useData } from "vitepress";
 
-useData()
+const res = useData();
+console.log("res", res);
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
