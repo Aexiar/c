@@ -4,9 +4,13 @@
 import { ref, onMounted, watch } from "vue";
 import { useRoute, useData } from "vitepress";
 
-const res = useData();
-res.page.value.frontmatter.hero.tagline = "呵呵";
-console.log("res", res.page.value.frontmatter.hero.tagline);
+const data = useData();
+// data.page.value.frontmatter.hero.tagline = "呵呵";
+const page = data.page;
+
+page.value.frontmatter.hero.tagline = "new tagline";
+
+console.log("res", data.page.value.frontmatter.hero.tagline);
 </script>
 
 <style scoped></style>
