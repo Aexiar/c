@@ -1092,7 +1092,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    int     a;
+    int a;
     clock_t time_start, time_end;
 
     printf("请输入正整数: ");
@@ -1101,8 +1101,8 @@ int main() {
     // Fib(50) = 12586269025
     printf("Fib(%d) = %ld\n", a, fib(a));
     time_end = clock();
-    // 花费的时间: 45.122685s
-    printf("花费的时间: %lfs\n", (double)(time_end - time_start) / CLOCKS_PER_SEC);
+    // 时间: 45.122685s
+    printf("时间: %lfs\n", (double)(time_end - time_start) / CLOCKS_PER_SEC);
 
     return 0;
 }
