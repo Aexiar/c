@@ -1,16 +1,4 @@
-<template>
-  <div v-if="visible" class="notice-background" style="display: block"></div>
-
-  <div v-if="visible" class="notice">
-    <h3 class="notice-title">🛎️本站公告({{ countdown }} 秒)</h3>
-    <div class="notice-describe">
-      <p>🔔本次更新：C 语言预处理器！！！</p>
-    </div>
-    <div class="notice-footer">
-      <div class="notice-btn" @click="closetz">知道了，退下吧</div>
-    </div>
-  </div>
-</template>
+<template>哈哈</template>
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
