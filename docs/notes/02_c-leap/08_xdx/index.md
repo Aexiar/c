@@ -1380,7 +1380,7 @@ int main(){
 
 * 为了程序的通用性，我们想到最为有效的方案可能就是借助函数了，如下所示：
 
-```c {9-14,22-23,29}
+```c {9-13,21-22,28}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1390,10 +1390,9 @@ int main(){
  * @param b
  */
 void swap(int a, int b) {
-    int temp = 0;
-    a = temp;
-    b = a;
+    int temp = a;
     a = b;
+    b = temp;
 }
 
 int main() {
@@ -1456,7 +1455,7 @@ int main() {
 
 * 对于上述的代码，我们将其标注一下，如下所示：
 
-```c {9-14,22-23,29}
+```c {9-13,21-22,28}
 #include <stddef.h>
 #include <stdio.h>
 
@@ -1466,10 +1465,9 @@ int main() {
  * @param b
  */
 void swap(int a, int b) { // 在栈中
-    int temp = 0;    // 在栈中
-    a = temp; // 在栈中
-    b = a;    // 在栈中
-    a = b;    // 在栈中
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 int main() {
@@ -1496,7 +1494,7 @@ int main() {
 
 * 那么，其在内存中就是这样的，如下所示：
 
-![](./assets/11.svg)
+
 
 > [!NOTE]
 >
