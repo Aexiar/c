@@ -1910,7 +1910,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    int *p = test();
+    int *p = test(); // [!code highlight]
 
     printf("num = %d\n", *p);
 
