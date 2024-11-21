@@ -1871,8 +1871,9 @@ int main() {
 
 int *test() { // [!code warning]
 
-    int num = 10;
-
+    int num = 10; // [!code highlight]
+	
+    // 错误，在函数中不要返回指向当前栈帧的指针！！！
     return &num; // [!code warning]
 }
 
@@ -1890,6 +1891,33 @@ int main() {
 ```
 
 
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+int *test() { // [!code highlight]
+
+    static int num = 10; // [!code highlight]
+    
+    // 在函数中不要返回指向当前栈帧的指针！！！
+    return &num; // [!code highlight]
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int *p = test();
+
+    printf("num = %d\n", *p);
+
+    return 0;
+}
+
+```
 
 
 
