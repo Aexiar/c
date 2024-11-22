@@ -446,7 +446,7 @@ int main() {
 
 # 第四章：深入理解 const 关键字
 
-## 7.1 概述
+## 4.1 概述
 
 * const 关键字修饰的变量，即：const 常量，一旦被定义就必须初始化，后面的任何赋值行为都将发生错误。
 
@@ -522,7 +522,7 @@ int main() {
 > * ① 正因为 C 语言的这种“坑爹”的语法，很多程序员会将 const 修饰的变量，即：const 常量，称为只读变量。
 > * ② 但是，对于使用 C 语言的程序员而言，可以使用指针、函数来动态修改 const 修饰的变量（即：const 常量）的值。
 
-## 7.2 const 和 非 const 的转换
+## 4.2 const 和 非 const 的转换
 
 * 指向常量的指针，表示该指针所指向的对象的值是不能通过指针修改的，但是指针本身可以指向其它的地址，例如：`const char* str1`，而普通的指针变量本身既可以指向其他地址，所指向的对象的值也可以改变，例如：`char* str2` 。
 * 在 C 语言中，指向常量的指针的数据类型（`const char*`）是不可以转换为普通指针的数据类型（`char*`），即：
@@ -580,7 +580,7 @@ int main() {
 > * ① 很好理解，`char*`指向的数据有读取和写入权限，而 `const char *`指向的数据只有读取权限，降低数据的权限并不会带来任何问题，但是提升数据的权限就有可能发生危险。
 > * ② 在实际开发中，为了安全，权限的范围是越小越好。
 
-## 7.3 C 语言中编译期常量<Badge type="danger" text="^c23"/>
+## 4.3 C 语言中编译期常量<Badge type="danger" text="^c23"/>
 
 * 在之前的 C 标准中，如果我们定义普通常量是这样的（只读常量），如下所示：
 
@@ -651,6 +651,221 @@ int main() {
 
     // 错误，constexpr 定义的常量是编译期常量，不可以在运行时修改
     constexpr int MAX_NUM = getNum(); // [!code error]
+
+    return 0;
+}
+```
+
+
+
+# 第五章：传入参数、传出参数和传入传出参数
+
+## 5.1 概述
+
+* C 语言中的函数支持传入参数、传出参数和传入传出参数。
+
+## 5.2 传入参数（Input Paramter）
+
+* `传入参数`就是将值从调用者传递给被调用的函数，函数内部可以使用这些值；但是，并不会修改调用者的原始数据。
+
+> [!NOTE]
+>
+> * ① 在函数中，可以通过`普通值`或`指针常量`的方式，将数据从调用者传递传递给函数（传入参数）。
+> * ② 其实，所谓的`传入参数`，就是对应 MySQL 存储过程和函数中，参数的参数类型 `IN` 类型。
+>
+> ```sql
+> DELIMITER //
+> 
+> CREATE PROCEDURE greet_user(IN username VARCHAR(50))
+> BEGIN
+>     SELECT CONCAT('Hello, ', username, '!') AS greeting;
+> END //
+> 
+> DELIMITER ;
+> 
+> -- 调用存储过程
+> CALL greet_user('Alice');
+> 
+> ```
+>
+> * ③ `传入参数`的特点：是函数内修改参数的值不会影响调用者。
+
+
+
+* 示例：
+
+``` c
+#include <stdio.h>
+
+void printValue(int value) { // [!code highlight]
+    
+    printf("%d\n", value);
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int num = 10;
+    
+    printValue(num);
+
+    return 0;
+}
+```
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+/**
+* 查找字符串中某个字符出现的次数
+*/
+size_t strnchr(const char *str, char ch){ // [!code highlight]
+    int i, n = 0, len = strlen(str);
+
+    for(i=0; i<len; i++){
+        if(str[i] == ch){
+            n++;
+        }
+    }
+   
+    return n;
+}
+
+int main(){
+    
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+    
+    char *str = "abcabcabcabcdfafere";
+    char ch = 'a';
+    
+    int n = strnchr(str, ch);
+    printf("%d\n", n);
+    
+    return 0;
+}
+```
+
+## 5.3 传出参数（Output Paramter）
+
+* `传出参数`用于从函数中传递结果给调用者，调用者通常会传入一个指针，函数通过指针修改调用者的数据。
+
+> [!NOTE]
+>
+> * ① 在函数中，可以通过`指针`的方式，将函数中的结果，通过参数传递传递给调用者（传出参数）。
+> * ② 其实，所谓的`传出参数`，就是对应 MySQL 存储过程和函数中，参数的类型 `OUT` 类型。
+>
+> ```c
+> DELIMITER //
+> 
+> CREATE PROCEDURE calculate_sum(IN num1 INT, IN num2 INT, OUT total INT)
+> BEGIN
+>     SET total = num1 + num2;
+> END //
+> 
+> DELIMITER ;
+> 
+> -- 调用存储过程
+> CALL calculate_sum(10, 20, @result);
+> SELECT @result AS sum;
+> ```
+>
+> * ③ `传出参数`的特点是：函数可以直接修改调用者的数据。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+void minAndMax(const int arr[], int len, int *pMin, int *pMax) { // [!code highlight]
+    *pMin = arr[0];
+    *pMax = arr[0];
+    for (int i = 0; i < len; i++) {
+        if (arr[i] <= *pMin) {
+            *pMin = arr[i];
+        }
+        if (arr[i] > *pMax) {
+            *pMax = arr[i];
+        }
+    }
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int arr[] = {1, 2, 3, 4, 5};
+    int min = 0, max = 0;
+
+    minAndMax(arr, sizeof(arr) / sizeof(arr[0]), &min, &max);
+
+    printf("min: %d\n", min);
+    printf("max: %d\n", max);
+
+    return 0;
+}
+
+```
+
+## 5.4 传入传出参数（Input-Output Parameter）
+
+* 传入传出参数既可以将数据传入函数，又可以将修改后的数据传回调用者，通常也是通过指针实现。
+
+> [!NOTE]
+>
+> * ① 在函数中，可以通过`指针`的方式，进行调用者和函数之间的共享数据（传入传出参数）。
+> * ② 其实，所谓的`传入传出参数`，就是对应 MySQL 存储过程和函数中，参数的类型 `INOUT` 类型。
+>
+> ```c
+> DELIMITER //
+> 
+> CREATE PROCEDURE double_value(INOUT value INT)
+> BEGIN
+>     SET value = value * 2;
+> END //
+> 
+> DELIMITER ;
+> 
+> -- 调用存储过程
+> SET @number = 5; -- 设置初始值
+> CALL double_value(@number);
+> SELECT @number AS doubled_value;
+> ```
+>
+> * ③ `传入传出参数`的特点是：调用者和函数之间共享数据，既可以输入值，也可以通过修改传出值。
+
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+
+void processValue(int *value) {
+    // 值加倍
+    *value *= 2; // [!code highlight]
+}
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    int x = 5;
+    printf("x = %d\n", x); // x = 5
+
+    processValue(&x); // 传入地址，同时会被修改
+
+    printf("x = %d\n", x); // x = 10
 
     return 0;
 }
