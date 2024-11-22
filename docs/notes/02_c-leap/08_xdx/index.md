@@ -1207,6 +1207,51 @@ int main() {
 
 * 在大多数情况下，`数组名`参与`表达式计算`时，编译器也会将其转换为指向数组第 `0` 个元素的指针。
 
+> [!NOTE]
+>
+> 所谓的`数组名`参与`表达式计算`，有两种情况，如下所示：
+>
+> * ① `数组名`在`赋值表达式`的`右边`，如：`int *p = arr;`。
+> * ② `数组名`参与`算术运算`，如：`int *p = arr + 3;`。
+
+> [!CAUTION]
+>
+> * ① 在 C 语言中，`数组`是`不可以`重新赋值的，如下所示：
+>
+> ```c
+> #include <stddef.h>
+> #include <stdio.h>
+> 
+> int main() {
+>     
+>     // 禁用 stdout 缓冲区
+>     setbuf(stdout, NULL);
+> 
+>     // 初始化
+>     int arr[6] = {1, 2, 3, 4, 5, 6};
+> 
+>     // 错误
+>     arr = NULL; // [!code error]
+> 
+>     return 0;
+> }
+> ```
+>
+> * ② 在 Java 语言中，`数组`是`可以`重新赋值的，如下所示：
+>
+> ```java
+> public class Array {
+>     public static void main(String[] args){
+>         
+>         // 初始化
+>         int[] arr = new int[]{1,2,3,4,5,6};
+>         
+>         // 可以
+>         arr = null; // [!code highlight]
+>     }
+> }
+> ```
+
 
 
 * 示例：
