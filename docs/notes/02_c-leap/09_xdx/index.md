@@ -576,7 +576,7 @@ int main() {
 
 > [!NOTE]
 >
-> 代码如下：
+> ::: details 点我查看 对应的代码
 >
 > ```c {14-16}
 > #include <stddef.h>
@@ -599,6 +599,7 @@ int main() {
 >     return 0;
 > }
 > ```
+> :::
 
 ![](./assets/11.png)
 
@@ -657,7 +658,7 @@ int main() {
 
 > [!NOTE]
 >
-> 代码如下：
+> ::: details 点我查看 对应的代码
 >
 > ```c {17-19}
 > #include <stddef.h>
@@ -683,6 +684,7 @@ int main() {
 >     return 0;
 > }
 > ```
+> :::
 
 ![](./assets/13.png)
 
@@ -766,7 +768,7 @@ int main() {
 
 > [!NOTE]
 >
-> 代码如下：
+> ::: details 点我查看 对应的代码
 >
 > ```c {28-30}
 > #include <stddef.h>
@@ -803,6 +805,7 @@ int main() {
 >     return 0;
 > }
 > ```
+> :::
 
 ![](./assets/16.png)
 
