@@ -204,10 +204,14 @@ pacman -Sy base-devel --noconfirm # 安装开发工具包
 
 > [!NOTE]
 >
-> 也许，你会看到其他人的安装命令是 `pacman -Sy mingw-w64-x86_64-toolchain --noconfirm`，此处解释下两者的区别：
+> 也许，你会看到其他人的安装命令是 `pacman -Sy mingw-w64-x86_64-toolchain --noconfirm`。
+>
+> ::: details 点我查看 两者的区别：
 >
 > * ① `mingw-w64-x86_64-toolchain` 使用更传统的 MSVCRT，适合需要经典 MinGW 环境的项目或依赖较老 C 运行时的应用。
 > * ② `mingw-w64-ucrt-x86_64-toolchain` 使用 Microsoft 的 UCRT，更适合现代 Windows 开发，提供更好的兼容性和性能。
+>
+> :::
 
 ```shell
 pacman -Sy mingw-w64-ucrt-x86_64-toolchain --noconfirm # 安装开发 gcc 相关工具链
@@ -439,13 +443,27 @@ pacman -Sy mingw-w64-ucrt-x86_64-toolchain --noconfirm # 安装开发 gcc 相关
 
 ![](./assets/73.png)
 
-* 如果不是第一次安装，可能会出现`共享组件、工具和 SDK`不可以修改，即：
+> [!NOTE]
+>
+> * 如果不是第一次安装，可能会出现`共享组件、工具和 SDK`不可以修改，如下所示：
+>
+> ::: details 点我查看
+>
+> ![](./assets/74.png)
+>
+> ::: 
+>
+> * 具体解决步骤，如下所示：
+>
+> ::: details 点我查看
+>
+> 需要打开`注册表编辑器`，将如下图中的除了第一个选项，全部删除，然后关闭再重新安装，即：
+>
+> ![](./assets/75.png)
+>
+> :::
 
-![](./assets/74.png)
 
-* 此时，就需要打开`注册表编辑器`，将如下图中的除了第一个选项，全部删除，然后关闭再重新安装，即：
-
-![](./assets/75.png)
 
 * 开始安装：
 
@@ -692,16 +710,20 @@ int main(){
 
 ![](./assets/114.png)
 
-![](./assets/115.gif)
-
 > [!NOTE]
 >
-> 内容如下所示：
+> 具体内容，如下所示：
+>
+> ::: details 点我查看 
 >
 > ```txt
 > -Dfile.encoding=UTF-8
 > -Dconsole.encoding=UTF-8
 > ```
+>
+> ::: 
+
+![](./assets/115.gif)
 
 
 
