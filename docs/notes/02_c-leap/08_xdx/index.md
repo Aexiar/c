@@ -1218,6 +1218,40 @@ int main() {
 >
 > * ① 在 C 语言中，`数组`是`不可以`重新赋值的，如下所示：
 >
+> <details>
+>   <summary>点我展开</summary>
+>
+>   ```c
+>   #include <stdio.h>
+> 
+>   int main() {
+>       printf("Hello, World!\n");
+>       return 0;
+>   }
+>   ```
+>
+> <details>
+>     <summary>点我展开</summary>
+>     ```
+>         #include <stddef.h>
+>         #include <stdio.h>
+>         int main() {
+>
+>         // 禁用 stdout 缓冲区
+>         setbuf(stdout, NULL);
+>     
+>         // 初始化
+>         int arr[6] = {1, 2, 3, 4, 5, 6};
+>     
+>         // 错误
+>         arr = NULL; // [!code error]
+>     
+>         return 0;
+>     }
+> ```
+> </details> 
+> ```
+>
 > ```c
 > #include <stddef.h>
 > #include <stdio.h>
