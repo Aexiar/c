@@ -2058,8 +2058,8 @@ void swap(void *a, void *b, int len) {
     for (int i = 0; i < len; ++i) {
         /* 一个字节一个字节的交换数据 */
         char temp = *ac;
-        *ac       = *bc;
-        *bc       = temp;
+        *ac = *bc;
+        *bc = temp;
         /* 指针自增 */
         ac++;
         bc++;
@@ -2106,8 +2106,8 @@ void swap(void *a, void *b, int len) {
     for (int i = 0; i < len; ++i) {
         /* 一个字节一个字节的交换数据 */
         char temp = *ac;
-        *ac       = *bc;
-        *bc       = temp;
+        *ac = *bc;
+        *bc = temp;
         /* 指针自增 */
         ac++;
         bc++;
