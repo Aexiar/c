@@ -51,6 +51,19 @@ export const sidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
+      text: '数据结构和算法',
+      collapsed: true,
+      items: [
+      ]
+    },
+    {
+      text: 'Linux 编程',
+      collapsed: true,
+      items: [
+        { text: 'Linux 初识和安装', link: `/notes/04_linux/01_${commonDirectoryName}/` },
+      ]
+    },
+    {
       text: '项目构建工具',
       collapsed: true,
       items: [
@@ -72,20 +85,6 @@ export const sidebar: DefaultTheme.Sidebar = {
             { text: 'Gradle 入门', link: `/notes/03_build/01_${commonDirectoryName}/` },
           ]
         },
-      ]
-    },
-    {
-      text: '数据结构和算法',
-      collapsed: true,
-      items: [
-        { text: 'Linux 初识和安装', link: `/notes/04_linux/01_${commonDirectoryName}/` },
-      ]
-    },
-    {
-      text: 'Linux 编程',
-      collapsed: true,
-      items: [
-        { text: 'Linux 初识和安装', link: `/notes/04_linux/01_${commonDirectoryName}/` },
       ]
     },
     {
