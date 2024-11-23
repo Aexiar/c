@@ -6,7 +6,6 @@ on:
     branches:
       - master
       - main
-      - github-pages
       - gh-pages
   # 允许我们从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
