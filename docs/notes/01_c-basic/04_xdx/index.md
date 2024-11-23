@@ -204,9 +204,9 @@ pacman -Sy base-devel --noconfirm # 安装开发工具包
 
 > [!NOTE]
 >
-> 也许，你会看到其他人的安装命令是 `pacman -Sy mingw-w64-x86_64-toolchain --noconfirm`。
+> 或许，你会看到其他人的安装命令是 `pacman -Sy mingw-w64-x86_64-toolchain --noconfirm`。
 >
-> ::: details 点我查看 两者的区别：
+> ::: details 点我查看 两者的区别
 >
 > * ① `mingw-w64-x86_64-toolchain` 使用更传统的 MSVCRT，适合需要经典 MinGW 环境的项目或依赖较老 C 运行时的应用。
 > * ② `mingw-w64-ucrt-x86_64-toolchain` 使用 Microsoft 的 UCRT，更适合现代 Windows 开发，提供更好的兼容性和性能。
