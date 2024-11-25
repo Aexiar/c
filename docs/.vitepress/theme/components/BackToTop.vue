@@ -14,8 +14,7 @@
 </template>
 
 <script>
-import { watch } from "fs";
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount,watch } from "vue";
 
 export default {
   setup() {
@@ -31,11 +30,11 @@ export default {
       visible.value = scrollTop > 100;
 
       console.log("@@@progress@@@@@@@@", progress.value);
-    };
+    }
 
     const scrollToTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+    }
 
     onMounted(() => {
       window.addEventListener("scroll", handleScroll);
@@ -43,7 +42,7 @@ export default {
 
     onBeforeUnmount(() => {
       window.removeEventListener("scroll", handleScroll);
-    });
+    })
 
     return {
       visible,
