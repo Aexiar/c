@@ -2,10 +2,7 @@
 <template>
   <div class="back-to-top" v-if="visible" @click="scrollToTop">
     <svg viewBox="0 0 36 36" class="circular-progress">
-      <path
-        class="circle-bg"
-        d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32"
-      />
+      <path class="circle-bg" d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32" />
       <path
         class="circle"
         :stroke-dasharray="progress + ', 100'"
@@ -17,7 +14,8 @@
 </template>
 
 <script>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { watch } from "fs";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 export default {
   setup() {
@@ -31,18 +29,20 @@ export default {
       const percentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
       progress.value = percentage.toFixed(2);
       visible.value = scrollTop > 100;
+
+      console.log("@@@progress@@@@@@@@", progress.value);
     };
 
     const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     onMounted(() => {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener("scroll", handleScroll);
     });
 
     onBeforeUnmount(() => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     });
 
     return {
