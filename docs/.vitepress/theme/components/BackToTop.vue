@@ -2,11 +2,21 @@
 <template>
   <div class="back-to-top" v-if="visible" @click="scrollToTop">
     <svg viewBox="0 0 36 36" class="circular-progress">
-      <path class="circle-bg" d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32" />
-      <path
+      <!-- 背景圆 -->
+      <circle
+        class="circle-bg"
+        cx="18"
+        cy="18"
+        r="16"
+      />
+      <!-- 前景圆，表示进度 -->
+      <circle
         class="circle"
-        :stroke-dasharray="progress + ', 100'"
-        d="M18 2a16 16 0 1 1 0 32 16 16 0 1 1 0-32"
+        cx="18"
+        cy="18"
+        r="16"
+        :stroke-dasharray="circumference"
+        :stroke-dashoffset="circumference - (progress / 100) * circumference"
       />
     </svg>
     <div class="arrow">↑</div>
