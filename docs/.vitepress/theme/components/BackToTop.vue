@@ -4,7 +4,7 @@
     <svg viewBox="0 0 36 36" class="circular-progress">
       <!-- 背景圆 -->
       <circle class="circle-bg" cx="18" cy="18" r="16" />
-      <!-- 前景圆，表示进度 -->
+      <!-- 进度圆 -->
       <circle
         class="circle"
         cx="18"
@@ -26,31 +26,30 @@ export default {
     const visible = ref(false);
     const progress = ref(0);
 
-    // 圆的周长
+    // 圆的周长（用于绘制进度）
     const circumference = 2 * Math.PI * 16;
 
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight;
-      const percentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
-      progress.value = percentage.toFixed(2);
-      visible.value = scrollTop > 100;
+      const scrollTop = window.scrollY; // 当前滚动的高度
+      const scrollHeight = document.documentElement.scrollHeight; // 文档总高度
+      const clientHeight = document.documentElement.clientHeight; // 可见区域高度
 
-      console.log("@@@progress@@@@@@@@", progress.value);
-      console.log("@@@percentage@@@@@@@@", percentage);
+      // 计算滚动百分比
+      const percentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+      progress.value = Math.min(percentage, 100).toFixed(2); // 限制最大值为 100
+      visible.value = scrollTop > 100; // 滚动超过 100px 显示按钮
     };
 
     const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" }); // 平滑滚动到顶部
     };
 
     onMounted(() => {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScroll); // 监听滚动事件
     });
 
     onBeforeUnmount(() => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll); // 移除滚动事件监听
     });
 
     return {
@@ -78,7 +77,6 @@ export default {
   align-items: center;
   cursor: pointer;
   z-index: 1000;
-  transition: opacity 0.3s ease;
 }
 
 .circular-progress {
@@ -87,22 +85,23 @@ export default {
   left: 0;
   width: 50px;
   height: 50px;
-  transform: rotate(-90deg);
+  transform: rotate(-90deg); /* 旋转使圆环从顶部开始 */
 }
 
 .circle-bg {
   fill: none;
-  stroke: #e6e6e6;
+  stroke: #e6e6e6; /* 背景圆的颜色 */
   stroke-width: 4;
 }
 
 .circle {
   fill: none;
-  stroke: #0078ff;
+  stroke: #0078ff; /* 进度条颜色 */
   stroke-width: 4;
   stroke-linecap: round;
-  stroke-dasharray: 0, 100;
-  transition: stroke-dasharray 0.3s ease;
+  stroke-dasharray: 0; /* 动态绑定 */
+  stroke-dashoffset: 0; /* 动态绑定 */
+  transition: stroke-dashoffset 0.3s ease; /* 平滑动画效果 */
 }
 
 .arrow {
