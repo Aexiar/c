@@ -209,6 +209,32 @@ int main() {
 }
 ```
 
+
+
+* 示例：
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
+    char str[5] = {'\0'};
+    printf("请输入一行文本： ");
+
+    if (fgets(str, sizeof(str), stdin) != NULL) { // [!code highlight]
+        printf("你输入的内容是：%s", str);
+    } else {
+        printf("读取失败。\n");
+    }
+
+    return 0;
+}
+```
+
 ## 1.4 字符串结束不是 `'\0'` 的后果
 
 * 有的时候，程序的逻辑要求我们必须逐个字符为数组赋值，这个时候就很容易遗忘字符串结束标识 `'\0'`，如下所示：
