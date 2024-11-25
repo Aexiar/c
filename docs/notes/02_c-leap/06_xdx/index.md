@@ -300,7 +300,7 @@ int main() {
 
 ## 1.5 字符串的长度
 
-* 所谓字符串的长度，就是字符串包含了多少个字符（不包括最后的结束符`'\0'`），如：`"abc"` 的长度是 `3` ，而不是 `4` 。
+* 所谓字符串的长度，就是字符串包含了多少个字符（不包括最后的结束符`'\0'`），如：`"abc"`的长度是`3`，而不是`4`。
 * 在 C 语言中的 `string.h` 中提供了 `strlen()` 函数，能够帮助我们获取字符串的长度，如下所示：
 
 ```c
@@ -316,20 +316,17 @@ size_t strlen (const char *__s)
 #include <string.h>
 
 int main() {
-    
+
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
-    
+
     char str[30] = {'\0'};
-    char c;
-    int  i;
-    for (c = 65, i = 0; c <= 90; c++, i++) {
-        str[i] = c;
+    for (int i = 0, c = 65; c <= 90; c++, i++) {
+        str[i] = (char)c;
     }
-    // ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    printf("%s\n", str);
+
     // ABCDEFGHIJKLMNOPQRSTUVWXYZ 的长度是 26
-    printf("%s 的长度是 %zu\n", str, strlen(str));  // [!code highlight]
+    printf("%s 的长度是 %zu\n", str, strlen(str)); // [!code highlight]
 
     return 0;
 }
