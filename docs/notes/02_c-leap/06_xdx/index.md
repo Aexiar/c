@@ -85,6 +85,7 @@ int main() {
     char c1[] = {"Hello World"}; // [!code highlight]
     
     // 语法糖：可以省略一对 {} 来初始化数组元素
+    // "Hello World" 是数组初始化的简写形式！！！
     // 不要认为 C 语言中的数组支持赋值操作，这边仅仅是语法糖而已！！！
     char c2[] = "Hello World"; // [!code highlight]
     
