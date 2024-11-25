@@ -1146,7 +1146,7 @@ char *strcat( char *dest, const char *src );
 > [!NOTE]
 >
 > * ① 将字符串 src 拼接到字符串 dest 后面。
-> * ② 字符串 desc 必须足够大，以容纳连接后的新字符串。
+> * ② 字符串 dest 必须足够大，以容纳连接后的新字符串。
 
 
 
