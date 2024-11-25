@@ -3,14 +3,14 @@
     <svg viewBox="0 0 36 36" class="circular-progress">
       <!-- 背景圆 -->
       <circle class="circle-bg" cx="18" cy="18" r="16" />
-      <!-- 进度圆 -->
+      <!-- 动态进度圆 -->
       <circle
         class="circle"
         cx="18"
         cy="18"
         r="16"
         :stroke-dasharray="circumference"
-        :stroke-dashoffset="circumference - (progress / 100) * circumference"
+        :stroke-dashoffset="dashOffset"
       />
     </svg>
     <div class="arrow">↑</div>
@@ -20,38 +20,42 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
-// 定义响应式数据
-const visible = ref(false); // 控制按钮的显示
-const progress = ref(0); // 滚动进度（0% - 100%）
+// 响应式数据
+const visible = ref(false); // 控制按钮显示
+const progress = ref(0); // 滚动的百分比
 const radius = 16; // 圆的半径
 const circumference = 2 * Math.PI * radius; // 圆的周长
+const dashOffset = ref(circumference); // stroke-dashoffset 的动态值
 
-// 滚动事件监听
+// 处理滚动事件
 const handleScroll = () => {
   const scrollTop = window.scrollY; // 当前滚动高度
   const scrollHeight = document.documentElement.scrollHeight; // 文档总高度
   const clientHeight = document.documentElement.clientHeight; // 可见区域高度
 
   // 计算滚动进度百分比
-  const percentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
-  progress.value = Math.min(percentage, 100).toFixed(2); // 限制最大值为 100
-  visible.value = scrollTop > 100; // 超过 100px 显示按钮
+  progress.value = (scrollTop / (scrollHeight - clientHeight)) * 100;
+  progress.value = Math.min(progress.value, 100); // 限制最大值为 100%
 
-  console.log("scroll progress:", circumference - (progress.value / 100) * circumference);
+  // 更新 dashOffset（圆环进度）
+  dashOffset.value = circumference - (progress.value / 100) * circumference;
+
+  // 控制按钮显示逻辑
+  visible.value = scrollTop > 100;
 };
 
-// 返回顶部的逻辑
+// 返回顶部功能
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" }); // 平滑滚动到顶部
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// 生命周期
+// 生命周期管理
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll); // 监听滚动事件
+  window.addEventListener("scroll", handleScroll); // 添加滚动事件监听
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll); // 卸载滚动事件监听
+  window.removeEventListener("scroll", handleScroll); // 移除滚动事件监听
 });
 </script>
 
@@ -94,7 +98,7 @@ onBeforeUnmount(() => {
   stroke-linecap: round;
   stroke-dasharray: 0; /* 动态绑定 */
   stroke-dashoffset: 0; /* 动态绑定 */
-  transition: stroke-dashoffset 0.3s ease; /* 平滑动画 */
+  transition: stroke-dashoffset 0.1s ease; /* 平滑动画 */
 }
 
 .arrow {
