@@ -36,6 +36,8 @@ const handleScroll = () => {
   const percentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
   progress.value = Math.min(percentage, 100).toFixed(2); // 限制最大值为 100
   visible.value = scrollTop > 100; // 超过 100px 显示按钮
+
+  console.log("scroll progress:", circumference - (progress.value / 100) * circumference);
 };
 
 // 返回顶部的逻辑
