@@ -193,6 +193,10 @@ char str[] = "Hello World"; // "Hello World" 是语法糖，字符数组初始�
 char *p = "Hello World";  // "Hello World" 是字符串字面量
 ```
 
+* 其图示，如下所示：
+
+![](./assets/未命名绘图-第 5 页.drawio.svg)
+
 ## 1.3 字符串的输入和输出
 
 ### 1.3.1 字符串的输出
