@@ -3,12 +3,7 @@
   <div class="back-to-top" v-if="visible" @click="scrollToTop">
     <svg viewBox="0 0 36 36" class="circular-progress">
       <!-- 背景圆 -->
-      <circle
-        class="circle-bg"
-        cx="18"
-        cy="18"
-        r="16"
-      />
+      <circle class="circle-bg" cx="18" cy="18" r="16" />
       <!-- 前景圆，表示进度 -->
       <circle
         class="circle"
@@ -30,6 +25,9 @@ export default {
   setup() {
     const visible = ref(false);
     const progress = ref(0);
+
+    // 圆的周长
+    const circumference = 2 * Math.PI * 16;
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -59,6 +57,7 @@ export default {
       visible,
       progress,
       scrollToTop,
+      circumference,
     };
   },
 };
