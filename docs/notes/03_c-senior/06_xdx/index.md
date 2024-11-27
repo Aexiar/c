@@ -430,10 +430,10 @@ struct 结构体名{
  * 声明学生的结构体
  */
 struct Student {
-    int  id;          // 学号
+    int id;           // 学号
     char name[20];    // 姓名
     char gender;      // 性别
-    int  age;         // 年龄
+    int age;          // 年龄
     char address[50]; // 地址
 };
 
@@ -458,7 +458,7 @@ int main() {
  */
 struct Cat {
     char name[20];  // 姓名
-    int  age;       // 年龄
+    int age;        // 年龄
     char color[50]; // 颜色
 };
 
@@ -482,10 +482,10 @@ int main() {
  * 声明人类的结构体
  */
 struct Person {
-    char   name[20]; // 姓名
-    char   gender;   // 性别
-    int    age;      // 年龄
-    double weight;   // 体重
+    char name[20]; // 姓名
+    char gender;   // 性别
+    int age;       // 年龄
+    double weight; // 体重
 };
 
 int main() {
@@ -509,9 +509,9 @@ int main() {
  */
 struct Contact {
     char name[50];        // 姓名
-    int  year;            // 年
-    int  month;           // 月
-    int  day;             // 日
+    int year;             // 年
+    int month;            // 月
+    int day;              // 日
     char email[100];      // 电子邮箱
     char phoneNumber[15]; // 手机号
 };
@@ -536,10 +536,10 @@ int main() {
  * 声明员工的结构体
  */
 struct Employee {
-    int  id;          // 员工编号
+    int id;           // 员工编号
     char name[20];    // 员工姓名
     char gender;      // 员工性别
-    int  age;         // 员工年龄
+    int age;          // 员工年龄
     char address[30]; // 员工住址
 };
 
@@ -593,10 +593,10 @@ struct 结构体类型名称 结构体变量名;
  * 声明学生的结构体
  */
 struct Student {
-    int  id;          // 学号
+    int id;           // 学号
     char name[20];    // 姓名
     char gender;      // 性别
-    int  age;         // 年龄
+    int age;          // 年龄
     char address[50]; // 地址
 };
 
@@ -624,7 +624,7 @@ int main() {
  */
 struct Cat {
     char name[20];  // 姓名
-    int  age;       // 年龄
+    int age;        // 年龄
     char color[50]; // 颜色
 };
 
@@ -635,7 +635,7 @@ int main() {
 
     // 定义猫结构体的变量
     struct Cat cat; // [!code highlight]
-    
+
     return 0;
 }
 ```
@@ -668,12 +668,12 @@ struct 结构体名{
  * 声明学生的结构体的同时定义结构体变量
  */
 struct Student {
-    int  id;          // 学号
+    int id;           // 学号
     char name[20];    // 姓名
     char gender;      // 性别
-    int  age;         // 年龄
+    int age;          // 年龄
     char address[50]; // 地址
-} stu1,stu2; // stu1 和 stu2 是结构体变量
+} stu1, stu2;         // stu1 和 stu2 是结构体变量
 
 int main() {
 
@@ -696,9 +696,9 @@ int main() {
  */
 struct Cat {
     char name[20];  // 姓名
-    int  age;       // 年龄
+    int age;        // 年龄
     char color[50]; // 颜色
-} cat; // cat 是结构体变量
+} cat;              // cat 是结构体变量
 
 int main() {
 
@@ -740,12 +740,12 @@ struct {
  * 声明学生的结构体的同时定义结构体变量
  */
 struct {
-    int  id;          // 学号
+    int id;           // 学号
     char name[20];    // 姓名
     char gender;      // 性别
-    int  age;         // 年龄
+    int age;          // 年龄
     char address[50]; // 地址
-} stu1,stu2; // stu1 和 stu2 是结构体变量
+} stu1, stu2;         // stu1 和 stu2 是结构体变量
 
 int main() {
 
@@ -768,9 +768,9 @@ int main() {
  */
 struct {
     char name[20];  // 姓名
-    int  age;       // 年龄
+    int age;        // 年龄
     char color[50]; // 颜色
-} cat; // cat 是结构体变量
+} cat;              // cat 是结构体变量
 
 int main() {
 
@@ -816,10 +816,10 @@ int main() {
  * 声明人类的结构体
  */
 struct Person {
-    char   name[20]; // 姓名
-    char   gender;   // 性别
-    int    age;      // 年龄
-    double weight;   // 体重
+    char name[20]; // 姓名
+    char gender;   // 性别
+    int age;       // 年龄
+    double weight; // 体重
 };
 
 int main() {
@@ -833,7 +833,7 @@ int main() {
     // 结构体变量中成员赋值
     strcpy(person.name, "张三");
     person.gender = 'M';
-    person.age    = 20;
+    person.age = 20;
     person.weight = 60.5;
 
     // 结构体变量中成员的访问
@@ -858,10 +858,10 @@ int main() {
  * 声明学生的结构体
  */
 struct Student {
-    int  id;          // 学号
+    int id;           // 学号
     char name[20];    // 姓名
     char gender;      // 性别
-    int  age;         // 年龄
+    int age;          // 年龄
     char address[50]; // 地址
 };
 
@@ -877,7 +877,7 @@ int main() {
     student.id = 10001;
     strcpy(student.name, "张三");
     student.gender = 'M';
-    student.age    = 20;
+    student.age = 20;
     strcpy(student.address, "北京市海淀区");
 
     // 输出结构体变量中成员的值
@@ -931,10 +931,10 @@ struct 结构体类型 结构体变量 = {.成员 = xxx,...};
  * 声明学生的结构体
  */
 struct Student {
-    int  id;          // 学号
+    int id;           // 学号
     char name[20];    // 姓名
     char gender;      // 性别
-    int  age;         // 年龄
+    int age;          // 年龄
     char address[50]; // 地址
 };
 
@@ -968,10 +968,10 @@ int main() {
  * 声明人类的结构体
  */
 struct Person {
-    char   name[20]; // 姓名
-    char   gender;   // 性别
-    int    age;      // 年龄
-    double weight;   // 体重
+    char name[20]; // 姓名
+    char gender;   // 性别
+    int age;       // 年龄
+    double weight; // 体重
 };
 
 int main() {
@@ -980,10 +980,10 @@ int main() {
     setbuf(stdout, nullptr);
 
     // 定义人类结构体的变量并进行初始化
-    struct Person person = {.gender = 'M', 
+    struct Person person = {.gender = 'M',
                             .name = "张三",
                             .age = 15,
-                            .weight = 60.5}; 
+                            .weight = 60.5};
 
     // 结构体变量中成员的访问
     printf("姓名：%s\n", person.name);     // 姓名：张三
@@ -1122,7 +1122,7 @@ struct Car car ; // Car 是结构体数据类型，而 car 是一个具体的 Ca
 /**
  * 声明姓名结构体
  */
-struct Name { 
+struct Name {
     char firstName[50];
     char lastName[50];
 };
@@ -1131,11 +1131,11 @@ struct Name {
  * 声明学生的结构体
  */
 struct Student {
-    int         id;          // 学号
-    struct Name name;        // 姓名
-    char        gender;      // 性别
-    int         age;         // 年龄
-    char        address[50]; // 地址
+    int id;           // 学号
+    struct Name name; // 姓名
+    char gender;      // 性别
+    int age;          // 年龄
+    char address[50]; // 地址
 };
 
 int main() {
@@ -1155,7 +1155,7 @@ int main() {
     printf("\n");
 
     // 定义结构体变量并赋值
-    struct Name    name = {.firstName = "李", .lastName = "四"};
+    struct Name name = {.firstName = "李", .lastName = "四"};
     struct Student stu2 = {1002, name, 'F', 21, "上海市浦东新区"};
     printf("学号: %d\n", stu2.id);
     printf("姓名: %s\n", strcat(stu2.name.firstName, stu2.name.lastName));
@@ -1186,12 +1186,12 @@ struct Date {
  * 声明员工的结构体
  */
 struct Employee {
-    int         id;          // 员工编号
-    char        name[20];    // 员工姓名
-    char        gender;      // 员工性别
-    int         age;         // 员工年龄
-    char        address[30]; // 员工住址
-    struct Date hireDate;    // 员工的入职时间
+    int id;               // 员工编号
+    char name[20];        // 员工姓名
+    char gender;          // 员工性别
+    int age;              // 员工年龄
+    char address[30];     // 员工住址
+    struct Date hireDate; // 员工的入职时间
 };
 
 int main() {
@@ -1208,25 +1208,25 @@ int main() {
     printf("员工性别: %c\n", employee.gender);
     printf("员工年龄: %d\n", employee.age);
     printf("员工住址: %s\n", employee.address);
-    printf("入职时间: %d-%d-%d\n", employee.hireDate.year
-           , employee.hireDate.month, employee.hireDate.day);
+    printf("入职时间: %d-%d-%d\n", employee.hireDate.year, 
+           employee.hireDate.month, employee.hireDate.day);
 
     printf("\n");
 
     // 定义员工结构体的变量
-    struct Date     hireDate  = {2019, 10, 1};
-    struct Employee employee2 = {.id = 1002, 
-                                 .name = "李四", 
-                                 .gender = 'F', 
-                                 .age = 21, 
+    struct Date hireDate = {2019, 10, 1};
+    struct Employee employee2 = {.id = 1002,
+                                 .name = "李四",
+                                 .gender = 'F',
+                                 .age = 21,
                                  .address = "上海市浦东新区"};
-    employee2.hireDate        = hireDate;
+    employee2.hireDate = hireDate;
     printf("员工编号: %d\n", employee2.id);
     printf("员工姓名: %s\n", employee2.name);
     printf("员工性别: %c\n", employee2.gender);
     printf("员工年龄: %d\n", employee2.age);
     printf("员工住址: %s\n", employee2.address);
-    printf("入职时间: %d-%d-%d\n", employee2.hireDate.year, 
+    printf("入职时间: %d-%d-%d\n", employee2.hireDate.year,
            employee2.hireDate.month, employee2.hireDate.day);
 
     return 0;
@@ -1258,11 +1258,11 @@ struct Student{
 ```c
 #include <stdio.h>
 
-struct Student { 
+struct Student {
     char *name;  // 姓名
-    int   num;   // 学号
-    int   age;   // 年龄
-    char  group; // 所在学习小组
+    int num;     // 学号
+    int age;     // 年龄
+    char group;  // 所在学习小组
     float score; // 成绩
 } stu1, stu2;
 
@@ -1274,20 +1274,17 @@ int main() {
     // sizeof(stu1.name) = 8
     printf("sizeof(stu1.name) = %zu\n", sizeof(stu1.name));
     // sizeof(stu1.num) = 4
-    printf("sizeof(stu1.num) = %zu\n", sizeof(stu1.num));     
+    printf("sizeof(stu1.num) = %zu\n", sizeof(stu1.num));
     // sizeof(stu1.age) = 4
-    printf("sizeof(stu1.age) = %zu\n", sizeof(stu1.age)); 
+    printf("sizeof(stu1.age) = %zu\n", sizeof(stu1.age));
     // sizeof(stu1.group) = 1
-    printf("sizeof(stu1.group) = %zu\n", sizeof(stu1.group)); 
+    printf("sizeof(stu1.group) = %zu\n", sizeof(stu1.group));
     // sizeof(stu1.score) = 4
-    printf("sizeof(stu1.score) = %zu\n", sizeof(stu1.score)); 
+    printf("sizeof(stu1.score) = %zu\n", sizeof(stu1.score));
 
     // total = 21
-    printf("total = %zu\n", sizeof(stu1.name) 
-           + sizeof(stu1.num) 
-           + sizeof(stu1.age) 
-           + sizeof(stu1.group) 
-           + sizeof(stu1.score));
+    printf("total = %zu\n", sizeof(stu1.name) + sizeof(stu1.num) 
+           + sizeof(stu1.age) + sizeof(stu1.group) + sizeof(stu1.score));
 
     return 0;
 }
@@ -1304,9 +1301,9 @@ int main() {
 
 struct Student { // 没有写 stu
     char *name;  // 姓名
-    int   num;   // 学号
-    int   age;   // 年龄
-    char  group; // 所在学习小组
+    int num;     // 学号
+    int age;     // 年龄
+    char group;  // 所在学习小组
     float score; // 成绩
 } stu1, stu2;
 
@@ -1318,13 +1315,13 @@ int main() {
     // sizeof(stu1.name) = 8
     printf("sizeof(stu1.name) = %zu\n", sizeof(stu1.name));
     // sizeof(stu1.num) = 4
-    printf("sizeof(stu1.num) = %zu\n", sizeof(stu1.num));     
+    printf("sizeof(stu1.num) = %zu\n", sizeof(stu1.num));
     // sizeof(stu1.age) = 4
-    printf("sizeof(stu1.age) = %zu\n", sizeof(stu1.age)); 
+    printf("sizeof(stu1.age) = %zu\n", sizeof(stu1.age));
     // sizeof(stu1.group) = 1
-    printf("sizeof(stu1.group) = %zu\n", sizeof(stu1.group)); 
+    printf("sizeof(stu1.group) = %zu\n", sizeof(stu1.group));
     // sizeof(stu1.score) = 4
-    printf("sizeof(stu1.score) = %zu\n", sizeof(stu1.score)); 
+    printf("sizeof(stu1.score) = %zu\n", sizeof(stu1.score));
 
     // total = 21
     printf("total = %zu\n", sizeof(stu1.name) 
@@ -1334,7 +1331,7 @@ int main() {
            + sizeof(stu1.score));
 
     // sizeof(stu1) = 24
-    printf("sizeof(stu1) = %zu\n", sizeof(stu1)); 
+    printf("sizeof(stu1) = %zu\n", sizeof(stu1));
 
     return 0;
 }
