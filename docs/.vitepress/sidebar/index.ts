@@ -57,10 +57,16 @@ export const sidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
+      text: 'C 语言新特性',
+      collapsed: true,
+      items: [
+      ]
+    },
+    {
       text: 'Linux 编程',
       collapsed: true,
       items: [
-        { text: 'Linux 初识和安装', link: `/notes/05_linux/01_${commonDirectoryName}/` },
+        { text: 'Linux 初识和安装', link: `/notes/06_linux/01_${commonDirectoryName}/` },
       ]
     },
     {
