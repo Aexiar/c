@@ -50,7 +50,7 @@ hero:
       link: "/java/notes/"
       target: '_blank'
     - theme: alt
-      text: "📊大数据"
+      text: "📈大数据"
       link: "/big-data/notes/"
       target: '_blank'
     - theme: alt
