@@ -10,7 +10,7 @@ export const nav: DefaultTheme.NavItem[] = [
       { text: '📊大数据', link: '/big-data/notes/', target: '_blank' },
       { text: '🌱云原生', link: '/linux/notes/', target: '_blank' },
       { text: '🐹Go', link: '/go/notes/', target: '_blank' },
-      { text: 'Python', link: '/python/notes/', target: '_blank' },
+      { text: '🐍Python', link: '/python/notes/', target: '_blank' },
     ]
   },
   { text: '数据库', link: '/db/notes/', target: '_blank' },
