@@ -8,8 +8,8 @@ export const nav: DefaultTheme.NavItem[] = [
       { text: '🎨前端', link: '/web-design/notes/', target: '_blank' },
       { text: '☕Java', link: '/java/notes/', target: '_blank' },
       { text: '📊大数据', link: '/big-data/notes/', target: '_blank' },
-      { text: '云原生', link: '/linux/notes/', target: '_blank' },
-      { text: 'Go', link: '/go/notes/', target: '_blank' },
+      { text: '🌱云原生', link: '/linux/notes/', target: '_blank' },
+      { text: '🐹Go', link: '/go/notes/', target: '_blank' },
       { text: 'Python', link: '/python/notes/', target: '_blank' },
     ]
   },
