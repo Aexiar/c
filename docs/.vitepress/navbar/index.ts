@@ -13,7 +13,7 @@ export const nav: DefaultTheme.NavItem[] = [
       { text: '🐍Python', link: '/python/notes/', target: '_blank' },
     ]
   },
-  { text: '数据库', link: '/db/notes/', target: '_blank' },
+  { text: '🛢️数据库', link: '/db/notes/', target: '_blank' },
   { text: '开源软件', link: '/open-software/notes/', target: '_blank' },
   { text: '关于我', link: '/notes/about/' },
 ]
