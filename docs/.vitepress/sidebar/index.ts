@@ -31,6 +31,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: '指针一', link: `/notes/02_c-leap/07_${commonDirectoryName}/` },
         { text: '指针二', link: `/notes/02_c-leap/08_${commonDirectoryName}/` },
         { text: '指针三', link: `/notes/02_c-leap/09_${commonDirectoryName}/` },
+        { text: '字符串', link: `/notes/02_c-leap/10_${commonDirectoryName}/` },
 
       ]
     },
