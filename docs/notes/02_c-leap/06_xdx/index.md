@@ -189,7 +189,7 @@ int main() {
 // 字符数组，是在栈中
 char str[] = "Hello World"; // "Hello World" 是语法糖，字符数组初始化的语法糖
 
-// 字符指针所指针的字符串是在代码段中
+// 字符指针所指针的字符串是在只读数据段中
 char *p = "Hello World";  // "Hello World" 是字符串字面量
 ```
 
@@ -697,6 +697,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
     
+    // C 语言中没有专门的字符串类型，而是使用字符数组来模拟字符串的
     char str[10] = "Hello World，Hello World，Hello World，";
     puts(str);
     
