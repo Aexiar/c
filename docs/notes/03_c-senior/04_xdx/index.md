@@ -694,7 +694,7 @@ int main() {
 >
 > ::: details 点我查看
 >
-> ```sql
+> ```sql {3}
 > DELIMITER //
 > 
 > CREATE PROCEDURE greet_user(IN username VARCHAR(50))
@@ -785,7 +785,7 @@ int main(){
 >
 > ::: details 点我查看
 >
-> ```sql
+> ```sql {3}
 > DELIMITER //
 > 
 > CREATE PROCEDURE calculate_sum(IN num1 INT, IN num2 INT, OUT total INT)
@@ -853,7 +853,7 @@ int main() {
 >
 > ::: details 点我查看
 >
-> ```sql
+> ```sql {3}
 > DELIMITER //
 > 
 > CREATE PROCEDURE double_value(INOUT value INT)
