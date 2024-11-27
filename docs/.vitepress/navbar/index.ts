@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'vitepress'
 export const nav: DefaultTheme.NavItem[] = [
-  { text: '首页', link: '/' },
+  { text: '🏠首页', link: '/' },
   { text: '计组6件套', link: '/coa6/notes/', target: '_blank' },
   {
     text: '编程语言', items: [
