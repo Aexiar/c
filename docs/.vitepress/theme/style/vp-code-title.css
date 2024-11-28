@@ -27,36 +27,45 @@
   padding: 10px 15px; /* 标题栏内边距 */
   font-size: 14px;
   font-weight: bold;
-  color: #333; /* 标题文本颜色 */
-  border-bottom: 1px solid #eaeaea; /* 下边框 */
+  color: #f7f7f7; /* 标题文本颜色 */
+  /* border-bottom: 1px solid #eaeaea; */
 }
 
 /* 标题文本样式 */
 .vp-code-block-title .vp-code-block-title-text {
-  color: #555; /* 文本颜色 */
+  color: #f7f7f; /* 文本颜色 */
 }
 
-/* 代码块部分样式 */
-.vp-code-block-title .language-c,
-.vp-code-block-title .language-js,
-.vp-code-block-title .language-* {
-  padding: 20px; /* 内边距 */
-  border-radius: 0 0 8px 8px; /* 修正代码块圆角 */
-  background: var(--vp-code-bg); /* 代码块背景色 */
-  box-shadow: none; /* 移除代码块的默认阴影 */
+/* 代码组：修正倒角、阴影、边距 */
+.vp-code-block-title div[class*="language-"].vp-adaptive-theme.line-numbers-mode {
+  border-radius: 8px;
+  box-shadow: none;
+  padding-top: 0px;
 }
 
-/* 行号样式修正 */
-.vp-code-block-title .line-numbers-wrapper {
-  padding-top: 40px; /* 调整行号的顶部间距 */
-  border-right: none; /* 移除右侧默认竖线 */
+/* 代码组：隐藏小圆点 */
+.vp-code-block-title div[class*="language-"].vp-adaptive-theme.line-numbers-mode::before {
+  display: none;
 }
 
-.vp-code-block-title .line-numbers-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 40px;
-  right: 0;
-  border-right: 1px solid var(--vp-code-block-divider-color);
-  height: calc(100% - 60px); /* 修正竖线高度 */
+/* 代码组：修正行号位置 */
+.vp-code-block-title .line-numbers-mode .line-numbers-wrapper {
+  padding-top: 20px;
+}
+
+/* 代码组：修正行号右侧竖线位置 */
+.vp-code-block-title .line-numbers-mode .line-numbers-wrapper::after {
+  top: 24px;
+}
+
+/* 代码组（无行号）：修正倒角、阴影、边距 */
+.vp-code-block-title div[class*="language-"].vp-adaptive-theme {
+  border-radius: 8px;
+  box-shadow: none;
+  padding-top: 0px;
+}
+
+/* 代码组（无行号）：隐藏小圆点 */
+.vp-code-block-title div[class*="language-"].vp-adaptive-theme::before {
+  display: none;
 }
