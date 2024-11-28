@@ -84,20 +84,19 @@ export default defineConfig({
           return defaultContent
         }
       })
-      // 解析 GitHub 标记
+      // 解析代码块带有标题
       md.use((md) => {
-        const defaultRender = md.render
-        md.render = function (...args) {
-          // 调用原始渲染
-          let defaultContent = defaultRender.apply(md, args)
-          // 替换内容
-          defaultContent = defaultContent.replace(/NOTE/g, '提醒')
-            .replace(/TIP/g, '建议')
-            .replace(/IMPORTANT/g, '重要')
-            .replace(/WARNING/g, '警告')
-            .replace(/CAUTION/g, '注意')
-          // 返回渲染的内容
-          return defaultContent
+        const defaultFence = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
+          return self.renderToken(tokens, idx, options)
+        }
+        md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+          const token = tokens[idx]
+          const info = token.info.trim()
+          const match = info.match(/\[(.+)\]/) // 检测是否包含 [文件名]
+          if (match) {
+            token.attrSet('class', (token.attrGet('class') || '') + ' vp-code-with-filename')
+          }
+          return defaultFence(tokens, idx, options, env, self)
         }
       })
       md.use(timeline)
