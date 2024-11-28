@@ -27,10 +27,11 @@
 
 /* 标题栏样式 */
 .vp-code-block-title .vp-code-block-title-bar {
-  background-color: #F6F6F7; /* 标题栏背景色 */
+   /* 标题栏背景色 */
+  color: var(--vp-c-black-soft);
   font-size: 14px;
   font-weight: bold;
-  border-bottom: 1px solid #eaeaea; 
+  /* border-bottom: 1px solid #eaeaea;  */
 }
 
 /* 代码块标题：修正倒角、阴影、边距 */
