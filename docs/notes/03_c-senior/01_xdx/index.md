@@ -1179,7 +1179,7 @@ extern int printf (const char *__restrict __format, ...);
 
 * 对于 `include/add.h` 文件，其内容如下：
 
-```c {5}
+```c [include/add.h]{5}
 #ifndef ADD_H
 #define ADD_H
 
@@ -1191,7 +1191,7 @@ int add(int a, int b);
 
 * 对于 `module/add.c` 文件，其内容如下：
 
-```c {1,4-6}
+```c [module/add.c] {1,4-6}
 #include "./include/add.h" // 导入自定义函数的头文件
 
 // 函数声明或函数实现
@@ -1202,7 +1202,7 @@ int add(int a,int b) {
 
 * 对于 `main.c` 文件，其内容如下：
 
-```c {1,2,9}
+```c [main.c] {1,2,9}
 #include <stdio.h> // 导入标准库函数的头文件
 #include "./include/add.h" // 导入自定义函数的头文件
 
@@ -1245,19 +1245,19 @@ int main() {
 
 * 对于 `include/add.h` 文件，其内容如下：
 
-```c
+```c [include/add.h]
 int add(int a, int b);
 ```
 
 * 对于 `include/sub.h` 文件，其内容如下：
 
-```c
+```c [include/sub.h]
 int sub(int a, int b);
 ```
 
 * 对于 `module/add.c` 文件，其内容如下：
 
-```c
+```c [module/add.c]
 #include "../include/add.h"
 
 int add(int a, int b) { 
@@ -1267,7 +1267,7 @@ int add(int a, int b) {
 
 * 对于 `module/sub.c` 文件，其内容如下：
 
-```c
+```c [module/sub.c]
 #include "../include/sub.h"
 
 int sub(int a, int b) { 
@@ -1277,7 +1277,7 @@ int sub(int a, int b) {
 
 * 对于 `main.c` 文件，其内容如下：
 
-```c {3-4}
+```c [main.c] {3-4}
 #include <stdio.h>
 
 #include "./include/add.h"
@@ -1300,7 +1300,7 @@ int main() {
 
 * 使用 `gcc` 命令来进行预处理，如下所示：
 
-```c
+```shell
 gcc -E main.c -o main.i
 ```
 
@@ -1319,13 +1319,13 @@ gcc -E main.c -o main.i
 
 * 使用`方案①` 解决头文件重复包含，那么  `include/add.h` 和 `include/sub.h` 的内容如下：
 
-```c {1}
+```c [include/add.h] {1}
 #pragma once
 
 int add(int a, int b);
 ```
 
-```c {1}
+```c [include/sub.h] {1}
 #pragma once
 
 int sub(int a, int b);
@@ -1341,7 +1341,7 @@ gcc -E main.c -o  main.i
 
 * 使用`方案②` 解决头文件重复包含，那么  `include/add.h` 和 `include/sub.h` 的内容如下：
 
-```c {1-2,6}
+```c [include/add.h] {1-2,6}
 #ifndef ADD_H
 #define ADD_H
 
@@ -1350,7 +1350,7 @@ int add(int a, int b);
 #endif // ADD_H
 ```
 
-```c {1-2,6}
+```c [include/sub.h] {1-2,6}
 #ifndef SUB_H
 #define SUB_H
 
