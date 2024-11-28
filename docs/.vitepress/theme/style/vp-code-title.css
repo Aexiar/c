@@ -1,5 +1,6 @@
 /* 整体容器样式（带阴影和圆角） */
 .vp-code-block-title {
+  background-color: #F6F6F7;
   color: var(--vp-c-black-soft);
   margin-bottom: 20px;
   border-radius: 8px;
