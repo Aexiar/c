@@ -47,11 +47,11 @@
 >
 > - `季节`：Spring (春节)......Winter (冬天)。
 >
-> - `支付方式`：Cash（现金）、WeChatPay（微信）、Alipay (支付宝)、BankCard (银 行卡)、CreditCard (信用卡)。
+> - `支付方式`：Cash（现金）、WeChatPay（微信）、Alipay (支付宝)、BankCard (银行卡)、CreditCard (信用卡)。
 >
 > - `就职状态`：Busy、Free、Vocation、Dimission。
 >
-> - `订单状态`：Nonpayment（未付款）、Paid（已付款）、Delivered（已发货）、 Return（退货）、Checked（已确认）Fulfilled（已配货）。
+> - `订单状态`：Nonpayment（未付款）、Paid（已付款）、Delivered（已发货）、 Return（退货）、Checked（已确认）、Fulfilled（已配货）。
 > - ...
 >
 > :::
