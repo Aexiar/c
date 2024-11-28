@@ -1,5 +1,6 @@
 /* 整体容器样式（带阴影和圆角） */
 .vp-code-block-title {
+  color: var(--vp-c-black-soft);
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4); /* 添加阴影 */
@@ -26,13 +27,8 @@
   background-color: #F6F6F7; /* 标题栏背景色 */
   font-size: 14px;
   font-weight: bold;
-  color: #333; /* 标题文本颜色 */
-  border-bottom: 1px solid #eaeaea; /* 下边框 */
-}
-
-/* 标题文本样式 */
-.vp-code-block-title .vp-code-block-title-text {
-  color: #555; /* 文本颜色 */
+  /* color: #333; */
+  border-bottom: 1px solid #eaeaea; 
 }
 
 /* 代码组：修正倒角、阴影、边距 */
