@@ -67,5 +67,5 @@
 }
 
 .vp-code-block-title div[class*="language-"].vp-code {
-  padding-bottom: 0;
+  padding-bottom: 0 !important;
 }
