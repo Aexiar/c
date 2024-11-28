@@ -68,7 +68,23 @@ export default defineConfig({
     },
     // 组件插入h1标题下
     config: (md) => {
-      // 创建 markdown-it 插件
+      // 解析 GitHub 标记
+      md.use((md) => {
+        const defaultRender = md.render
+        md.render = function (...args) {
+          // 调用原始渲染
+          let defaultContent = defaultRender.apply(md, args)
+          // 替换内容
+          defaultContent = defaultContent.replace(/NOTE/g, '提醒')
+            .replace(/TIP/g, '建议')
+            .replace(/IMPORTANT/g, '重要')
+            .replace(/WARNING/g, '警告')
+            .replace(/CAUTION/g, '注意')
+          // 返回渲染的内容
+          return defaultContent
+        }
+      })
+      // 解析 GitHub 标记
       md.use((md) => {
         const defaultRender = md.render
         md.render = function (...args) {
