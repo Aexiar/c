@@ -565,15 +565,6 @@ int main(){
 }
 ```
 
-```js [vite.config.js]
-import vitePlugin from 'vite-plugin-feature'
-import rollupPlugin from 'rollup-plugin-feature'
-
-export default defineConfig({
-  plugins: [vitePlugin(), rollupPlugin()],
-})
-```
-
 ![](./assets/87.gif)
 
 * ③ 通过 `gcc` 命令编译该文件：
