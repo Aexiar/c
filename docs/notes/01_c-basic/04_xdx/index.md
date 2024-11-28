@@ -556,13 +556,22 @@ pacman -Sy mingw-w64-ucrt-x86_64-toolchain --noconfirm # 安装开发 gcc 相关
 
 * ② 通过`记事本`等软件打开该文件，输入如下的代码，并保存：
 
-```c
+```c [HelloWorld.c]
 #include <stdio.h>
 
 int main(){
     printf("Hello World");
     return 0;
 }
+```
+
+```js [vite.config.js]
+import vitePlugin from 'vite-plugin-feature'
+import rollupPlugin from 'rollup-plugin-feature'
+
+export default defineConfig({
+  plugins: [vitePlugin(), rollupPlugin()],
+})
 ```
 
 ![](./assets/87.gif)
