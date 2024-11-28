@@ -65,3 +65,7 @@
 .vp-code-block-title div[class*="language-"].vp-adaptive-theme::before {
   display: none;
 }
+
+.vp-code-block-title div[class*="language-"].vp-code {
+  padding-bottom: 0;
+}
