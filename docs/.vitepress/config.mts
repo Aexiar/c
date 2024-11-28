@@ -84,21 +84,6 @@ export default defineConfig({
           return defaultContent
         }
       })
-      // 解析代码块带有标题
-      md.use((md) => {
-        const defaultFence = md.renderer.rules.fence || function (tokens, idx, options, env, self) {
-          return self.renderToken(tokens, idx, options)
-        }
-        md.renderer.rules.fence = (tokens, idx, options, env, self) => {
-          const token = tokens[idx]
-          const info = token.info.trim()
-          const match = info.match(/\[(.+)\]/) // 检测是否包含 [文件名]
-          if (match) {
-            token.attrSet('class', (token.attrGet('class') || '') + ' vp-code-with-filename')
-          }
-          return defaultFence(tokens, idx, options, env, self)
-        }
-      })
       md.use(timeline)
       md.use(groupIconMdPlugin) //代码组图标
     }
