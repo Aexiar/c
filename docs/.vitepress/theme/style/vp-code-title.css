@@ -23,17 +23,16 @@
 
 /* 标题栏样式 */
 .vp-code-block-title .vp-code-block-title-bar {
-  background-color: #f7f7f7; /* 标题栏背景色 */
-  padding: 10px 15px; /* 标题栏内边距 */
+  background-color: #F6F6F7; /* 标题栏背景色 */
   font-size: 14px;
   font-weight: bold;
-  color: #f7f7f7; /* 标题文本颜色 */
-  /* border-bottom: 1px solid #eaeaea; */
+  color: #333; /* 标题文本颜色 */
+  border-bottom: 1px solid #eaeaea; /* 下边框 */
 }
 
 /* 标题文本样式 */
 .vp-code-block-title .vp-code-block-title-text {
-  color: #f7f7f; /* 文本颜色 */
+  color: #555; /* 文本颜色 */
 }
 
 /* 代码组：修正倒角、阴影、边距 */
