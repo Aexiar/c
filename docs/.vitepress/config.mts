@@ -3,7 +3,7 @@ import { nav } from './navbar'
 import sidebar from './sidebar'
 import dayjs from 'dayjs'
 import timeline from "vitepress-markdown-timeline"
-import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import { groupIconMdPlugin, groupIconVitePlugin, localIconLoader } from 'vitepress-plugin-group-icons'
 
 import { loadEnv } from 'vite'
 
@@ -53,7 +53,15 @@ export default defineConfig({
       chunkSizeWarningLimit: 1600
     },
     plugins: [
-      groupIconVitePlugin() //代码组图标
+      groupIconVitePlugin({
+        customIcon: {
+          c: localIconLoader(import.meta.url, '../public/svg/typescript.svg'),
+          ts: localIconLoader(import.meta.url, '../public/svg/typescript.svg'), //本地ts图标导入
+          js: 'logos:javascript', //js图标
+          md: 'logos:markdown', //markdown图标
+          css: 'logos:css-3', //css图标
+        },
+      }) //代码组图标
     ],
     server: {
       port: 18088
