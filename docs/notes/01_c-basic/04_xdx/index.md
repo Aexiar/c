@@ -565,6 +565,20 @@ int main(){
 }
 ```
 
+::: code-group
+
+```sh [pnpm]
+#查询pnpm版本
+pnpm -v
+```
+
+```sh [yarn]
+#查询yarn版本
+yarn -v
+```
+
+:::
+
 ![](./assets/87.gif)
 
 * ③ 通过 `gcc` 命令编译该文件：
