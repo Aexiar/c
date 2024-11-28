@@ -2215,9 +2215,23 @@ int main() {
 
     // 定义结构体数组变量并赋值
     struct Student stuArr[5] = {
-        {.id = 1000, .name = "张三", .age = 18, .gender = 'M', .address = "北京"},
-        {.id = 1001, .name = "李四", .age = 19, .gender = 'M', .address = "上海"},
-        {.id = 1002, .name = "王五", .age = 20, .gender = 'F', .address = "天津"},
+        {
+            .id = 1000, 
+         	.name = "张三", 
+         	.age = 18, 
+         	.gender = 'M', 
+         	.address = "北京"},
+        {
+            .id = 1001, 
+            .name = "李四", 
+            .age = 19, 
+            .gender = 'M', 
+            .address = "上海"},
+        {
+            .id = 1002, 
+            .name = "王五", 
+            .age = 20, 
+            .gender = 'F', .address = "天津"},
         {.id = 1003, .name = "赵六", .age = 21, .gender = 'F', .address = "石家庄"},
         {.id = 1004, .name = "田七", .age = 22, .gender = 'F', .address = "河南"},
     };
