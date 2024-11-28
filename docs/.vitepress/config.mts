@@ -72,12 +72,6 @@ export default defineConfig({
       md.use((md) => {
         const defaultRender = md.render
         md.render = function (...args) {
-          const [content, env] = args
-          const isHomePage = env.path === '/' || env.relativePath === 'index.md'  // 判断是否是首页
-
-          if (isHomePage) {
-            return defaultRender.apply(md, args) // 如果是首页，直接渲染内容
-          }
           // 调用原始渲染
           let defaultContent = defaultRender.apply(md, args)
           // 替换内容
