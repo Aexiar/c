@@ -565,20 +565,6 @@ int main(){
 }
 ```
 
-```c [HelloWorld.c]
-```
-
-
-
-
-
-```c
-```
-
-
-
-
-
 ::: code-group
 
 ```sh [pnpm]
