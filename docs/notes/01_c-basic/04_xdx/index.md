@@ -556,7 +556,7 @@ pacman -Sy mingw-w64-ucrt-x86_64-toolchain --noconfirm # 安装开发 gcc 相关
 
 * ② 通过`记事本`等软件打开该文件，输入如下的代码，并保存：
 
-```c twoslash [HelloWorld.c]
+```c [HelloWorld.c]
 #include <stdio.h>
 
 int main(){
