@@ -16,6 +16,7 @@ console.log('VITE_BASE_URL:', VITE_BASE_URL)
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   metaChunk: true,
+  cleanUrls: true,
   lang: 'zh-CN', // 语言
   title: "许大仙", // 站点名称
   titleTemplate: "Hi，终于等到你", // 网页标题
